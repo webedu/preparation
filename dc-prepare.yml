@@ -1,0 +1,21 @@
+version: '2'
+services:
+
+  cre-glue:
+    image: tamboraorg/creglue:2011.0
+    container_name: creglue
+    volumes:
+     - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  cre-vue:
+    image: tamboraorg/credevvue:2011.0
+    container_name: crevue
+    volumes:
+     - ./vue-components:/cre/vue-components
+     - ./web-components:/cre/web-components
+    volumes_from:
+     - cre-glue
+
+# docker-compose --file dc-prepare.yml up -d
+
+     
