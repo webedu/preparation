@@ -1,21 +1,21 @@
-<template>
+<template> 
     <div class="tabs-component">
         <ul role="tablist" class="tabs-component-tabs">
             <li
-                v-for="(tab, i) in tabs"
+                v-for="(C4uTab, i) in C4uTabs"
                 :key="i"
-                :class="{ 'is-active': tab.isActive, 'is-disabled': tab.isDisabled }"
+                :class="{ 'is-active': C4uTab.isActive, 'is-disabled': C4uTab.isDisabled }"
                 class="tabs-component-tab"
                 role="presentation"
-                v-show="tab.isVisible"
+                v-show="C4uTab.isVisible"
             >
-                <a v-html="tab.header"
-                   :aria-controls="tab.hash"
-                   :aria-selected="tab.isActive"
-                   @click="selectTab(tab.hash, $event)"
-                   :href="tab.hash"
+                <a v-html="C4uTab.header"
+                   :aria-controls="C4uTab.hash"
+                   :aria-selected="C4uTab.isActive"
+                   @click="selectTab(C4uTab.hash, $event)"
+                   :href="C4uTab.hash"
                    class="tabs-component-tab-a"
-                   role="tab"
+                   role="C4uTab"
                 ></a>
             </li>
         </ul>
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    import expiringStorage from '../expiringStorage';
+    import expiringStorage from './expiringStorage';
     export default {
         props: {
             cacheLifetime: {
@@ -42,7 +42,7 @@
             },
         },
         data: () => ({
-            tabs: [],
+            C4uTabs: [],
             activeTabHash: '',
             activeTabIndex: 0,
             lastActiveTabHash: '',
@@ -53,7 +53,7 @@
             },
         },
         created() {
-            this.tabs = this.$children;
+            this.C4uTabs = this.$children;
         },
         mounted() {
             window.addEventListener('hashchange', () => this.selectTab(window.location.hash));
@@ -70,13 +70,13 @@
                 this.selectTab("#" + this.options.defaultTabHash);
                 return;
             }
-            if (this.tabs.length) {
-                this.selectTab(this.tabs[0].hash);
+            if (this.C4uTabs.length) {
+                this.selectTab(this.C4uTabs[0].hash);
             }
         },
         methods: {
             findTab(hash) {
-                return this.tabs.find(tab => tab.hash === hash);
+                return this.C4uTabs.find(C4uTab => C4uTab.hash === hash);
             },
             selectTab(selectedTabHash, event) {
                 // See if we should store the hash in the url fragment.
@@ -92,30 +92,30 @@
                     return;
                 }
                 if (this.lastActiveTabHash === selectedTab.hash) {
-                    this.$emit('clicked', { tab: selectedTab });
+                    this.$emit('clicked', { C4uTab: selectedTab });
                     return;
                 }
-                this.tabs.forEach(tab => {
-                    tab.isActive = (tab.hash === selectedTab.hash);
+                this.C4uTabs.forEach(C4uTab => {
+                    C4uTab.isActive = (C4uTab.hash === selectedTab.hash);
                 });
-                this.$emit('changed', { tab: selectedTab });
+                this.$emit('changed', { C4uTab: selectedTab });
                 this.activeTabHash = selectedTab.hash;
                 this.activeTabIndex = this.getTabIndex(selectedTabHash);
                 this.lastActiveTabHash = this.activeTabHash = selectedTab.hash;
                 expiringStorage.set(this.storageKey, selectedTab.hash, this.cacheLifetime);
             },
             setTabVisible(hash, visible) {
-                const tab = this.findTab(hash);
-                if (! tab) {
+                const C4uTab = this.findTab(hash);
+                if (! C4uTab) {
                     return;
                 }
-                tab.isVisible = visible;
-                if (tab.isActive) {
+                C4uTab.isVisible = visible;
+                if (C4uTab.isActive) {
                     // If tab is active, set a different one as active.
-                    tab.isActive = visible;
-                    this.tabs.every((tab, index, array) => {
-                        if (tab.isVisible) {
-                            tab.isActive = true;
+                    C4uTab.isActive = visible;
+                    this.C4uTabs.every((C4uTab, index, array) => {
+                        if (C4uTab.isVisible) {
+                            C4uTab.isActive = true;
                             return false;
                         }
                         return true;
@@ -124,19 +124,18 @@
             },
             
             getTabIndex(hash){
-            	const tab = this.findTab(hash);
-            	
-            	return this.tabs.indexOf(tab);
+                const C4uTab = this.findTab(hash);
+               	return this.C4uTabs.indexOf(C4uTab);
             },
             
-			getTabHash(index){
-            	const tab = this.tabs.find(tab => this.tabs.indexOf(tab) === index);
+            getTabHash(index){
+            	const C4uTab = this.C4uTabs.find(C4uTab => this.C4uTabs.indexOf(C4uTab) === index);
             	
-            	if (!tab) {
+            	if (!C4uTab) {
 					return;
                 }
                 
-                return tab.hash;
+                return C4uTab.hash;
 			},
             
             getActiveTab(){

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>My Non-Vue App</title>
+  </head>
+  <body>
+    <!--Load Vue-->
+    <script src="https://unpkg.com/vue"></script>
+    <!--Load the web component polyfill (sometimes still needed) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
+    <!--Load your custom element-->
+    <script type = "text/javascript" src="../web-components/my-tab.js"></script>
+    <script type = "text/javascript" src="../web-components/my-tabs.js"></script>
+    <!--Use your custom element-->
+<div>Vorher</div>
+<my-tabs>
+    <my-tab msg="Hello One ..."></my-tab>
+    <my-tab msg="Hello Two ..."></my-tab>
+    <my-tab msg="Hello Three ..."></my-tab>
+    <my-tab msg="Hello Four ..."></my-tab>
+    <my-tab msg="Hello Five ..."></my-tab>
+</my-tabs>
+<div>Nachher</div>
+  </body>
+</html>
+
