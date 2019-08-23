@@ -1,18 +1,15 @@
 <template> 
-  <span class='c4uHtml3'>y<slot></slot><span v-html='c4uHtml2'></span></span>
+  <span class='c4uHtml3'><slot></slot><span v-html='c4uHtml2'></span></span>
 </template>
 
 <style scoped>
   .c4uHtml3 {
-    background: blue; 
+    b_ackground: blue; 
   }
 </style>
 
 <script>
-//  import C4uHttp from "c4u-http";
-//  import C4uHttp from "./C4uHttp.js";  
-    import axios from "axios";
-//  import C4uGlue from "c4u-glue";
+  import axios from "axios";
 
   export default {
     props: ['url'],
@@ -21,26 +18,14 @@
             c4uHtml2: "<p>Loading...</p>"
             }
         },
-   // mixins: [/* C4uGlue, */ C4uHttp], 
     created() {
-         console.log("***** HTML-LOADER-created"); 
+        // console.log("***** HTML-LOADER-created"); 
     },
     mounted() {
          if(this.url) {
-           //this.http().get(this.url)
-           // .then(response => { this.c4uHtml2 = response.data; });
-
 	    axios.get(this.url)
                  .then(response => { this.c4uHtml2 = response.data; });	
-
-//           this.c4uHtml2 = "<p>Ready !</p>"; 
          }
-               
     },
-    updated() {
-    },
-    beforeDestroy() {
-    },
-
   }
 </script>
