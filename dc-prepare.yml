@@ -13,6 +13,7 @@ services:
     volumes:
      - ./vue-components:/cre/vue-components
      - ./web-components:/cre/web-components
+     - ./npm-components:/cre/npm-components  
     volumes_from:
      - w4u-glue
 
