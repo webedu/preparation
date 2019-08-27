@@ -1,12 +1,12 @@
 <template class="self">
-  <span class='c4uPlugout'>
+  <span class='c4uOut'>
   <p v-text="this.value">.</p>
   <slot></slot> 
   </span> 
 </template>
 
 <style scoped>
-  .c4uPlugout {  }
+  .c4uOut {  }
 </style>
 
 <script>
@@ -33,7 +33,7 @@
            this.c4uOldValue = newValue;
            // this.value = newValue; // not needed
            if (this.c4uParent) {  
-             this.c4uParent.plugOutChanged(this.name, newValue); 
+             this.c4uParent.outValueChanged(this.name, newValue); 
            }
          }
         }

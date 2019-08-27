@@ -22,18 +22,18 @@
         },
     mixins: [C4uGlue], 
     methods: { 
-      plugOutChanged: function (name, value) {
+      outValueChanged: function (name, value) {
          for(var i=1; i<this.c4uAllConnections.length; i++) { 
             if(this.c4uAllConnections[i].source == name) {
                 var target = this.c4uAllConnections[i].target;
-                this.changePlugIn(target, value);
+                this.changeInValue(target, value);
             } 
          }
        },
-      changePlugin: function(name, value) {
+      changeInValue: function(name, value) {
           for(var i=1; i<this.c4uAllPlugsIn.length; i++) { 
              if(this.c4uAllPlugsIn[i].name == name) {
-                this.c4uAllPlugsIn[i].changePlugIn(value);
+                this.c4uAllPlugsIn[i].changeInValue(value);
              }
           }
       }
@@ -47,8 +47,8 @@
     updated() {
          console.log("***** Slot-2nd-updated " + " #" + this.c4uUid);
          this.c4uAllConnections = this.c4uChildren['c4u-connection']; 
-         this.c4uAllPlugsIn = this.c4uChildren['c4u-plugin']; 
-         //this.c4uAllPlugsOut = this.c4uChildren['c4u-plugout']; 
+         this.c4uAllPlugsIn = this.c4uChildren['c4u-in']; 
+         //this.c4uAllPlugsOut = this.c4uChildren['c4u-out']; 
     },
     beforeDestroy() {
          console.log("***** Slot-2nd-destroyed " + " #" + this.c4uUid);

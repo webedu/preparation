@@ -2,41 +2,42 @@
   <span class='w4uSlider'>
      <span v-html="w4uStyle"></span>
      <input type="range" min="0" max="1000" v-bind:value="slidervalue" v-bind:orient="orient" v-on:input="slide($event)" v-on:change="update($event)">
-     <c4u-plugout name="mk" v-bind:value="slidervalue">
+     <c4u-out name="this.name+'-value'" v-bind:value="slidervalue">
      <slot></slot> 
   </span> 
 </template>
 
 <script>
-  //import C4uGlue from "c4u-glue";
- 
+
   export default {
     props: {
+            name: {type: String, default: 'slider0'},          //automatic numbering would need glue for unique id...
             orient: {type: String, default: 'vertical'}, 
             color: {type: String, default: '#4CAF50'}, 
             background: {type: String, default: '#d3d3d3'}, 
             label: {type: String, default: ''}
             // length: 175px 
-            // min
-            // max
-            // value
+            // min: -1.0 // 0.0
+            // max: +1.0  
+            // default (value)
+            // continuous
            },
     data: function() {
            return {
-             //c4uParentTag: "c4u-also-to-be-defined"  // no parent tag
-             slidervalue: 50 //
+             slidervalue: 500 //
             }
         },
     //mixins: [C4uGlue], 
     
     methods: { 
     slide(e) {
-	   //this.year = e.target.value; 
-	   console.log('slide: '+ this.year);
+           // if (this.continouos)
+	   this.slidervalue = e.target.value; 
+	   console.log('slide: '+ this.slidervalue);
 	},
     update(e) {
 	  this.slidervalue = e.target.value;
-	  //this.load(this.year);
+	  //this.load(this.slidervalue);
 	},
     },
     computed: {

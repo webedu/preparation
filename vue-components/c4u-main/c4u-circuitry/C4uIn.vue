@@ -1,11 +1,12 @@
 <template class="self">
-  <span class='c4uPlugIn'>
+  <span class='c4uIn'>
+  <p v-text="this.value">.</p>
   <slot></slot> 
   </span> 
 </template>
 
 <style scoped>
-  .c4uPlugIn {  }
+  .c4uIn {  }
 </style>
 
 <script>
@@ -21,12 +22,12 @@
         },
     mixins: [C4uGlue], 
     methods: { 
-       changePlugIn: function(value) {
+       changeInValue: function(value) {
           this.value = value;
           if(this.value != this.c4uOldValue) {
              this.c4uOldValue = this.value;
              //change-event ??? sync ??
-             this.$emit('c4u-plugin-changed', this.name, this.value);
+             this.$emit('c4u-in-value-changed', this.name, this.value);
          }
        }
     },
@@ -35,7 +36,7 @@
     },
     mounted() {
          console.log("***** Slot-2nd-mounted " + " #" + this.c4uUid);
-         this.changePlugIn(this.value); 
+         this.changeInValue(this.value); 
     },
     updated() {
          console.log("***** Slot-2nd-updated " + " #" + this.c4uUid);
