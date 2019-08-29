@@ -1,8 +1,8 @@
 <template class="self">
   <span class='c4uIn'>
-  <p v-text="this.value">.</p>
+  <p>{{this.value}}i</p>
   <slot></slot> 
-  </span> 
+  </span>  
 </template>
 
 <style scoped>
@@ -11,8 +11,8 @@
 
 <script>
   import C4uGlue from "c4u-glue";
- 
-  export default {
+  
+  export default { 
     props: {name: String, value: Number},
     data: function() {
            return {
@@ -21,13 +21,24 @@
             }
         },
     mixins: [C4uGlue], 
+    watch: {
+       value: function (newValue) {
+           //this.outValueChanged(newValue);
+           console.log("c4uIn [#"+this.c4uUid+"]  receives new value B: " + newValue);
+           
+       }
+    },
     methods: { 
        changeInValue: function(value) {
           this.value = value;
           if(this.value != this.c4uOldValue) {
              this.c4uOldValue = this.value;
              //change-event ??? sync ??
-             this.$emit('c4u-in-value-changed', this.name, this.value);
+             console.log("c4uIn [#"+this.c4uUid+"] receives new value A: " + value);
+             var details = {'name': this.name, 'value': this.value, 'time': 0.1}
+var event = new CustomEvent('c4uIn-changed-'+this.name, {"bubbles":true, "composed":true, "detail": details});
+ this.$el.dispatchEvent(event);
+ 
          }
        }
     },

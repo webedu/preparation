@@ -10,6 +10,7 @@
 
 <script>
   import C4uGlue from "c4u-glue";
+  //import C4uGlue2 from "/cre/npm-components/c4u-glue/src/C4uGlue.js"
  
   export default {
     data: function() {
@@ -23,7 +24,8 @@
     mixins: [C4uGlue], 
     methods: { 
       outValueChanged: function (name, value) {
-         for(var i=1; i<this.c4uAllConnections.length; i++) { 
+         console.log("out value changed in circuitry "); 
+         for(var i=0; i<this.c4uAllConnections.length; i++) { 
             if(this.c4uAllConnections[i].source == name) {
                 var target = this.c4uAllConnections[i].target;
                 this.changeInValue(target, value);
@@ -31,7 +33,7 @@
          }
        },
       changeInValue: function(name, value) {
-          for(var i=1; i<this.c4uAllPlugsIn.length; i++) { 
+          for(var i=0; i<this.c4uAllPlugsIn.length; i++) { 
              if(this.c4uAllPlugsIn[i].name == name) {
                 this.c4uAllPlugsIn[i].changeInValue(value);
              }

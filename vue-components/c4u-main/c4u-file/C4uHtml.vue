@@ -4,7 +4,7 @@
 
 <style scoped>
   .c4uHtml3 {
-    b_ackground: blue; 
+    background: blue; 
   }
 </style>
 
@@ -12,7 +12,7 @@
   import axios from "axios";
 
   export default {
-    props: ['url'],
+    props: {url: String},
     data: function() {
            return {
             c4uHtml2: "<p>Loading...</p>"

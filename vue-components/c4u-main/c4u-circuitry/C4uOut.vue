@@ -1,16 +1,16 @@
 <template class="self">
   <span class='c4uOut'>
-  <p v-text="this.value">.</p>
+  <p>{{this.value}}o</p>
   <slot></slot> 
   </span> 
 </template>
 
 <style scoped>
-  .c4uOut {  }
+  .c4uOut {  } 
 </style>
 
 <script>
-  import C4uGlue from "c4u-glue";
+  import C4uGlue from "c4u-glue"; 
  
   export default {
     props: {name: String, value: Number},
@@ -24,15 +24,18 @@
     watch: {
        value: function (newValue) {
            this.outValueChanged(newValue);
-           //console.log("output value has changed "+newValue+ " / "+this.value);
+           
        }
     },
     methods: { 
         outValueChanged: function (newValue) {
          if(newValue != this.c4uOldValue) {
+           
            this.c4uOldValue = newValue;
+
            // this.value = newValue; // not needed
            if (this.c4uParent) {  
+            console.log("output value has changed "+newValue+ " / "+this.value);
              this.c4uParent.outValueChanged(this.name, newValue); 
            }
          }
