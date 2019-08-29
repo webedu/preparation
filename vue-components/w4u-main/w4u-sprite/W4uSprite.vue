@@ -2,6 +2,7 @@
   <span class='w4uSprite'>
      <span v-html="w4uStyle"></span>
      <c4u-in v-for="(inData, inName) in c4uInputs" v-bind:name="name+'-'+inName" v-bind:value="inData.value" v-bind:key="inName"></c4u-in>
+     <!-- c4u-in v-for="(inData, inName) in c4uInputs" v-bind:name="name+'-'+inName" v-model="inData.value" v-bind:key="inName"></c4u-in -->
      <span class="w4uSprite2"> 
        <slot></slot>  
      </span>
@@ -20,9 +21,6 @@
            },
     data: function() {
            return {
-             xPosition: 0.5, // 50%
-             yPosition: 0.5,  // 50%
-             inputValues: { /* 'xPosition': {'value': 0.5, 'seconds':0.0 } */ },
              c4uInputs: {
                           'x': {'value': 0.5, 'time':0.0 },
                           'y': {'value': 0.5, 'time':0.0 }
@@ -30,17 +28,7 @@
             }
         },
     //mixins: [C4uGlue], 
-    watch: {
-       xPosition: function (newValue) {
-           //this.outValueChanged(newValue);
-           console.log("w4uSprite receives new value: " + newValue);
-           
-       },
-      inValue: function (newValue) {
-          console.log("w4uSprite watches new value computed: " + newValue);
-      }
-       
-    },    
+ 
     methods: { 
     initC4uIn() {
        for(var inpName in this.c4uInputs) {
