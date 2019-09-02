@@ -1,7 +1,7 @@
 <template class="self">
   <span class='c4uCircuitry'>
   <slot></slot> 
-  </span> 
+  </span>
 </template>
 
 <style scoped>
@@ -22,22 +22,24 @@
         },
     mixins: [C4uGlue], 
     methods: { 
-      outValueChanged: function (name, value) {
+      outValueChanged: function (name, value, source) {
          //console.log("out value changed in circuitry "); 
          if(this.c4uAllConnections) {
           for(var i=0; i<this.c4uAllConnections.length; i++) { 
             if(this.c4uAllConnections[i].source == name) {
                 var target = this.c4uAllConnections[i].target;
-                this.changeInValue(target, value);
+                this.changeInValue(target, value, source);
             } 
           }
          }
        },
-      changeInValue: function(name, value) {
+      changeInValue: function(name, value, source) {
           if(this.c4uAllPlugsIn) {
            for(var i=0; i<this.c4uAllPlugsIn.length; i++) { 
-             if(this.c4uAllPlugsIn[i].name == name) {
-                this.c4uAllPlugsIn[i].changeInValue(value);
+             var target = this.c4uAllPlugsIn[i]
+             if(target.name == name) {
+                target.changeInValue(value);
+                source.addConnectedIn(target); // from now on direct connection is possible
              }
            }
           }

@@ -1,6 +1,5 @@
 <template class="self">
   <span class='c4uIn'>
-  <p>{{this.value}}i</p>
   <slot></slot> 
   </span>  
 </template>
