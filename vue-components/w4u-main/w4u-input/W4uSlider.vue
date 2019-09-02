@@ -2,12 +2,14 @@
   <span class='w4uSlider'>
      <span v-html="w4uStyle"></span>
      <input type="range" min="0" max="1000" v-bind:value="sliderString" v-bind:orient="orient" v-on:input="slide($event)" v-on:change="update($event)">
-     <c4u-out v-for="(outData, outName) in c4uOutputs" v-bind:name="name+'-'+outName" v-bind:value="outData.value" v-bind:key="outName"></c4u-out>
+     <w4u-io v-bind:name="name" v-bind:outputs="w4uStringOut" > </w4u-io>    
      <slot></slot>  
   </span>  
 </template>
 
 <script>
+
+  import W4uIo from "w4u-io";
 
   export default {
     props: {
@@ -28,33 +30,27 @@
     data: function() {
            return {
              sliderString: "500", //
-             c4uOutputs: {
-                          'v': {'value': 0.5, 'time':0.0 }
-             }
+             w4uOutputs: { 'v': {'value': 0.5, 'time':0.0 } }
             }
         },
-    //mixins: [C4uGlue], 
-    
-    methods: { 
+   mixins: [W4uIo], 
+   methods: { 
     slide(e) {
            if (this.continuous) {
 	     this.sliderString = e.target.value; 
            }
-	   console.log('slide: '+ e.target.value);
 	},
     update(e) {
 	  this.sliderString = e.target.value;
-	  //this.load(this.slidervalue);
 	},
     },
     watch: {
        sliderValue: function (newValue) {
-           Vue.set(this.c4uOutputs, 'v', {'value': newValue, 'time': 0.1});
-           console.log("slider has new value: " + newValue);
-           
+           Vue.set(this.w4uOutputs, 'v', {'value': newValue, 'time': 0.1});
+           //console.log("slider has new value: " + newValue);
        },
     },   
-    computed: {
+   computed: {
       sliderValue: function() {
          return this.min+(this.max-this.min)*parseFloat(this.sliderString)/1000.0;
       },
@@ -65,20 +61,7 @@
               + '.w4uSlider input[type=range]::-moz-range-thumb { background: '+this.color+'; } '
               + '</style>';
       }   
-    }, 
-    created() {
-         //console.log("***** Slot-2nd-created " + " #" + this.c4uUid); 
-    },
-    mounted() {
-         //console.log("***** Slot-2nd-mounted " + " #" + this.c4uUid);
-    },
-    updated() {
-         //console.log("***** Slot-2nd-updated " + " #" + this.c4uUid);
-    },
-    beforeDestroy() {
-         //console.log("***** Slot-2nd-destroyed " + " #" + this.c4uUid);
-    },
-
+    } 
   }
 </script>
 
