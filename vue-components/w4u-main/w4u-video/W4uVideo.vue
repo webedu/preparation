@@ -1,6 +1,8 @@
 <template class="self">
   <span class='w4uVideo'>
-     <video ref="w4uVideo" v-bind:controls="controls" v-bind:poster="poster">
+     <video ref="w4uVideo" v-bind:controls="controls" v-bind:poster="poster"
+                           v-bind:width="width" v-bind:height="height"
+      >
         Your browser does not support the video tag.
         <slot></slot>         
      </video> 
@@ -9,6 +11,11 @@
 </template>
 
 <script>
+
+  // Transparency
+  // https://github.com/m90/seeThru
+  // https://jakearchibald.com/scratch/alphavid/
+
   import W4uIo from "w4u-io";
 
   export default {
@@ -16,8 +23,8 @@
             name: {type: String, default: 'video0'},          //automatic numbering would need glue for unique id...
             controls: {type: Boolean, default: false},
             poster: {type: String, default: ''},
-            // width:  375px, 
-            // height: 375px
+            width:  {type: String, default: '375px'}, 
+            height: {type: String, default: '375px'}
            },
     mixins: [W4uIo], 
     data: function() {
