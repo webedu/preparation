@@ -2,9 +2,9 @@
   <span class='w4uSlider'>
      <span v-html="w4uStyle"></span>
      <input type="range" min="0" max="1000" v-bind:value="sliderString" v-bind:orient="orient" v-on:input="slide($event)" v-on:change="update($event)">
-     <w4u-io v-bind:name="name" v-bind:outputs="w4uStringOut" > </w4u-io>    
+     <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut" > </w4u-io>    
      <slot></slot>  
-  </span>  
+  </span>
 </template>
 
 <script>
@@ -30,6 +30,7 @@
     data: function() {
            return {
              sliderString: "500", //
+             w4uInputs:  { 'v': {'value': 0.5, 'time':0.0 } },
              w4uOutputs: { 'v': {'value': 0.5, 'time':0.0 } }
             }
         },
@@ -45,15 +46,25 @@
 	},
     },
     watch: {
-       sliderValue: function (newValue) {
+       sliderInput: function (newValue) {
+           if(Math.abs(this.sliderOutput-newValue) > 0.001) {
+           this.sliderString = Math.round((newValue-this.min)*1000.0/(this.max-this.min)).toString();
+             //console.log("slider has new value: " + newValue);
+           }
+       },
+       sliderOutput: function (newValue) {
            Vue.set(this.w4uOutputs, 'v', {'value': newValue, 'time': 0.1});
            //console.log("slider has new value: " + newValue);
        },
     },   
    computed: {
-      sliderValue: function() {
+      sliderInput: function() {
+         return this.w4uInputs.v.value; 
+      },      
+      sliderOutput: function() {
          return this.min+(this.max-this.min)*parseFloat(this.sliderString)/1000.0;
       },
+     
       w4uStyle: function() {
          return '<style>' 
               + '.w4uSlider input { background: '+this.background+'; } '
