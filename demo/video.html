@@ -1,0 +1,45 @@
+<meta charset="utf-8">
+<title>w4u-main demo</title>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
+<script src="../web-components/w4u-main/sync/w4u-main.js"></script>
+<script src="../web-components/c4u-main/sync/c4u-main.js"></script>
+
+
+
+<w4u-circ>
+
+<div style="width: 100px; height: 100px; background-color: blue;"></div>
+
+<w4u-stage>
+ <w4u-sprite name="octopus">
+  <img src="octopus.jpg" width="50px" height="50px">
+ </w4u-sprite>
+
+ <w4u-sprite name="transparent">
+<w4u-video name="video2" width="100px" height="100px">
+ <source src="https://jakearchibald.com/scratch/alphavid/compressed.mp4" type="video/mp4">
+</w4u-video>
+ </w4u-sprite>
+
+</w4u-stage>
+
+<w4u-video name="video1" controls>
+ <source src="octopus.mp4" type="video/mp4">
+ <track src="./subtitle.vtt" kind="subtitles" srclang="de" label="Deutsch" default>
+</w4u-video>
+
+<c4u-connection source="slider1-v" target="transparent-x"> </c4u-connection>
+<c4u-connection source="video1-fraction" target="octopus-y"> </c4u-connection>
+<c4u-connection source="video1-fraction" target="slider2-v"> </c4u-connection>
+<c4u-connection source="slider2-v" target="video2-fraction"> </c4u-connection>
+<c4u-connection source="slider3-v" target="transparent-a"> </c4u-connection>
+
+<br/>
+<w4u-slider name="slider1" orient="horizontal" color="#FF0000"  continuous="true"></w4u-slider>
+<w4u-slider name="slider2" orient="horizontal" color="#00FF00"  continuous="true"></w4u-slider>
+<w4u-slider name="slider3" orient="horizontal" color="#0000FF"  continuous="true"></w4u-slider>
+
+</w4u-circ>
+
+
