@@ -83,8 +83,11 @@ export default {
           c4uReceive(name, fnc) {
             glueBus.$on('c4u-emit-'+name, (v1) => fnc(v1));
           },
-          c4uChildRemoved(parent) {
-              this.c4uParent = null;  // can be overwritten by child; reset parent is redundant here
+          c4uParentDisconnected(parent) {
+              this.c4uParent = null; // can be overwritten by child; reset parent is redundant here
+          },
+          c4uChildDisconnected(child) {
+              child.c4uParentDisconnected(this); // can be overwritten by parent; disconnecting is redundant here
           },
           c4uAddChild(child) {
             //console.log("ENtry received "+child.c4uParentId+" / "+ this.c4uUid+" / "+ child.c4uUid);
@@ -139,7 +142,8 @@ export default {
                 if(child.c4uParentId == this.c4uUid) {
                   child.c4uParent = null;
                   child.c4uParentId = -1;
-                  child.c4uChildRemoved(parent);
+                  child.c4uParentDisconnected(this);
+                  this.c4uChildRemoved(child);
                 } 
              }
           },
