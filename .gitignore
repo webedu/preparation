@@ -24,3 +24,7 @@
 /app/Config/database.php
 /vendors/*
 /node_modules/*
+
+/web-components/*
+/npm-components/*
+

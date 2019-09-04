@@ -2,14 +2,18 @@
 <title>w4u-main demo</title>
 <script src="https://unpkg.com/vue"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML.js"></script>
 <script src="../web-components/w4u-main/sync/w4u-main.js"></script>
 <script src="../web-components/c4u-main/sync/c4u-main.js"></script>
 
 
 
-<w4u-circ>
+<c4u-circuitry>
 
 <div style="width: 100px; height: 100px; background-color: blue;"></div>
+
+<w4u-svg></w4u-svg>
+<w4u-math></w4u-math>
 
 <w4u-stage>
  <w4u-sprite name="octopus">
@@ -40,6 +44,6 @@
 <w4u-slider name="slider2" orient="horizontal" color="#00FF00"  continuous="true"></w4u-slider>
 <w4u-slider name="slider3" orient="horizontal" color="#0000FF"  continuous="true"></w4u-slider>
 
-</w4u-circ>
+</c4u-circuitry>
 
 
