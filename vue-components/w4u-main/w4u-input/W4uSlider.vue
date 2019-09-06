@@ -36,7 +36,7 @@
         },
    mixins: [W4uIo], 
    methods: { 
-    slide(e) {
+    slide(e) { 
            if (this.continuous) {
 	     this.sliderString = e.target.value; 
            }

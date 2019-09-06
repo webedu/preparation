@@ -12,7 +12,7 @@
 
 <div style="width: 100px; height: 100px; background-color: blue;"></div>
 
-<w4u-svg></w4u-svg>
+
 <w4u-math></w4u-math>
 
 <w4u-stage>
@@ -34,15 +34,17 @@
 </w4u-video>
 
 <c4u-connection source="slider1-v" target="transparent-x"> </c4u-connection>
+<c4u-connection source="slider4-v" target="octopus-o"> </c4u-connection>
 <c4u-connection source="video1-fraction" target="octopus-y"> </c4u-connection>
-<c4u-connection source="video1-fraction" target="slider2-v"> </c4u-connection>
-<c4u-connection source="slider2-v" target="video2-fraction"> </c4u-connection>
-<c4u-connection source="slider3-v" target="transparent-a"> </c4u-connection>
+<c4u-connection target="video2-fraction" source="slider3-v"> </c4u-connection>
+<c4u-connection source="slider2-v" target="transparent-a"> </c4u-connection>
+<c4u-connection source="slider3-v" target="octopus-z"> </c4u-connection>
 
 <br/>
 <w4u-slider name="slider1" orient="horizontal" color="#FF0000"  continuous="true"></w4u-slider>
 <w4u-slider name="slider2" orient="horizontal" color="#00FF00"  continuous="true"></w4u-slider>
-<w4u-slider name="slider3" orient="horizontal" color="#0000FF"  continuous="true"></w4u-slider>
+<w4u-slider name="slider3" orient="horizontal" color="#0000FF"  continuous="true" min=-1 max=+1></w4u-slider>
+<w4u-slider name="slider4" orient="horizontal" color="#FF00FF"  continuous="true"></w4u-slider>
 
 </c4u-circuitry>
 

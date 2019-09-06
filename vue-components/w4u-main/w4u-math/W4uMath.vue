@@ -6,7 +6,6 @@
   </div>
   <slot></slot>
  </div> 
-  </div>
 </template>
   
 <style scoped>
@@ -24,7 +23,7 @@
 
 
   //import MathJax from "mathjax3";
-  import MathJax from "mathjax";
+  //import MathJax from "mathjax";
 
   export default {
     data: function() {
