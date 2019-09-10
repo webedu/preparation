@@ -1,7 +1,9 @@
 <template class="self">
-  <span v-html="c4uStyle"></span>
+  <span class='c4uGrid2'>
+   <span v-html="c4uStyle"></span>
   <span class='c4uGrid'>
    <slot></slot> 
+  </span>
   </span>
 </template>
 
@@ -55,6 +57,7 @@
               + '.c4uGrid { grid-template-columns: '+colStr+'; } '
               + '.c4uGrid { grid-template-rows: '+rowStr+'; } '
               + '</style>';
-      },
+      }
   }
+}
 </script>

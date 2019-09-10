@@ -1,8 +1,10 @@
 <template class="self">
-  <span v-html="c4uStyle"></span>
   <span class='c4uBox'>
+   <span v-html="c4uStyle"></span>
+  <span class='c4uBox2'>
    <slot></slot> 
-  </span>
+  </span> 
+  </span> 
 </template>
 
 <style scoped>
@@ -17,9 +19,9 @@
     props: {
             name: {type: String, default: 'box0'},          //automatic numbering would need glue for unique id...
             column:  {type: Number, default: 1}, 
-            row:    {type: Number, default: 1},
-            width   {type: Number, default: 1}, 
-            height  {type: Number, default: 1}, 
+            row:     {type: Number, default: 1},
+            width:   {type: Number, default: 1}, 
+            height:  {type: Number, default: 1}, 
            },
     data: function() {
            return {
@@ -40,6 +42,7 @@
               + '.c4uBox { grid-column-end: '+colEnd+'; } '
               + '.c4uBox { grid-row-end: '+rowEnd+'; } '
               + '</style>';
-      },
+      }
   }
+}
 </script>
