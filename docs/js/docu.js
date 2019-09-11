@@ -5,8 +5,15 @@ var vueDocu = new Vue({
     docucontent: ""
   },
   methods: {
-    clickit: function (event, url) {
-        myvar = event;
+    clickit: function (event) {
+        for(var i = 0; i < event.path.length; i++) {
+          var attributes = event.path[i].attributes;
+          for(var j = 0; j < attributes.length; j++) {
+              if(attributes[j].name = 'click-it') {
+                 return this.loadContent(attributes[j].value);
+              }
+          }
+        }
     },
     loadMenu(url) {
       axios.get(url)
