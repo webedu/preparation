@@ -5,6 +5,12 @@ var vueDocu = new Vue({
     docucontent: ""
   },
   methods: {
+    loadMenu(url) {
+      axios.get(url)
+           .then(response => {
+              this.documenu = response.data;
+           });
+    },
     loadContent(url) {
       axios.get(url)
            .then(response => {
@@ -13,7 +19,7 @@ var vueDocu = new Vue({
     },
   }, 
   mounted() {
-     console.log("Hi ");
+     this.loadMenu("menu.html");
      this.loadContent("svg.html");
   }
 });
