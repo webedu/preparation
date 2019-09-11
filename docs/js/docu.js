@@ -33,7 +33,7 @@ var vueDocu = new Vue({
            });
     },
   }, 
-  mounted() {
+  created() {
      this.loadMenu("menu.html");
      var file = 'svg.html';
      if (location.search > 1) {
