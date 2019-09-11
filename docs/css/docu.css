@@ -1,0 +1,12 @@
+#docugrid { 
+  display: grid; 
+  grid-template-columns: 25% 75%; 
+} 
+
+#docuSidemenu { 
+  grid-column-start: 1; 
+}
+
+3docuContent { 
+  grid-column-start: 2; 
+}
