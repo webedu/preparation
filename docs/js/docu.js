@@ -25,7 +25,7 @@ var vueDocu = new Vue({
       axios.get(url)
            .then(response => {
               this.docucontent = response.data;
-              var urlParts = config.url.split('#');
+              var urlParts = response.config.url.split('#');
               if (urlParts.length > 1) {
                  location.hash = "#" + urlParts[1];
               }
