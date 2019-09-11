@@ -2,15 +2,18 @@
 
 <ul>
 <p>Input Elements</p>
-<li><a href="input.html#input" v-on:click.prevent="clickit"><b>Input</b></a></li>
-<li><a href="input.html#w4u-slider" v-on:click.prevent="clickit">w4u-slider</a></li>
+<li><a href="input.html#input" v-on:click.prevent="clickit($event)"><b>Input</b></a></li>
+<li><a href="input.html#w4u-slider" v-on:click.prevent="clickit($event)">w4u-slider</a></li>
+
+<button v-on:click.prevent="clickit">mk1</button>
+<button v-on:click.prevent="clickit($event)">mk2</button>
 
 </ul>
 
 <ul>
 <p>Handling of Vector Graphic SVG</p>
-<li><a href="svg.html#svg" v-on:click.prevent="clickit"><b>SVG</b></a></li>
-<li><a href="svg.html#w4u-svg" v-on:click.prevent="clickit">w4u-svg</a></li>
+<li><a href="svg.html#svg" v-on:click.prevent="clickit($event)"><b>SVG</b></a></li>
+<li><a href="svg.html#w4u-svg" v-on:click.prevent="clickit($event)">w4u-svg</a></li>
 
 </ul>
 
