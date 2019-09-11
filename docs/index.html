@@ -14,7 +14,7 @@
 <body>
 
 <div id="docugrid">
- <div id="docuSidemenu" v-html="documenu"></div>
+ <div id="docuSidemenu" v-html="documenu" v-on:click.prevent="clickit($event)"></div>
  <div id="docuBox">
    <div id="docuContent" v-html="docucontent"></div>
  </div>
