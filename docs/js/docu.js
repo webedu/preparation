@@ -5,6 +5,9 @@ var vueDocu = new Vue({
     docucontent: ""
   },
   methods: {
+    clickit: function (event) {
+        myvar = event;
+    },
     loadMenu(url) {
       axios.get(url)
            .then(response => {
