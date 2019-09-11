@@ -14,6 +14,6 @@ var vueDocu = new Vue({
   }, 
   mounted() {
      console.log("Hi ");
-     this.loadContent("svg.html");
+     this.loadContent("svg2.html");
   }
 });
