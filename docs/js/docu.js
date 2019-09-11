@@ -28,12 +28,17 @@ var vueDocu = new Vue({
               var urlParts = response.config.url.split('#');
               if (urlParts.length > 1) {
                  location.hash = "#" + urlParts[1];
+                 location.search = urlParts[0].split('.')[0];
               }
            });
     },
   }, 
   mounted() {
      this.loadMenu("menu.html");
-     this.loadContent("svg.html");
+     var file = 'svg.html';
+     if (location.search > 1) {
+       file = location.search + '.html';
+     }
+     this.loadContent(file);
   }
 });
