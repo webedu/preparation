@@ -5,7 +5,7 @@ var vueDocu = new Vue({
     docucontent: ""
   },
   methods: {
-    clickit: function (event) {
+    clickit: function (event, url) {
         myvar = event;
     },
     loadMenu(url) {
