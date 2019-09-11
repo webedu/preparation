@@ -22,13 +22,13 @@ var vueDocu = new Vue({
            });
     },
     loadContent(url) {
+      location.search = url.split('.')[0];
       axios.get(url)
            .then(response => {
               this.docucontent = response.data;
               var urlParts = response.config.url.split('#');
               if (urlParts.length > 1) {
                  location.hash = "#" + urlParts[1];
-                 location.search = urlParts[0].split('.')[0];
               }
            });
     },
