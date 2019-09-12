@@ -30,7 +30,7 @@ var vueDocu = new Vue({
               var urlParts = response.config.url.split('#');
               if (urlParts.length > 1) {
                  location.hash = "#" + urlParts[1];
-                 var newUrl = "/preparation/?"+urlParts[1].split('.')[0] + location.hash;
+                 var newUrl = "/preparation/?"+urlParts[0].split('.')[0] + location.hash;
                  history.pushState(null, null, newUrl);
               }
            });
