@@ -35,7 +35,7 @@ var vueDocu = new Vue({
            });
     },
   }, 
-  created() {
+  mounted() {
      if("" == this.documenu) {
        this.loadMenu("menu.html");
      }
