@@ -39,7 +39,7 @@ var vueDocu = new Vue({
      if("" == this.documenu) {
        this.loadMenu("menu.html");
      }
-     if("" == this.docucontent) {
+     if("never" == this.docucontent) {
        var file = 'svg.html';
        if (location.search.length > 1) {
          file = location.search + '.html';
