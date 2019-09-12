@@ -34,11 +34,18 @@ var vueDocu = new Vue({
     },
   }, 
   created() {
-     this.loadMenu("menu.html");
-     var file = 'svg.html';
-     if (location.search > 1) {
-       file = location.search + '.html';
+     if("" == this.documenu) {
+       this.loadMenu("menu.html");
      }
-     this.loadContent(file);
+     if("" == this.docucontent) {
+       var file = 'svg.html';
+       if (location.search.length > 1) {
+         file = location.search + '.html';
+         if (location.hash.length > 1) {
+            file += location.hash;
+         }
+       }
+       this.loadContent(file);
+     }
   }
 });
