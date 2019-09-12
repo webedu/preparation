@@ -23,8 +23,6 @@ var vueDocu = new Vue({
            });
     },
     loadContent(url) {
-      //location.search = "?"+url.split('.')[0];
-      history.pushState(null, null, url.split('.')[0]);
       this.docucontent = "<p>Loading...<p>"
       axios.get(url)
            .then(response => {
@@ -32,6 +30,8 @@ var vueDocu = new Vue({
               var urlParts = response.config.url.split('#');
               if (urlParts.length > 1) {
                  location.hash = "#" + urlParts[1];
+                 var newUrl = "/?"+urlParts[1].split('.')[0] + location.hash;
+                 history.pushState(null, null, newUrl);
               }
            });
     },
