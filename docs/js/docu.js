@@ -23,7 +23,8 @@ var vueDocu = new Vue({
            });
     },
     loadContent(url) {
-      location.search = "?"+url.split('.')[0];
+      //location.search = "?"+url.split('.')[0];
+      history.pushState(null, null, url.split('.')[0]);
       this.docucontent = "<p>Loading...<p>"
       axios.get(url)
            .then(response => {
@@ -35,11 +36,11 @@ var vueDocu = new Vue({
            });
     },
   }, 
-  mounted() {
+  created() {
      if("" == this.documenu) {
        this.loadMenu("menu.html");
      }
-     if("never" == this.docucontent) {
+     if("" == this.docucontent) {
        var file = 'svg.html';
        if (location.search.length > 1) {
          file = location.search.split('?')[1] + '.html';
