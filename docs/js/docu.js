@@ -16,6 +16,7 @@ var vueDocu = new Vue({
         }
     },
     loadMenu(url) {
+      this.documenu = "<p>Loading...<p>"
       axios.get(url)
            .then(response => {
               this.documenu = response.data;
@@ -23,6 +24,7 @@ var vueDocu = new Vue({
     },
     loadContent(url) {
       location.search = url.split('.')[0];
+      this.docucontent = "<p>Loading...<p>"
       axios.get(url)
            .then(response => {
               this.docucontent = response.data;
