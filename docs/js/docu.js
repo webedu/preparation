@@ -23,7 +23,7 @@ var vueDocu = new Vue({
            });
     },
     loadContent(url) {
-      location.search = url.split('.')[0];
+      location.search = "?"+url.split('.')[0];
       this.docucontent = "<p>Loading...<p>"
       axios.get(url)
            .then(response => {
@@ -42,7 +42,7 @@ var vueDocu = new Vue({
      if("never" == this.docucontent) {
        var file = 'svg.html';
        if (location.search.length > 1) {
-         file = location.search + '.html';
+         file = location.search.split('?')[1] + '.html';
          if (location.hash.length > 1) {
             file += location.hash;
          }
