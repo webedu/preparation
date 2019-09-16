@@ -1,0 +1,36 @@
+<meta charset="utf-8">
+<title>w4u-main demo</title>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML.js"></script>
+<script src="../web-components/w4u-main/sync/w4u-main.js"></script>
+<script src="../web-components/c4u-main/sync/c4u-main.js"></script>
+
+
+
+<c4u-circuitry>
+
+<div style="width: 100px; height: 100px; background-color: blue;"></div>
+
+
+<w4u-math></w4u-math>
+
+<w4u-stage>
+ <w4u-sprite name="octopus">
+  <img src="octopus.jpg" width="50px" height="50px">
+ </w4u-sprite>
+
+<c4u-connection source="signal1-sin" target="octopus-x"> </c4u-connection>
+<c4u-connection source="signal1-cos" target="octopus-y"> </c4u-connection>
+<w4u-signal name="signal1" frequency="0.2"></w4u-signal>
+
+</w4u-stage>
+
+
+
+
+<br/>
+
+</c4u-circuitry>
+
+

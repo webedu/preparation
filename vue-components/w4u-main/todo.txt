@@ -16,6 +16,7 @@ wc:boolean button (press,toggle)
 questionaire
 
 sprite: drag&drop
+sprite: animation, delta-t:  https://www.w3schools.com/css/css3_animations.asp
 slider: width, style
 
 io: timing delta, anim,... (< 0.5 s)

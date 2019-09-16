@@ -48,7 +48,7 @@
         },
         createElem() {
          if(this.c4uParent) {
-           this.deleteElem()
+           this.deleteElem();
            var s = this.c4uParent.getSvgStage();
            this.svgElem = s.circle(this.w4uInputs.cx.value, this.w4uInputs.cy.value, this.w4uInputs.r.value);
          }
