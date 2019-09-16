@@ -1,0 +1,24 @@
+svg: elements relative to svgbox
+svg: path,segments
+svg: groups, transforms, styles, filter
+svg: gradient, masc, (sub-svg),...
+svg: mouse over, click, ...
+svg: drag&drop
+svg: text
+
+
+video: transperancy mode
+
+WC:function-generator
+WC:math, equations
+wc:boolean button (press,toggle)
+
+questionaire
+
+sprite: drag&drop
+slider: width, style
+
+io: timing delta, anim,... (< 0.5 s)
+
+ 
+

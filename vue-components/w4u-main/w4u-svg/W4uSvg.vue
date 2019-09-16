@@ -16,9 +16,6 @@
   import C4uGlue from "c4u-glue";
   import SnapSvg from "snapsvg-cjs";
   //import SnapFoo from "snapfoo";
-
-
-
  
   export default {
     data: function() {
@@ -32,17 +29,9 @@
       getSvgStage() {
           return this.svgStage;
       },
-/*
-      recheckSvgElem(child) {
-         var childTag = child.c4uTag;
-         var validChilds = this.c4uChildren[childTag]; 
-         for(var i=0; i<validChilds.length; i++) {
-            
-            return 1;
-         }         
-         child.deleteElem();
-      } 
-*/
+      getSvgBox() {
+          return this.$refs.w4uSvg.getBoundingClientRect();
+      }, 
     },     
     mounted() {
          console.log("*****  SVG mounted #" + this.c4uUid);
