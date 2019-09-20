@@ -19,10 +19,6 @@
   const config = { }
   const math = create(all, config)
 
-
-  //import MathJax from "mathjax3";
-  //import MathJax from "mathjax";
-
   export default {
     props: {
             output:   {type: String, default: 'y0'},          
@@ -32,7 +28,6 @@
     data: function() {
            return {
             c4uParentTag: "w4u-math", 
-	    //pretty: '$$$$',
             }
         },
    mixins: [C4uGlue],
@@ -55,20 +50,6 @@
             return allEquationInputs;
       }
     }, 
-/*
-    mounted() {
-         console.log("*****  Math mounted #" + this.c4uUid);
 
-          // this.result = math.format(math.evaluate(this.formula, {x0: 5, z0: 4})); 
-	  var latex = math.parse(this.formula).toTex({parenthesis: 'auto', implicit: 'hide'});
-	  console.log('LaTeX expression:', latex)
-
-          var el = this.$refs.w4uMathPretty;
-	  const elem = MathJax.Hub.getAllJax(el)[0];
-	  MathJax.Hub.Queue(['Text', elem, latex]);
-       
-         
-    },
-*/
   }
 </script>

@@ -22,17 +22,14 @@
     data: function() {
            return {
             c4uParentTag: "c4u-also-to-be-defined",  // no parent tag
-            form0: '5 sqrt(75 / 3) + det([[-1, 2], [3, 1]]) - sin(pi / x1)^2',
-	    pretty: '$$$$',
-	    result: '???',
              w4uInputs:  { 'x1': {'value': 0.0, 'time':0.0 },   // will later be derrived from children 
-                           'x2': {'value': 0.0, 'time':0.0 },
-                           'x3': {'value': 0.0, 'time':0.0 },   
-                           'x4': {'value': 0.0, 'time':0.0 },
+                           'x2': {'value': 0.0, 'time':0.0 },      // delete -> fail for demo!
+                           //'x3': {'value': 0.0, 'time':0.0 },   
+                           //'x4': {'value': 0.0, 'time':0.0 },
                          },
              w4uOutputs: { 'y1': {'value': 0.5, 'time':0.0 },  // will later be derrived from children 
-                           'y2': {'value': 0.5, 'time':0.0 },
-                           'y3': {'value': 0.5, 'time':0.0 },
+                           //'y2': {'value': 0.5, 'time':0.0 },
+                           //'y3': {'value': 0.5, 'time':0.0 },
 
                          }
             }
@@ -89,20 +86,5 @@
          return this.c4uChildren['w4u-equation'];
       }
     },  
-/*
-    mounted() {
-         console.log("*****  Math mounted #" + this.c4uUid);
-
-          this.result = math.format(math.evaluate(this.form0, {x1: 5}));
-	  var latex = math.parse(this.form0).toTex({parenthesis: 'auto', implicit: 'hide'});
-	  console.log('LaTeX expression:', latex)
-
-          var el = this.$refs.w4uMathPretty;
-	  const elem = MathJax.Hub.getAllJax(el)[0];
-	  MathJax.Hub.Queue(['Text', elem, latex]);
-       
-         
-    },
-*/
   }
 </script>
