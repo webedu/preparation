@@ -1,8 +1,6 @@
 <template>  
   <div class='w4uEquation'>
   <div id='w4uEquation' ref='w4uEquation'>
-     <div id='w4uMath1' ref='w4uMathPretty'>{{ pretty }} </div>
-     <div id='w4uMath2' ref='w4uMathResult'>{{ result }} </div>
   </div>
   <slot></slot>
  </div> 
@@ -34,7 +32,7 @@
     data: function() {
            return {
             c4uParentTag: "w4u-math", 
-	    pretty: '$$$$',
+	    //pretty: '$$$$',
             }
         },
    mixins: [C4uGlue],
@@ -57,6 +55,7 @@
             return allEquationInputs;
       }
     }, 
+/*
     mounted() {
          console.log("*****  Math mounted #" + this.c4uUid);
 
@@ -70,6 +69,6 @@
        
          
     },
-
+*/
   }
 </script>

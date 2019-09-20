@@ -1,7 +1,5 @@
 <template>  
   <div class='w4uMath'>
-  <div id='w4uMath' ref='w4uMath'>
-  </div>
   <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut" > </w4u-io>
   <slot></slot>
  </div> 
@@ -91,6 +89,7 @@
          return this.c4uChildren['w4u-equation'];
       }
     },  
+/*
     mounted() {
          console.log("*****  Math mounted #" + this.c4uUid);
 
@@ -104,6 +103,6 @@
        
          
     },
-
+*/
   }
 </script>
