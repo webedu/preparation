@@ -82,11 +82,6 @@
       w4uAllEquations: function (newValue) {
          this.revaluateEquations();
       },
-/*
-      w4uInputs: function(newValue) {
-         this.recalculateEquations();
-      },
-*/
       w4uStringIn: function(newValue) {
          this.recalculateEquations();
       },
@@ -102,35 +97,7 @@
           this.result = math.format(math.evaluate(this.form0, {x1: 5}));
 	  var latex = math.parse(this.form0).toTex({parenthesis: 'auto', implicit: 'hide'});
 	  console.log('LaTeX expression:', latex)
-/*
-require('mathjax').init({
-  loader: {load: ['input/tex', 'output/svg']}
-}).then((MathJax) => {
-  const svg = MathJax.tex2svg('\\frac{1}{x^2-1}', {display: true});
-  console.log(MathJax.startup.adaptor.outerHTML(svg));
-}).catch((err) => console.log(err.message));
-*/
 
-/*
- MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX", "output/HTML-CSS"],
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-      processEscapes: true
-    },
-    "HTML-CSS": { fonts: ["TeX"] }
-  });
-
-MathJax.Hub.Config({
-  jax: ["input/TeX","input/MathML","input/AsciiMath","output/CommonHTML"],
-  extensions: ["tex2jax.js","mml2jax.js","asciimath2jax.js","MathMenu.js","MathZoom.js","AssistiveMML.js", "a11y/accessibility-menu.js"],
-  TeX: {
-    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
-  }
-});
-*/
           var el = this.$refs.w4uMathPretty;
 	  const elem = MathJax.Hub.getAllJax(el)[0];
 	  MathJax.Hub.Queue(['Text', elem, latex]);
