@@ -1,0 +1,30 @@
+<meta charset="utf-8">
+<title>w4u-main demo</title>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML.js"></script>
+<script src="../web-components/w4u-main/sync/w4u-main.js"></script>
+<script src="../web-components/c4u-main/sync/c4u-main.js"></script>
+
+
+
+<c4u-circuitry>
+
+<div style="width: 100px; height: 100px; background-color: blue;"></div>
+
+
+<w4u-math name="math0">
+  <w4u-equation output="y1" inputs="x1,x2" formula="sqrt(x1)*sin(x2)"></w4u-equation>
+</w4u-math>
+
+<c4u-connection source="slider1-v" target="math0-x1"> </c4u-connection>
+<c4u-connection source="slider2-v" target="math0-x2"> </c4u-connection>
+<c4u-connection source="math0-y1" target="slider3-v"> </c4u-connection>
+
+<w4u-slider name="slider1" orient="horizontal" color="#FF0000"  continuous="true" min=0 max=2></w4u-slider>
+<w4u-slider name="slider2" orient="horizontal" color="#00FF00"  continuous="true" min=0 max=2></w4u-slider>
+<w4u-slider name="slider3" orient="horizontal" color="#0000FF"  continuous="true" min=0 max=2></w4u-slider>
+
+</c4u-circuitry>
+
+
