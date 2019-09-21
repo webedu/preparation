@@ -21,16 +21,10 @@
            },
     data: function() {
            return {
-            c4uParentTag: "c4u-also-to-be-defined",  // no parent tag
-             w4uInputs:  { 'x1': {'value': 0.0, 'time':0.0 },   // will later be derrived from children 
-                           'x2': {'value': 0.0, 'time':0.0 },      // delete -> fail for demo!
-                           //'x3': {'value': 0.0, 'time':0.0 },   
-                           //'x4': {'value': 0.0, 'time':0.0 },
+             c4uParentTag: "c4u-also-to-be-defined",  // no parent tag
+             w4uInputs:  { 'x0': {'value': 0.0, 'time':0.0 },   // will later be derrived from children 
                          },
-             w4uOutputs: { 'y1': {'value': 0.5, 'time':0.0 },  // will later be derrived from children 
-                           //'y2': {'value': 0.5, 'time':0.0 },
-                           //'y3': {'value': 0.5, 'time':0.0 },
-
+             w4uOutputs: { 'y0': {'value': 0.5, 'time':0.0 },  // will later be derrived from children 
                          }
             }
         },
@@ -52,7 +46,7 @@
                } else {
                   newInputs[input] = { 'value': 0.0, 'time':0.0 };
                }
-            }
+            } 
             var ouput = equation.output;
             if (ouput in this.w4uOutputs) {
                newOutputs[ouput] = this.w4uOutputs[ouput];
@@ -62,7 +56,9 @@
           }
           }
           this.w4uOutputs = newOutputs;
+          this.stopw4uIn();
           this.w4uInputs = newInputs;
+          this.initw4uIn();
         },
         recalculateEquations() {
           if(this.c4uChildren['w4u-equation']) {
