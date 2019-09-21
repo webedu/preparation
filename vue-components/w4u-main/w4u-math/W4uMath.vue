@@ -28,7 +28,7 @@
                          }
             }
         },
-   mixins: [W4uIo, C4uGlue],
+   mixins: [C4uGlue, W4uIo],
     methods: {
         c4uChildDisconnected(child) { this.revaluateEquations(); },   // can be overwritten by parent
         c4uChildReconnected(child) { this.revaluateEquations(); },

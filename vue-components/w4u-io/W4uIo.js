@@ -28,6 +28,13 @@ export default {
          }
        }
      },
+     c4uParentDisconnected(parent) {
+       this.stopw4uIn();
+     }, 
+     c4uParentReconnected(parent) {
+       this.stopw4uIn();
+       this.initw4uIn();
+     },  
      w4uInChanged(event) {
        event.stopPropagation();
        var name = event.detail.name;

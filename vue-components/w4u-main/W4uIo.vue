@@ -6,7 +6,6 @@
   </span>  
 </template>
 
-
 <script>
   export default {
     model: {
