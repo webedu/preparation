@@ -1,42 +1,18 @@
 <template class="self">
-  <transition name="slide-fade">
-  <span class='c4uPage' v-bind:class="pageDirection" v-show="pageVisible">
+  <div class='c4uPage' v-bind:class="pageDirection" v-show="pageVisible">
   <slot></slot> 
-  </span> 
-  </transition>
+  </div> 
 </template>
 
 <style scoped>
-  * { width:100%; 
-      display: inline-block;
+  * { w2idth:100%; 
+      d2isplay: inline-block;
     }
   .c4uPage {
-    position: absolute;
-    width:100%;
-    left: 0%;
-    top: 200px;
-  }
-
-  .slide-fade-enter-active, 
-  .slide-fade-leave-active {
-    transition: all 3.5s ease;
-   }
-  .slide-fade-enter.c4uBackward, 
-  .slide-fade-leave-to.c4uForward  {
-    left:  -100%;
-    w2idth: 10%;
-   }
-  .slide-fade-enter-to.c4uBackward, 
-  .slide-fade-leave.c4uForward, 
-  .slide-fade-enter-to.c4uForward, 
-  .slide-fade-leave.c4uBackward  {
-    left: 0%;
-    w2idth: 80%;
-  }
-  .slide-fade-leave-to.c4uBackward, 
-  .slide-fade-enter.c4uForward {
-    left: 100%;
-    w2idth: 10%;
+    p2osition: absolute;
+    w2idth:100%;
+    l2eft: 0%;
+    t2op: 200px;
   }
 </style>
 

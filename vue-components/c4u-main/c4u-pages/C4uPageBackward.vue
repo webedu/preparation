@@ -6,7 +6,6 @@
 
 <style scoped>
   .c4uPageBackward {
-    background: cyan;
   }
 </style>
 

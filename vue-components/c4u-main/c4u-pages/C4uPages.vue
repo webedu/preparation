@@ -1,17 +1,14 @@
 <template>  
   <div class='c4uPages' id='mktodo'>
- <div style='position: relative;float:right;'>
+ <!--div style='position: relative;float:right;' -->
   <slot></slot>
- </div> 
+ <!-- /div --> 
   </div>
 </template>
  
 <style scoped>
   .c4uPages {
-    position: absolute;
-    d2isplay: flex;
     float: left;
-    background: red;
     width: 100%;
     overflow:hidden;
   }
@@ -30,6 +27,8 @@
         },
     mixins: [C4uGlue], 
     methods: { 
+       c4uChildDisconnected(child) { this.updateDisableStatus(); },  
+       c4uChildReconnected(child) { this.updateDisableStatus(); },  
        previousPage: function () {
          if(this.previousPageExists()) {
             for(var i=1; i<this.c4uAllPages.length; i++) {
