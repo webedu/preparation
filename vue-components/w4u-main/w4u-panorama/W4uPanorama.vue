@@ -1,7 +1,7 @@
 <template class="self">
   <span class='w4uPanorama'>
      <div id="w4uPanorama" ref="w4uPanorama" v-bind:width="width" v-bind:height="height"></div> 
-     <slot></slot>         
+     <slot></slot>        
      <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut" > </w4u-io> 
   </span>  
 </template>

@@ -27,7 +27,8 @@
                           'a': {'value': 0.0, 'time':0.0 },  //rotation Angle
                           'o': {'value': 1.0, 'time':0.0 },  //Opacity
                           'z': {'value': 0.0, 'time':0.0 },  //Z-Index
-             }
+             },
+             //old 
             }
         },
     mixins: [W4uIo, C4uGlue], 
@@ -49,7 +50,8 @@
               + '.w4uSprite { z-index: '+z.toString()+'; } '
               + '.w4uSprite { transform:  translateX(calc('+x.toString()+'px - 50%)) ' 
               + '             translateY(calc('+y.toString()+'px - 50%)) ' 
-              + '             rotate('+a.toString()+'deg); }' 
+              + '             rotate('+a.toString()+'deg); } ' 
+            //  + '.w4uSprite { transition: transform 0.01s linear; } ' 
               + '</style>';
       },
     } 

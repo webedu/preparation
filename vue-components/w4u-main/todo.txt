@@ -1,10 +1,10 @@
 svg: elements relative to svgbox
-svg: path,segments
+svg: path,segments   - may have output on segment if position by lenght from path inside segment 0/1
 svg: groups, transforms, styles, filter
 svg: gradient, masc, (sub-svg),...
 svg: mouse over, click, ...
 svg: drag&drop
-svg: text
+svg: text,   path  defs, ....
 
 
 video: transperancy mode
