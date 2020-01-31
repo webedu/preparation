@@ -4,7 +4,7 @@
      <input type="range" min="0" max="1000" v-bind:value="sliderString" v-bind:orient="orient" v-on:input="slide($event)" v-on:change="update($event)">
      <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut" > </w4u-io>    
      <slot></slot>  
-  </span>
+  </span> 
 </template>
 
 <script>

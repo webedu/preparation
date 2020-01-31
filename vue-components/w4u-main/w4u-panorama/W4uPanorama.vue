@@ -27,7 +27,8 @@
                           'fraction': {'value': 0.0, 'time':0.0 },
                           'volume': {'value': 0.5, 'time':0.0 }                      // player.volume
              },
-             w4uOutputs: { 'fraction': {'value': 0.0, 'time':0.0 } }
+             w4uOutputs: { 'fraction': {'value': 0.0, 'time':0.0 } },
+             w4uPanoramaPlayer: null
             }
         },
       watch: {
@@ -64,11 +65,13 @@
       },
       mounted() {
           var panoramaDiv = this.$refs.w4uPanorama;
-          var panoramaViewer = new PhotoSphereViewer({
+          this.w4uPanoramaPlayer = new PhotoSphereViewer({
              container: panoramaDiv,
              panorama:  this.src,
-             //time_anim: false,
-             navbar: false,
+             time_anim: false,
+             //time_anim: true, 
+             //navbar: false,
+             
              pano_data: {
                full_width: 1925,
                full_height: 963,
@@ -78,6 +81,14 @@
                cropped_y: 210    
              }  
           });
+         //this.w4uPanoramaPlayer.animate();
+         this.w4uPanoramaPlayer.rotate({longitude: 90, latitude: 0});
+         var pos = this.w4uPanoramaPlayer.getPosition();
+         this.w4uPanoramaPlayer.needsUpdate();
+         this.w4uPanoramaPlayer.render();
+         this.w4uPanoramaPlayer.startAutorotate();
+         this.w4uPanoramaPlayer.stopAutorotate();
+         // event: position-updated
       }   
   }
 </script>

@@ -8,6 +8,10 @@ svg: text,   path  defs, ....
 
 
 video: transperancy mode
+ * https://github.com/m90/seeThru
+https://wiki.selfhtml.org/wiki/HTML/Multimedia_und_Grafiken/video
+https://w3c.github.io/webvtt/
+
 
 WC:function-generator
 WC:math, equations
@@ -20,6 +24,11 @@ sprite: animation, delta-t:  https://www.w3schools.com/css/css3_animations.asp
 slider: width, style
 
 io: timing delta, anim,... (< 0.5 s)
+
+panorama.... exchange
+
+
+show/hise?  -> sprite or seperate
 
  
 
