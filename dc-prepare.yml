@@ -2,13 +2,13 @@ version: '2'
 services:
 
   w4u-glue:
-    image: tamboraorg/creglue:2011.0
+    image: tamboraorg/creglue:w4u.16
     container_name: w4uglue
     volumes:
      - /var/run/docker.sock:/tmp/docker.sock:ro
 
   w4u-vue:
-    image: tamboraorg/credevvue:2011.0
+    image: tamboraorg/credevvue:w4u.16
     container_name: w4uvue
     volumes:
      - ./vue-components:/cre/vue-components

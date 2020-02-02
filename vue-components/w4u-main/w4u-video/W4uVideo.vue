@@ -61,8 +61,19 @@
            var player = this.$refs.w4uVideo;
            var fractionTime = player.currentTime / player.duration;
            Vue.set(this.w4uOutputs, 'fraction', {'value': fractionTime, 'time': 0.1});
+           this.handleIntervals(fraction);
+           // stop and interval
+           // if time is backward add all stop events > current time
+           //
 	},
-         
+        handleIntervals(fraction) {
+          if(this.c4uChildren['w4u-interval']) {
+            for(var i=0; i<(this.c4uChildren['w4u-interval'].length); i++) {
+              var interval = this.c4uChildren['w4u-interval'][i];
+              interval.update(fraction);
+            }
+          }
+        },         
       }, 
       computed: {  
         play:     function() { return this.w4uInputs.play.value; },
@@ -71,6 +82,7 @@
       mounted() {
           var player = this.$refs.w4uVideo;
           player.ontimeupdate = this.timeUpdate; 
+          // init all stop-events
       }   
   }
 </script>
