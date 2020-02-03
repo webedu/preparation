@@ -10,6 +10,7 @@
 <script>
 
   import W4uIo from "w4u-io";
+  import Vue from "vue";
 
   export default {
     props: {
@@ -38,11 +39,11 @@
    methods: { 
     slide(e) { 
            if (this.continuous) {
-	     this.sliderString = e.target.value; 
+             this.sliderString = e.target.value; 
            }
 	},
     update(e) {
-	  this.sliderString = e.target.value;
+          this.sliderString = e.target.value;
 	},
     },
     watch: {
