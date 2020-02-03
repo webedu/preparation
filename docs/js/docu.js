@@ -6,14 +6,17 @@ var vueDocu = new Vue({
   },
   methods: {
     clickit: function (event) {
-        for(var i = 0; i < event.path.length; i++) {
-          var attributes = event.path[i].attributes;
+      var path = event.path || (event.composedPath && event.composedPath());
+      if(path) {
+        for(var i = 0; i < path.length; i++) {
+          var attributes = path[i].attributes;
           for(var j = 0; j < attributes.length; j++) {
               if('click-it' == attributes[j].name) {
                  return this.loadContent(attributes[j].value);
               }
           }
         }
+      } 
     },
     loadMenu(url) {
       this.documenu = "<p>Loading...<p>"
