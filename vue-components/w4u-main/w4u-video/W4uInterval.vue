@@ -32,12 +32,12 @@
       update(fracVideo) {  
         var fracInterval = (fracVideo - this.beginFraction)/(this.endFraction - this.beginFraction); 
         var newValue = min(max(fracInterval, 0.0),1.0);
-        Vue.set(this.w4uOutputs, 'out', {'value': newValue, 'time': 0.1});  // fracVideo
+        Vue.set(this.w4uOutputs, 'out', {'value': newValue, 'time': 0.1});  // deltaTime
         //better: use compute and watch for sending changes only (see slider)
       }
     },
     computed: {
-      convertTimestamp(ts) {
+      convertTimestamp(ts) {  // must be method....
          // float 0.0-1.0 
          // or '33.3%'
          // or '00:00:00.000' as 'hh:mm:ss.dec' or 'mm:ss.dec' 

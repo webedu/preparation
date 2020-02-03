@@ -26,6 +26,8 @@
         },
     mixins: [C4uGlue],
     methods: {
+      // dont use events here, simply check if
+      // previous update ts < stop and current >=
       addEvent() {
          var player = this.c4uParent.$refs.w4uVideo;
          player.addEventListener("timeupdate", this.stopEvent);
