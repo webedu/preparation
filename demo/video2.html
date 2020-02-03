@@ -1,0 +1,28 @@
+<meta charset="utf-8">
+<title>w4u-main demo</title>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML.js"></script>
+<script src="../web-components/w4u-main/sync/w4u-main.js"></script>
+<script src="../web-components/c4u-main/sync/c4u-main.js"></script>
+
+
+
+<c4u-circuitry>
+
+
+<w4u-visibility name="vis1" mode="opacity">
+ <p>Visible</p> 
+</w4u-visibility>
+
+<w4u-video name="video1" controls="true">
+ <source src="octopus.mp4" type="video/mp4">
+ <w4u-interval name="int1" begin="0.3" end="0.7" mode="decay"></w4u-interval> 
+ <w4u-stop name="stop1" time="00:04"></w4u-stop> 
+</w4u-video>
+
+<c4u-connection source="int1-out" target="vis1-show"> </c4u-connection>
+
+</c4u-circuitry>
+
+

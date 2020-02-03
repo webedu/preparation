@@ -1,0 +1,30 @@
+<c4u-circuitry>
+
+<div style="width: 400px; height: 150px; background-color: blue;">
+
+<w4u-svg>
+  <w4u-circle name="myCircle" cx="140" cy="30" r="20" fill="red" style="" id="8"></w4u-circle>
+  <w4u-path name="myPath"></w4u-path>
+</w4u-svg>
+</div>
+
+ 
+<c4u-connection source="myPath-x" target="myCircle-cx"> </c4u-connection>
+<c4u-connection source="myPath-y" target="myCircle-cy"> </c4u-connection>
+<c4u-connection source="slider2-v" target="myPath-length"> </c4u-connection>
+
+<c4u-connection source="slider3-v" target="slider4-v"> </c4u-connection>
+<c4u-connection source="slider3-v" target="myCircle-r"> </c4u-connection>
+
+<c4u-connection source="slider4-v" target="slider3-v"> </c4u-connection>
+
+<w4u-slider name="slider1" orient="horizontal" color="#FF0000"  continuous="true" min=0 max=100></w4u-slider>
+<w4u-slider name="slider2" orient="horizontal" color="#00FF00"  continuous="true" min=0 max=1></w4u-slider>
+
+<w4u-slider name="slider3" orient="horizontal" color="#0000FF"  continuous="false" min=0 max=100></w4u-slider>
+<w4u-slider name="slider4" orient="horizontal" color="#FF00FF"  continuous="true" min=0 max=100></w4u-slider>
+
+
+</c4u-circuitry>
+
+

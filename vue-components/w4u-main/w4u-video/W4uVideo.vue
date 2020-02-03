@@ -16,7 +16,12 @@
   // https://github.com/m90/seeThru
   // https://jakearchibald.com/scratch/alphavid/
 
+  import C4uGlue from "c4u-glue";
   import W4uIo from "w4u-io";
+  import * as moment from 'moment';
+  // moment.js
+  // https://momentjs.com/docs/#/durations/seconds/
+  // moment.duration('23:59:59.999');  moment.duration(1500).asSeconds(); // 1.5
 
   export default {
     props: {
@@ -26,14 +31,15 @@
             width:  {type: String, default: '375px'}, 
             height: {type: String, default: '375px'}
            },
-    mixins: [W4uIo], 
+    mixins: [W4uIo, C4uGlue], 
     data: function() {
            return {
              w4uInputs:  {'play': {'value': 0.0, 'time':0.0 },
                           'fraction': {'value': 0.0, 'time':0.0 },
                           'volume': {'value': 0.5, 'time':0.0 }                      // player.volume
              },
-             w4uOutputs: { 'fraction': {'value': 0.0, 'time':0.0 } }
+             w4uOutputs: { 'fraction': {'value': 0.0, 'time':0.0 } },
+             oldTs: 0.0
             }
         },
       watch: {
@@ -57,14 +63,48 @@
        },
       },
       methods: {
+        fractionToSeconds(fraction) {
+           var player = this.$refs.w4uVideo;
+           return fraction*player.duration;
+        },
+        convertTimestamp(ts) {  
+         var fraction = 2.0;
+         var absolute = false;
+         if (ts.indexOf('%') > -1) {         // '33.3%'
+            fraction = parseFloat(ts)/100.0;
+         } else if (ts.indexOf(':') > -1) {  // '00:00:00.000' as 'hh:mm:ss.dec' or 'mm:ss.dec' 
+            if (2 == ts.split(":").length) {
+               ts = "00:"+ts;
+            }
+            fraction = moment.duration(ts).asSeconds();
+            absolute = true;
+         } else {                            // fraction 0.0-1.0  
+            fraction = parseFloat(ts);
+            if(fraction > 1.0) {             // or absolute time in seconds
+              absolute = true;
+            }
+         }
+         if(absolute) {
+            var player = this.$refs.w4uVideo;
+            fraction = fraction/player.duration;  
+         }  
+         return fraction;
+        },
+        stop() {
+           var player = this.$refs.w4uVideo;
+           player.pause();
+           if (this.controls) { 
+             player.controls=true; 
+           }
+        },
         timeUpdate() {
            var player = this.$refs.w4uVideo;
+           var deltaTs = Math.abs(player.currentTime-this.oldTs); 
+           this.oldTs = player.currentTime;
            var fractionTime = player.currentTime / player.duration;
-           Vue.set(this.w4uOutputs, 'fraction', {'value': fractionTime, 'time': 0.1});
-           this.handleIntervals(fraction);
-           // stop and interval
-           // if time is backward add all stop events > current time
-           //
+           Vue.set(this.w4uOutputs, 'fraction', {'value': fractionTime, 'time': deltaTs}); /// deltaTS
+           this.handleIntervals(fractionTime);
+           this.handleStops(fractionTime);
 	},
         handleIntervals(fraction) {
           if(this.c4uChildren['w4u-interval']) {
@@ -73,7 +113,15 @@
               interval.update(fraction);
             }
           }
-        },         
+        }, 
+        handleStops(fraction) {
+          if(this.c4uChildren['w4u-stop']) {
+            for(var i=0; i<(this.c4uChildren['w4u-stop'].length); i++) {
+              var stop = this.c4uChildren['w4u-stop'][i];
+              stop.update(fraction);
+            }
+          }
+        },        
       }, 
       computed: {  
         play:     function() { return this.w4uInputs.play.value; },
@@ -88,25 +136,4 @@
 </script>
 
 <style scoped>
-  .w4uStage2 {
-    position: relative;
-    width: 500px;
-    height: 500px;
-    border: solid 2px blue;
-  }
-  .w4uStage {
-    width: 510px;
-    height: 510px;
-    border: solid 3px red;
-  }
-video::cue {
-  background-image: linear-gradient(to bottom, dimgray, lightgray);
-  color: papayawhip;
-}
-
-video::cue(b) {
-  color: peachpuff;
-}
-
-
 </style>

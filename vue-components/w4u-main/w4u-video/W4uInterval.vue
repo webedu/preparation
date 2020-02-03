@@ -10,7 +10,6 @@
 <script>
   import C4uGlue from "c4u-glue";
   import W4uIo from "w4u-io";
-  import * as moment from 'moment';
 
   export default {
     props: {
@@ -22,37 +21,50 @@
     data: function() {
            return {
              c4uParentTag: "w4u-video",
-             w4uOutputs: {'out': {'value': 0.5, 'time':0.0 }  //output: 0.0-1.0
-
+             w4uOutputs: {'out': {'value': 0.5, 'time':0.0 },  //output: 0.0-1.0
+             oldFraction: 0.0,
+             beginTs: 0.0,
+             endTs: 1.0
              }
             }
         },
     mixins: [W4uIo, C4uGlue], 
     methods: {
-      update(fracVideo) {  
-        var fracInterval = (fracVideo - this.beginFraction)/(this.endFraction - this.beginFraction); 
-        var newValue = min(max(fracInterval, 0.0),1.0);
-        Vue.set(this.w4uOutputs, 'out', {'value': newValue, 'time': 0.1});  // deltaTime
-        //better: use compute and watch for sending changes only (see slider)
+      init(parent) {
+        if(parent) {
+            this.beginTs = parent.convertTimestamp(this.begin);
+            this.endTs = parent.convertTimestamp(this.end);
+        }
+      },      
+      update(fraction) {  
+        if(!this.beginTs || !this.endTs) { this.init(this.c4uParent); }
+        var deltaTs = Math.abs(fraction-this.oldFraction); 
+        if(this.c4uParent) {deltaTs = this.c4uParent.fractionToSeconds(deltaTs); } 
+        var fracInterval = (fraction - this.beginTs)/(this.endTs - this.beginTs); 
+        var newValue = 1.0;
+        if(['raise','fall','decay','gain'].includes(this.mode))  {
+            newValue = Math.min(Math.max(fracInterval, 0.0),1.0);
+        }
+        if(['fall','decay'].includes(this.mode)) {
+            newValue = 1.0-newValue;
+        }
+        if(['gain','decay','constant'].includes(this.mode)) {
+           if((fracInterval > 1.0) || (fracInterval < 0.0))  { //outside interval
+              newValue = 0.0;  
+           }
+        }         
+        if(Math.abs(this.w4uOutputs.out.value-newValue) > 0.001) {
+          Vue.set(this.w4uOutputs, 'out', {'value': newValue, 'time': deltaTs});  // deltaTime
+          this.oldFraction = fraction;  
+        }
       }
     },
+    watch: {
+    },  
     computed: {
-      convertTimestamp(ts) {  // must be method....
-         // float 0.0-1.0 
-         // or '33.3%'
-         // or '00:00:00.000' as 'hh:mm:ss.dec' or 'mm:ss.dec' 
-         // or '2.56 s' or float>1.0
-         // moment.duration('23:59:59.999');  moment.duration(1500).asSeconds(); // 1.5
-         return 0.5;
-      },
-      beginFraction() {
-        // video.duration
-        return 0.3;
-      },
-      endFraction() {
-        return 0.7;
-      }
     },
+    mounted() {
+    }  
   }
 </script>
 
