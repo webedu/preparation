@@ -11,6 +11,7 @@
 
   import W4uIo from "w4u-io";
   import PhotoSphereViewer from "photo-sphere-viewer";
+  import Vue from "vue"; 
 
   export default {
     props: {
@@ -33,7 +34,7 @@
         },
       watch: {
        play: function (newValue) {
-           console.log("play has new value: " + newValue);
+           //console.log("play has new value: " + newValue);
            var player = this.$refs.w4uVideo;
            if(newValue > 0.5) {
               player.play();
@@ -42,7 +43,7 @@
            }
        },
        fraction: function (newValue) {
-           console.log("fraction has new value: " + newValue);
+           //console.log("fraction has new value: " + newValue);
            var player = this.$refs.w4uVideo;
            var currentTime = player.currentTime;
            var newTime = newValue * player.duration;
@@ -83,7 +84,7 @@
           });
          //this.w4uPanoramaPlayer.animate();
          this.w4uPanoramaPlayer.rotate({longitude: 90, latitude: 0});
-         var pos = this.w4uPanoramaPlayer.getPosition();
+         // var pos = this.w4uPanoramaPlayer.getPosition();
          this.w4uPanoramaPlayer.needsUpdate();
          this.w4uPanoramaPlayer.render();
          this.w4uPanoramaPlayer.startAutorotate();
