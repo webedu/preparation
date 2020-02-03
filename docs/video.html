@@ -1,0 +1,40 @@
+<c4u-circuitry>
+ <c4u-connection source="slider4-v" target="myCircle-r"></c4u-connection>
+
+<h3 id='video'>Video</h3>
+
+
+
+ <div style="width:500px; height:300px; background-color: grey;">
+  <w4u-video name="video1" controls="true">
+    <source src="media/octopus.mp4" type="video/mp4">
+    <w4u-interval name="interval1" begin="0.3" end="0.7" mode="decay"></w4u-interval> 
+    <w4u-interval name="interval2" begin="10%" end="00:30" mode="gain"></w4u-interval> 
+    <w4u-interval name="interval3" begin="22s" end="00:24" mode="constant"></w4u-interval> 
+    <w4u-stop name="stop1" time="00:23"></w4u-stop> 
+  </w4u-video>
+ </div>
+
+ <w4u-slider name="slider1" orient="horizontal" color="#FF00FF"  continuous="true" min="0" max="100"></w4u-slider>
+</c4u-circuitry>
+
+
+<h3 id='w4u-video'>w4u-video</h3>
+
+<p>Parameter: name, controls, poster, width, height</p>
+<p>Inputs: play, fraction, volume</p>
+<p>Outputs: fraction</p>
+
+<h3 id='w4u-stop'>w4u-stop</h3>
+
+<p>Parameter: name, time</p>
+<p>Inputs: -</p>
+<p>Outputs: -</p>
+
+<h3 id='w4u-interval'>w4u-interval</h3>
+
+<p>Parameter: name, begin, end, mode(constant, decay, gain, rise, fall)</p>
+<p>Inputs: -</p>
+<p>Outputs: out</p>
+
+
