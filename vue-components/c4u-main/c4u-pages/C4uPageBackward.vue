@@ -21,7 +21,9 @@
         },
     mixins: [C4uGlue], 
     methods: { 
-       c4uPageBackward: function(event) {
+       c4uPageBackward: 
+        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+        function(event) {
          if (this.c4uParent) {  
            this.c4uParent.previousPage(); 
            //this.updateDisableStatus();

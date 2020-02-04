@@ -21,7 +21,9 @@
         },
     mixins: [C4uGlue], 
     methods: { 
-       c4uPageForward: function(event) {
+       c4uPageForward: 
+        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+        function(event) {
          if (this.c4uParent) { 
            this.c4uParent.nextPage(); 
            //this.updateDisableStatus();

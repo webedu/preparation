@@ -23,7 +23,7 @@
     },
     mounted() {
          if(this.url) {
-	    axios.get(this.url)
+            axios.get(this.url)
                  .then(response => { this.c4uHtml2 = response.data; });	
          }
     },

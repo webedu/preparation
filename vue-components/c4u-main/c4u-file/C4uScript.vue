@@ -24,7 +24,7 @@
     },
     mounted() {
          if(this.url) {
-	    axios.get(this.url)
+             axios.get(this.url)
                  .then(response => { this.c4uScript2 = response.data; eval(this.c4uScript2);});	
          }
     },

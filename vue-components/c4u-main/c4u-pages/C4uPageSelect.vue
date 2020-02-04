@@ -23,7 +23,9 @@
         },
     mixins: [C4uGlue], 
     methods: { 
-       addOne: function(event) {
+       addOne: 
+        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+        function(event) {
           this.counter += 1;
           if (this.c4uParent) {
             this.c4uParent.counter += 100;

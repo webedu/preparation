@@ -16,7 +16,7 @@
 
 <script>
   import C4uGlue from "c4u-glue";
-  import ZingTouch from "zingtouch";
+//  import ZingTouch from "zingtouch";
  
   export default {
     data: function() {
@@ -27,7 +27,9 @@
         },
     mixins: [C4uGlue], 
     methods: { 
+       /*eslint no-unused-vars: ["error", { "args": "none" }]*/
        c4uChildDisconnected(child) { this.updateDisableStatus(); },  
+       /*eslint no-unused-vars: ["error", { "args": "none" }]*/
        c4uChildReconnected(child) { this.updateDisableStatus(); },  
        previousPage: function () {
          if(this.previousPageExists()) {
@@ -74,14 +76,16 @@
           return true;  
        }, 
        updateDisableStatus: function () {
-         for(var i=0; i<(this.c4uChildren['c4u-page-forward'].length); i++) {
-           this.c4uChildren['c4u-page-forward'][i].updateDisableStatus();
+         for(var f=0; f<(this.c4uChildren['c4u-page-forward'].length); f++) {
+           this.c4uChildren['c4u-page-forward'][f].updateDisableStatus();
          }
-         for(var i=0; i<(this.c4uChildren['c4u-page-backward'].length); i++) {
-           this.c4uChildren['c4u-page-backward'][i].updateDisableStatus();
+         for(var b=0; b<(this.c4uChildren['c4u-page-backward'].length); b++) {
+           this.c4uChildren['c4u-page-backward'][b].updateDisableStatus();
          }
        },
-       addOne: function(event) {
+       addOne: 
+        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+        function(event) {
           this.counter += 1;
        },
     },
@@ -91,10 +95,12 @@
       }  
     },
     mounted() {
+         /*
          var swipeElement = document.getElementById('mktodo');
          activeRegion.bind(swipeElement, 'swipe', function() {
             alert("swiped");
-         }); 
+         });
+         */ 
     },
   }
 </script>

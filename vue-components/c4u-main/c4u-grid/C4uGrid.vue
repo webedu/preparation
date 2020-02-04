@@ -50,7 +50,7 @@
             rowPerc = 100.0/rowN;
          }
          var rowStr = "";
-         for(var i=0; i<rowN; i++) { 
+         for(var j=0; j<rowN; j++) { 
            rowStr += rowPerc.toString()+'% ';
          }
          return '<style>' 
