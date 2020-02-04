@@ -1,7 +1,7 @@
 // use in combination with w4u-io:
 // <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut"></w4u-io>
 // then use compute on w4uInputs
-
+ 
 export default {
    data: function() {
       return {
