@@ -9,6 +9,7 @@
 
   import W4uIo from "w4u-io";
   import C4uGlue from "c4u-glue";
+  import Vue from "vue"; 
 
   export default {
     props: {
@@ -58,7 +59,7 @@
         },
         update() {
              var step = 2.0*Math.PI*this.w4uInputs.interval.value*this.w4uInputs.frequency.value;
-	     this.w4uRamp += this.w4uInputs.amplitude.value*this.w4uInputs.interval.value*this.w4uInputs.frequency.value;
+             this.w4uRamp += this.w4uInputs.amplitude.value*this.w4uInputs.interval.value*this.w4uInputs.frequency.value;
              this.w4uRadian += step;
              if(this.w4uRadian > 2.0*Math.PI) {
                 this.w4uRadian -= 2.0*Math.PI;
@@ -72,8 +73,8 @@
 
 	},
     },
-    watch: {
-      w4uStringIn: function (newValue) { this.modifyElem(); }
+    watch: { /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+      w4uStringIn: function (newValue) { this.modifyElem(); }  
     },   
     mounted() {
        this.createElem();

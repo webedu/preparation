@@ -19,9 +19,7 @@
   import C4uGlue from "c4u-glue";
   import W4uIo from "w4u-io";
   import * as moment from 'moment';
-  // moment.js
-  // https://momentjs.com/docs/#/durations/seconds/
-  // moment.duration('23:59:59.999');  moment.duration(1500).asSeconds(); // 1.5
+  import Vue from "vue";
 
   export default {
     props: {
@@ -44,7 +42,7 @@
         },
       watch: {
        play: function (newValue) {
-           console.log("play has new value: " + newValue);
+           //console.log("play has new value: " + newValue);
            var player = this.$refs.w4uVideo;
            if(newValue > 0.5) {
               player.play();
@@ -53,7 +51,7 @@
            }
        },
        fraction: function (newValue) {
-           console.log("fraction has new value: " + newValue);
+           //console.log("fraction has new value: " + newValue);
            var player = this.$refs.w4uVideo;
            var currentTime = player.currentTime;
            var newTime = newValue * player.duration;

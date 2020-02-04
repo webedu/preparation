@@ -27,7 +27,6 @@
     mixins: [W4uIo, C4uGlue], 
     computed: {
       w4uStyle: function() {
-         var opacity = 1.0;
          var opacityStyle = '.w4uVisibility { opacity: 1.0; } ';
          var visibilityStyle = '.w4uVisibility { visibility: visible; } ';
          var displayStyle = ''; // display: block; or similiar

@@ -12,9 +12,9 @@
 
 <script>
   import W4uIo from "w4u-io";
-  import C4uGlue from "c4u-glue";
-  import SnapSvg from "snapsvg-cjs";
-  //import SnapFoo from "snapfoo";
+  import C4uGlue from "c4u-glue"; 
+  import Vue from "vue"; 
+  //import SnapSvg from "snapsvg-cjs";
   
   export default {
     props: {
@@ -36,9 +36,11 @@
     },
     mixins: [W4uIo, C4uGlue],
     watch: {
-       w4uStringIn: function (newValue) { this.modifyElem(); },
+       w4uStringIn: 
+         /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+         function (newValue) { this.modifyElem(); },
        length: function (newValue) {
-           console.log("path length has new value: " + newValue);
+           //console.log("path length has new value: " + newValue);
            if(this.svgElem) {
               var pathLength = this.svgElem.getTotalLength();
               var pos = this.svgElem.getPointAtLength(pathLength*newValue);
@@ -52,10 +54,10 @@
          },
 
        },
-    methods: {
+    methods: { /*eslint no-unused-vars: ["error", { "args": "none" }]*/
         c4uParentDisconnected(parent) {
            this.deleteElem();
-        }, 
+        }, /*eslint no-unused-vars: ["error", { "args": "none" }]*/
         c4uParentReconnected(parent) {
            this.createElem();
         },    

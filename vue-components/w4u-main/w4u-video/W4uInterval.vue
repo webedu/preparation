@@ -10,6 +10,7 @@
 <script>
   import C4uGlue from "c4u-glue";
   import W4uIo from "w4u-io";
+  import Vue from "vue"; 
 
   export default {
     props: {

@@ -14,6 +14,7 @@
 
 <script>
   import C4uGlue from "c4u-glue";
+  import Vue from "vue"; 
  
   import { create, all } from 'mathjs'
   const config = { }

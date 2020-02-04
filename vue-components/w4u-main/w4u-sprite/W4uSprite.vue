@@ -40,7 +40,7 @@
          var z = Math.round(100.0*this.w4uInputs.z.value);
          if(this.c4uParent && this.$refs.w4uSprite) {
            var stageBox = this.c4uParent.getStageBox();
-           var spriteBox = this.$refs.w4uSprite.getBoundingClientRect();
+           // var spriteBox = this.$refs.w4uSprite.getBoundingClientRect();
            x = this.w4uInputs.x.value*(stageBox.right-stageBox.left);
            y = this.w4uInputs.y.value*(stageBox.bottom-stageBox.top);
          }

@@ -30,7 +30,9 @@
         },
    mixins: [C4uGlue, W4uIo],
     methods: {
-        c4uChildDisconnected(child) { this.revaluateEquations(); },   // can be overwritten by parent
+        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+        c4uChildDisconnected(child) { this.revaluateEquations(); },   
+        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
         c4uChildReconnected(child) { this.revaluateEquations(); },
         revaluateEquations() {
           var newInputs = {};
@@ -70,10 +72,14 @@
         },
     },
     watch: {
-      w4uAllEquations: function (newValue) {
+      w4uAllEquations: 
+        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+        function (newValue) {
          this.revaluateEquations();
       },
-      w4uStringIn: function(newValue) {
+      w4uStringIn: 
+        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+        function(newValue) {
          this.recalculateEquations();
       },
     }, 

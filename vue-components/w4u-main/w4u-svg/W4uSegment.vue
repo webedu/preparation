@@ -13,9 +13,8 @@
 <script>
   import W4uIo from "w4u-io";
   import C4uGlue from "c4u-glue";
-  import SnapSvg from "snapsvg-cjs";
-  //import SnapFoo from "snapfoo";
-  
+  //import SnapSvg from "snapsvg-cjs"; 
+
   export default {
     props: {
             name: {type: String, default: 'segment0'},          
@@ -54,13 +53,16 @@
     },
     mixins: [W4uIo, C4uGlue],
     watch: { 
-       w4uStringIn: function (newValue) { this.modifyElem(); },
-
+       w4uStringIn: 
+         /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+         function (newValue) { this.modifyElem(); },
        },
     methods: {
+        /*eslint no-unused-vars: ["error", { "args": "none" }]*/ 
         c4uParentDisconnected(parent) {
            this.deleteElem();
         }, 
+        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
         c4uParentReconnected(parent) {
            this.createElem();
         }, 

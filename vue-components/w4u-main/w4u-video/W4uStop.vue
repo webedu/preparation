@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import C4uGlue from "c4u-glue";
+  import C4uGlue from "c4u-glue"; 
 
   export default {
     props: {

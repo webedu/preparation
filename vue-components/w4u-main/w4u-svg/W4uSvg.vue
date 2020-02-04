@@ -34,9 +34,10 @@
       }, 
     },     
     mounted() {
-         console.log("*****  SVG mounted #" + this.c4uUid);
+         //console.log("*****  SVG mounted #" + this.c4uUid);
          var svg = this.$refs.w4uSvg;
-         this.svgStage = Snap(svg);
+         //this.svgStage = Snap(svg);
+         this.svgStage = SnapSvg(svg);
    }
 
   }
