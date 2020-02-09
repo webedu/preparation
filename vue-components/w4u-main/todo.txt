@@ -28,7 +28,7 @@ io: timing delta, anim,... (< 0.5 s)
 
 panorama.... exchange
 https://pannellum.org/documentation/reference/
-mouse??
+use panellum css local
 size
 hotspots
 scenes

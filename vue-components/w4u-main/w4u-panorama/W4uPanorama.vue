@@ -1,10 +1,9 @@
 <template class="self">
   <span class='w4uPanorama'>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css">
-     <div id="w4uPanorama" ref="w4uPanorama" v-bind:width="width" v-bind:height="height"
-          
-     ></div> 
-     <slot></slot>        
+     <div id="w4uPanorama" ref="w4uPanorama" 
+          v-bind:width="width" v-bind:height="height"></div> 
+     <slot/>        
      <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut" > </w4u-io> 
   </span>  
 </template>

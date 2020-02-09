@@ -1,6 +1,6 @@
 <template class="self">
   <span class='c4uCircuitry'>
-  <slot></slot> 
+  <slot></slot>
   </span>
 </template>
 
