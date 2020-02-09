@@ -5,10 +5,17 @@
 <script src="../web-components/c4u-main/sync/c4u-main.js"></script>
 <script src="../web-components/w4u-main/sync/w4u-main.js"></script>
 
-xx
-<div width="450px">
-<w4u-panorama src='panorama360.png' width="400px">
+
+<c4u-circuitry>
+yy
+<div width="750px">
+<w4u-panorama src='panorama360.png' name='pan0' width="800px" height="400px">
 </w4u-panorama>
 </div>
 
 
+<w4u-slider name="slider3" orient="horizontal" color="#0000FF"  continuous="true" min=-180 max=180></w4u-slider>
+<c4u-connection source="pan0-yaw" target="slider3-v"> </c4u-connection>
+
+
+</c4u-circuitry>
