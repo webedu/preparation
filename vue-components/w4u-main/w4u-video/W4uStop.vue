@@ -1,9 +1,9 @@
 <template class="self">
-  <span class='w4uVideoStop'> 
+  <span class="w4uVideoStop"> 
      <!--w4u-io v-bind:name="name"></w4u-io--> 
-     <div class="w4uStop" ref="w4uStop"> 
-       <slot></slot>  
-     </div>
+    <div class="w4uStop" ref="w4uStop"> 
+      <slot />  
+    </div>
   </span> 
 </template>
 
@@ -11,6 +11,7 @@
   import C4uGlue from "c4u-glue"; 
 
   export default {
+    mixins: [C4uGlue],
     props: {
             name: {type: String, default: 'stop0'},          //automatic numbering would need glue for unique id...
             time: {type: String, default: '0.5'}             // float 0.0-1.0 or '00:00:00' as 'hh:mm:ss' or '2.56 s' or float>1.0
@@ -22,7 +23,10 @@
              stopTs: null,
             }
         },
-    mixins: [C4uGlue],
+    computed: {
+    },
+    mounted() {
+    },  
     methods: {
       init(parent) {
         if(parent) {
@@ -37,10 +41,7 @@
         this.oldFraction = fraction;  
       },
     }, 
-    computed: {
-    },
-    mounted() {
-    }   
+ 
   }
 </script>
 

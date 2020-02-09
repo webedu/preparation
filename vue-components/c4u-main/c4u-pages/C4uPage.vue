@@ -1,6 +1,6 @@
 <template class="self">
-  <div class='c4uPage' v-bind:class="pageDirection" v-show="pageVisible">
-  <slot></slot> 
+  <div class="c4uPage" v-bind:class="pageDirection" v-show="pageVisible">
+    <slot /> 
   </div> 
 </template>
 
@@ -20,6 +20,7 @@
   import C4uGlue from "c4u-glue";
  
   export default {
+    mixins: [C4uGlue], 
     data: function() {
            return {
             c4uParentTag: "c4u-pages",
@@ -27,7 +28,12 @@
             pageDirection: "c4uFast"
             }
         },
-    mixins: [C4uGlue], 
+    updated() {
+         if (this.c4uParent && !this.c4uParent.c4uCurrentPage) {
+            this.c4uParent.c4uCurrentPage = this;
+            this.pageVisible = true; 
+         } 
+    },
     methods: { 
        hide: function() {this.pageVisible = false; },
        show: function() {this.pageVisible = true; },
@@ -40,11 +46,6 @@
           }
        },
     },
-    updated() {
-         if (this.c4uParent && !this.c4uParent.c4uCurrentPage) {
-            this.c4uParent.c4uCurrentPage = this;
-            this.pageVisible = true; 
-         } 
-    },
+
   }
 </script>

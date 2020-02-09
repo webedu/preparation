@@ -1,6 +1,6 @@
 <template class="self">
-  <span class='c4uOut'>
-  <slot></slot> 
+  <span class="c4uOut">
+    <slot/> 
   </span>
 </template>
 
@@ -12,6 +12,7 @@
   import C4uGlue from "c4u-glue"; 
  
   export default {
+    mixins: [C4uGlue], 
     props: {name: String, value: Number},
     data: function() {
            return {
@@ -21,7 +22,9 @@
             c4uLastConnectionUpdate: 0.0
             }
         },
-    mixins: [C4uGlue], 
+    mounted() {
+         this.outValueChanged(this.value);
+    },
     watch: {
        value: function (newValue) {
            this.outValueChanged(parseFloat(newValue));
@@ -62,8 +65,6 @@
           this.c4uLastConnectionUpdate = this.c4uSecondsSince1970();
         } 
     },
-    mounted() {
-         this.outValueChanged(this.value);
-    }
+
   }
 </script>

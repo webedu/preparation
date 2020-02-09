@@ -1,7 +1,8 @@
 <template>
-  <div class='w4uSvg'>
-    <svg id='w4uSvg' ref='w4uSvg'></svg>
-    <slot></slot>
+  <div class="w4uSvg">
+    <svg id="w4uSvg" 
+        ref="w4uSvg"/>
+    <slot />
   </div>
 </template>
  
@@ -18,13 +19,19 @@
   //import SnapFoo from "snapfoo";
  
   export default {
+    mixins: [C4uGlue], 
     data: function() {
            return {
             c4uParentTag: "c4u-also-to-be-defined",  // no parent tag
             svgStage: null,
             }
         },
-    mixins: [C4uGlue], 
+    mounted() {
+         //console.log("*****  SVG mounted #" + this.c4uUid);
+         var svg = this.$refs.w4uSvg;
+         //this.svgStage = Snap(svg);
+         this.svgStage = SnapSvg(svg);
+    },
     methods: {
       getSvgStage() {
           return this.svgStage;
@@ -33,12 +40,7 @@
           return this.$refs.w4uSvg.getBoundingClientRect();
       }, 
     },     
-    mounted() {
-         //console.log("*****  SVG mounted #" + this.c4uUid);
-         var svg = this.$refs.w4uSvg;
-         //this.svgStage = Snap(svg);
-         this.svgStage = SnapSvg(svg);
-   }
+
 
   }
 </script>

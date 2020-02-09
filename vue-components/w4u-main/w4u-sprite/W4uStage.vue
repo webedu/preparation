@@ -1,8 +1,8 @@
 <template class="self">
-  <span class='w4uStageFrame'>
-     <div class="w4uStage" ref="w4uStage"> 
-        <slot></slot>  
-     </div>
+  <span class="w4uStageFrame">
+    <div ref="w4uStage" class="w4uStage"> 
+      <slot />  
+    </div>
   </span>  
 </template>
 
@@ -10,12 +10,12 @@
   import C4uGlue from "c4u-glue";
 
   export default {
+    mixins: [C4uGlue],
     props: {
             name: {type: String, default: 'stage0'},          //automatic numbering would need glue for unique id...
             // width:  375px, 
             // height: 375px
            },
-    mixins: [C4uGlue],
     methods: {
       getStageBox() {
           return this.$refs.w4uStage.getBoundingClientRect();

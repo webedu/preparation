@@ -1,6 +1,6 @@
 <template>
   <span class="w4uPath">
-  <slot></slot>
+    <slot/>
   <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut" > </w4u-io>
   </span>
 </template>
@@ -17,6 +17,7 @@
   //import SnapSvg from "snapsvg-cjs";
   
   export default {
+    mixins: [W4uIo, C4uGlue],
     props: {
             name: {type: String, default: 'path0'},          //automatic numbering would need glue for unique id...
             d:   {type: String, default: 'M 10 85 q 159 -50 300 10'},
@@ -34,7 +35,6 @@
              }
          }
     },
-    mixins: [W4uIo, C4uGlue],
     watch: {
        w4uStringIn: 
          /*eslint no-unused-vars: ["error", { "args": "none" }]*/

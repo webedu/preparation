@@ -1,9 +1,9 @@
 <template class="self">
-  <span class='w4uVisibility'> 
+  <span class="w4uVisibility"> 
      <span v-html="w4uStyle"></span>
      <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn"></w4u-io> 
      <div class="w4uVisibility" ref="w4uVisibility"> 
-       <slot></slot>  
+       <slot/>  
      </div>
   </span> 
 </template>
@@ -13,6 +13,7 @@
   import W4uIo from "w4u-io";
 
   export default {
+    mixins: [W4uIo, C4uGlue], 
     props: {
             name: {type: String, default: 'visibility0'},          //automatic numbering would need glue for unique id...
             mode: {type: String, default: 'display'},              //opacity, visible, display
@@ -24,7 +25,6 @@
              },
             }
         },
-    mixins: [W4uIo, C4uGlue], 
     computed: {
       w4uStyle: function() {
          var opacityStyle = '.w4uVisibility { opacity: 1.0; } ';

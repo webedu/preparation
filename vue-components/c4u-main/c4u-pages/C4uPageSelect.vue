@@ -1,6 +1,6 @@
 <template>  
-  <div class='c4uPageSelect'>
-  <slot></slot>
+  <div class="c4uPageSelect">
+    <slot />
   </div>
 </template>
 
@@ -14,14 +14,15 @@
   import C4uGlue from "c4u-glue";
  
   export default {
-    props: ['msg'],
+    mixins: [C4uGlue], 
+//    props: ['msg'],
     data: function() {
            return {
             c4uParentTag: "c4u-pages",
             counter: 0,
             }
         },
-    mixins: [C4uGlue], 
+
     methods: { 
        addOne: 
         /*eslint no-unused-vars: ["error", { "args": "none" }]*/

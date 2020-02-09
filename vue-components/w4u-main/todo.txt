@@ -11,7 +11,7 @@ video: transperancy mode
  * https://github.com/m90/seeThru
 https://wiki.selfhtml.org/wiki/HTML/Multimedia_und_Grafiken/video
 https://w3c.github.io/webvtt/
-
+audio: as video
 
 WC:function-generator
 WC:math, equations
@@ -21,14 +21,24 @@ questionaire
 
 sprite: drag&drop
 sprite: animation, delta-t:  https://www.w3schools.com/css/css3_animations.asp
+sprite, stage: width, height
 slider: width, style
 
 io: timing delta, anim,... (< 0.5 s)
 
 panorama.... exchange
+https://pannellum.org/documentation/reference/
+mouse??
+size
+hotspots
+scenes
+subintervals (like video)
 
+Petroff, Matthew A. "Pannellum: a lightweight web-based panorama viewer." Journal of Open Source Software 4, no. 40 (2019): 1628. doi:10.21105/joss.01628
+ 
 
-show/hise?  -> sprite or seperate
+show/hide?  -> sprite or seperate
+*display
 
  
 

@@ -1,8 +1,9 @@
 <template>  
-  <div class='c4uPages' id='mktodo'>
- <!--div style='position: relative;float:right;' -->
-  <slot></slot>
- <!-- /div --> 
+  <div id="mktodo" class="c4uPages">
+  <!--div style='position: relative;float:right;' -->
+    <!--slot></slot-->
+    <slot />
+  <!-- /div --> 
   </div>
 </template>
  
@@ -19,13 +20,26 @@
 //  import ZingTouch from "zingtouch";
  
   export default {
+    mixins: [C4uGlue],
     data: function() {
            return {
             c4uParentTag: "c4u-also-to-be-defined",  // no parent tag
             c4uCurrentPage: null,
             }
         },
-    mixins: [C4uGlue], 
+    mounted() {
+         /*
+         var swipeElement = document.getElementById('mktodo');
+         activeRegion.bind(swipeElement, 'swipe', function() {
+            alert("swiped");
+         });
+         */ 
+    }, 
+    computed: {
+      c4uAllPages: function() {
+         return this.c4uChildren['c4u-page'];
+      }  
+    },
     methods: { 
        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
        c4uChildDisconnected(child) { this.updateDisableStatus(); },  
@@ -89,18 +103,7 @@
           this.counter += 1;
        },
     },
-    computed: {
-      c4uAllPages: function() {
-         return this.c4uChildren['c4u-page'];
-      }  
-    },
-    mounted() {
-         /*
-         var swipeElement = document.getElementById('mktodo');
-         activeRegion.bind(swipeElement, 'swipe', function() {
-            alert("swiped");
-         });
-         */ 
-    },
+
+
   }
 </script>

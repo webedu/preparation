@@ -1,10 +1,10 @@
 <template class="self">
-  <span class='w4uVideo'>
+  <span class="w4uVideo">
      <video ref="w4uVideo" v-bind:controls="controls" v-bind:poster="poster"
                            v-bind:width="width" v-bind:height="height"
       >
         Your browser does not support the video tag.
-        <slot></slot>         
+        <slot/>         
      </video> 
      <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut" > </w4u-io> 
   </span>  
@@ -16,12 +16,14 @@
   // https://github.com/m90/seeThru
   // https://jakearchibald.com/scratch/alphavid/
 
+  import Vue from "vue";
   import C4uGlue from "c4u-glue";
   import W4uIo from "w4u-io";
   import * as moment from 'moment';
-  import Vue from "vue";
+
 
   export default {
+    mixins: [W4uIo, C4uGlue], 
     props: {
             name: {type: String, default: 'video0'},          //automatic numbering would need glue for unique id...
             controls: {type: Boolean, default: false},
@@ -29,7 +31,7 @@
             width:  {type: String, default: '375px'}, 
             height: {type: String, default: '375px'}
            },
-    mixins: [W4uIo, C4uGlue], 
+
     data: function() {
            return {
              w4uInputs:  {'play': {'value': 0.0, 'time':0.0 },
@@ -40,6 +42,10 @@
              oldTs: 0.0
             }
         },
+      computed: {  
+        play:     function() { return this.w4uInputs.play.value; },
+        fraction: function() { return this.w4uInputs.fraction.value; }, 
+      },
       watch: {
        play: function (newValue) {
            //console.log("play has new value: " + newValue);
@@ -121,10 +127,7 @@
           }
         },        
       }, 
-      computed: {  
-        play:     function() { return this.w4uInputs.play.value; },
-        fraction: function() { return this.w4uInputs.fraction.value; }, 
-      },
+
       mounted() {
           var player = this.$refs.w4uVideo;
           player.ontimeupdate = this.timeUpdate; 
