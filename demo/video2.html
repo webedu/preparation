@@ -1,21 +1,66 @@
 <meta charset="utf-8">
 <title>w4u-main demo</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/webedu/foundation@master/vendor/bootstrap/bootstrap.min.css" type="text/css"> 
 <script src="https://unpkg.com/vue"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML.js"></script>
 <script src="../web-components/w4u-main/sync/w4u-main.js"></script>
 <script src="../web-components/c4u-main/sync/c4u-main.js"></script>
 
+<h3>Bootstrap only</h3>
+<div class="container-fluid">
+
+<div class="row"><div class="col-md-1">1a</div><div class="col-md-1">1b</div><div class="col-md-1">1c</div><div class="col-md-1">1d</div><div class="col-md-1">1e</div><div class="col-md-1">1f</div><div class="col-md-1">1a</div><div class="col-md-1">1b</div><div class="col-md-1">1c</div><div class="col-md-1">1d</div><div class="col-md-1">1e</div><div class="col-md-1">1f</div></div>
+
+<div class="row"><div class="col-md-2">2a</div><div class="col-md-2">2b</div><div class="col-md-2">2c</div><div class="col-md-2">2d</div><div class="col-md-2">2e</div><div class="col-md-2">2f</div></div>
+<div class="row"><div class="col-md-3">3a</div><div class="col-md-3">3b</div><div class="col-md-3">3c</div><div class="col-md-3">3d</div></div>
+<div class="row"><div class="col-md-4">4a</div><div class="col-md-4">4b</div><div class="col-md-4">4c</div></div>
+<div class="row"><div class="col-md-5">5a</div><div class="col-md-5">5b</div></div>
+<div class="row"><div class="col-md-6">6a</div><div class="col-md-6">6b</div></div>
+<div class="row"><div class="col-md-7">7a</div></div>
+<div class="row"><div class="col-md-8">8a</div></div>
+<div class="row"><div class="col-md-9">9a</div></div>
+<div class="row"><div class="col-md-10">10a</div></div>
+<div class="row"><div class="col-md-11">11a</div></div>
+<div class="row"><div class="col-md-12">12a</div></div>
+</div>
 
 
+<h3>C4u Layout only</h3>
+<c4u-row>
+<c4u-col>
+Left
+</c4u-col>
+<c4u-col>
+Right
+</c4u-col>
+</c4u-row>
+
+<h3>Vue-Bootstrap only</h3>
+<b-container>
+<b-row>
+<b-col cols="5">
+Left
+</b-col>
+<b-col cols="3">
+Right
+</b-col>
+</b-row>
+</b-container>
+<b-progress max="100" value="45" ></b-progress>
+
+
+<h3>Bootstrap inside Shadow-Dom</h3> 
 <c4u-circuitry>
 
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-5">
 
-<w4u-visibility name="vis1" mode="opacity">
- <p>Visible</p> 
-</w4u-visibility>
 
-<w4u-video name="video1" controls="true">
+
+
+<w4u-video name="video1" controls="true" width="100%">
  <source src="octopus.mp4" type="video/mp4">
  <w4u-interval name="int1" begin="0.3" end="0.7" mode="decay"></w4u-interval> 
  <w4u-stop name="stop1" time="00:04"></w4u-stop> 
@@ -23,6 +68,19 @@
 
 <c4u-connection source="int1-out" target="vis1-show"> </c4u-connection>
 
-</c4u-circuitry>
 
+</div>
+<div class="col-md-5">
+
+<w4u-visibility name="vis1" mode="opacity">
+ <p>Visible</p> 
+</w4u-visibility>
+</div>
+
+
+
+</div>
+</div>
+
+</c4u-circuitry>
 
