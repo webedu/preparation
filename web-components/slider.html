@@ -1,12 +1,40 @@
 <meta charset="utf-8">
 <title>w4u-main demo</title>
 <script src="https://unpkg.com/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
 <script src="./w4u-main/sync/w4u-main.js"></script>
 <script src="./c4u-main/sync/c4u-main.js"></script>
 
 
-<w4u-slider orient="horizontal" color="#FF0000"></w4u-slider>
-<w4u-slider orient="vertical" color="#0000FF"></w4u-slider>
+<w4u-circ>
+
+<c4u-connection source="slider1-value" target="mk1"> </c4u-connection>
+<c4u-connection source="slider2-value" target="mk2"> </c4u-connection>
+
+
+<w4u-slider name="slider1" orient="horizontal" color="#FF0000"></w4u-slider>
+<w4u-slider name="slider2" orient="vertical" color="#0000FF"></w4u-slider>
+
+
+<c4u-in name="mk1" value="0"> </c4u-in>
+<c4u-in name="mk2" value="0"> </c4u-in>
+
+</w4u-circ>
 
 <wc-dummy></wc-dummy>
 
+
+<w4u-circ>
+
+<c4u-connection source="slider1-value" target="mk1"> </c4u-connection>
+<c4u-connection source="slider2-value" target="mk2"> </c4u-connection>
+
+
+<w4u-slider name="slider1" orient="horizontal" color="#AA0000"></w4u-slider>
+<w4u-slider name="slider2" orient="vertical" color="#0000AA"></w4u-slider>
+
+
+<c4u-in name="mk1" value="0"> </c4u-in>
+<c4u-in name="mk2" value="0"> </c4u-in>
+
+</w4u-circ>

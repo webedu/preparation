@@ -8,7 +8,7 @@ services:
      - /var/run/docker.sock:/tmp/docker.sock:ro
 
   w4u-vue:
-    image: tamboraorg/credevvue:0.2020
+    image: tamboraorg/credevvue:2011.0
     container_name: w4uvue
     volumes:
      - ./vue-components:/cre/vue-components

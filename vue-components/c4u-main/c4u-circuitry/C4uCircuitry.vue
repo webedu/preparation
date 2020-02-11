@@ -1,11 +1,11 @@
 <template class="self">
   <span class='c4uCircuitry'>
-  <slot></slot>
+  <link v-for="href in globalCss" rel="stylesheet"  v-bind:href="href" type="text/css"> 
+  <slot/>
   </span>
 </template>
 
-<style scoped>
-  .c4uCircuitry { }
+<style>
 </style>
 
 <script>
@@ -17,7 +17,7 @@
             // c4uParentTag: "c4u-also-to-be-defined",  // no parent tag
             }
         }, 
-    mixins: [C4uGlue], 
+    mixins: [C4uCss, C4uGlue], 
     methods: { 
       outValueChanged: function (name, value, source) {
          //console.log("out value changed in circuitry: #"+this.c4uUid); 

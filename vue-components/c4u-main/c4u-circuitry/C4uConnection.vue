@@ -1,6 +1,6 @@
 <template class="self">
-  <span class='c4uConnection' v-bind:class="pageDirection" v-show="pageVisible">
-  <slot></slot> 
+  <span class='c4uConnection'>
+    <slot /> 
   </span> 
 </template>
  
