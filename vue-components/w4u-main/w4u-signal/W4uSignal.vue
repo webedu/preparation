@@ -1,7 +1,7 @@
 <template class="self">
   <span class='w4uSignal'>
-     <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut" > </w4u-io>    
-     <slot></slot>  
+     <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut"/>    
+     <slot/>  
   </span>
 </template>
 
@@ -12,6 +12,7 @@
   import Vue from "vue"; 
 
   export default {
+    mixins: [W4uIo, C4uGlue],
     props: {
             name: {type: String, default: 'signal0'},          //automatic numbering would need glue for unique id...
             frequency: {type: Number, default: 1.0}, 
@@ -37,7 +38,12 @@
                          }
             }
         },
-   mixins: [W4uIo, C4uGlue],
+   watch: { /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+      w4uStringIn: function (newValue) { this.modifyElem(); }  
+   }, 
+   mounted() {
+       this.createElem();
+   },
    methods: { 
         c4uParentDisconnected(parent) {
            this.deleteElem();
@@ -73,12 +79,7 @@
 
 	},
     },
-    watch: { /*eslint no-unused-vars: ["error", { "args": "none" }]*/
-      w4uStringIn: function (newValue) { this.modifyElem(); }  
-    },   
-    mounted() {
-       this.createElem();
-    }
+
   }
 </script>
 

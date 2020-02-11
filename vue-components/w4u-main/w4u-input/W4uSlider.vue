@@ -1,18 +1,24 @@
 <template class="self">
-  <span class='w4uSlider'>
-     <span v-html="w4uStyle"></span>
-     <input type="range" min="0" max="1000" v-bind:value="sliderString" v-bind:orient="orient" v-on:input="slide($event)" v-on:change="update($event)">
-     <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut" > </w4u-io>    
-     <slot></slot>  
+  <span class="w4uSlider">
+    <span v-html="w4uStyle"/>
+    <input type="range"
+           min="0" 
+           max="1000" 
+           v-bind:value="sliderString" 
+           v-bind:orient="orient" 
+           @input="slide($event)" 
+           @change="update($event)">
+    <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut" />    
+    <slot/>  
   </span> 
 </template>
 
 <script>
-
-  import W4uIo from "w4u-io";
   import Vue from "vue";
+  import W4uIo from "w4u-io";
 
   export default {
+    mixins: [W4uIo], 
     props: {
             name: {type: String, default: 'slider0'},          //automatic numbering would need glue for unique id...
             orient: {type: String, default: 'vertical'}, 
@@ -35,7 +41,22 @@
              w4uOutputs: { 'v': {'value': 0.5, 'time':0.0 } }
             }
         },
-   mixins: [W4uIo], 
+   computed: {
+      sliderInput: function() {
+         return this.w4uInputs.v.value; 
+      },      
+      sliderOutput: function() {
+         return this.min+(this.max-this.min)*parseFloat(this.sliderString)/1000.0;
+      },
+     
+      w4uStyle: function() {
+         return '<style>' 
+              + '.w4uSlider input { background: '+this.background+'; } '
+              + '.w4uSlider input[type=range]::-webkit-slider-thumb { background: '+this.color+'; } ' 
+              + '.w4uSlider input[type=range]::-moz-range-thumb { background: '+this.color+'; } '
+              + '</style>';
+      }   
+    },
    methods: { 
     slide(e) { 
            if (this.continuous) {
@@ -58,22 +79,7 @@
            //console.log("slider has new value: " + newValue);
        },
     },   
-   computed: {
-      sliderInput: function() {
-         return this.w4uInputs.v.value; 
-      },      
-      sliderOutput: function() {
-         return this.min+(this.max-this.min)*parseFloat(this.sliderString)/1000.0;
-      },
-     
-      w4uStyle: function() {
-         return '<style>' 
-              + '.w4uSlider input { background: '+this.background+'; } '
-              + '.w4uSlider input[type=range]::-webkit-slider-thumb { background: '+this.color+'; } ' 
-              + '.w4uSlider input[type=range]::-moz-range-thumb { background: '+this.color+'; } '
-              + '</style>';
-      }   
-    } 
+
   }
 </script>
 
