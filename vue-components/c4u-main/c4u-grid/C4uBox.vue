@@ -1,21 +1,24 @@
 <template class="self">
   <span class='c4uBox'>
-   <span v-html="c4uStyle"></span>
-  <span class='c4uBox2'>
-   <slot></slot> 
-  </span> 
+    <link v-for="(href, key) in globalCss" rel="stylesheet"  v-bind:href="href" v-bind:key="key" type="text/css" /> 
+    <span v-html="c4uStyle"></span>
+    <span class='c4uBox2'>
+      <slot></slot> 
+    </span> 
   </span> 
 </template>
 
 <style scoped>
-  .c4uBox { 
+  .c4uBox {
   }
 </style>
 
 <script>
+  import C4uCss from "c4u-css";
   //import C4uGlue from "c4u-glue";
  
   export default {
+    mixins: [C4uCss], 
     props: {
             name: {type: String, default: 'box0'},          //automatic numbering would need glue for unique id...
             column:  {type: Number, default: 1}, 

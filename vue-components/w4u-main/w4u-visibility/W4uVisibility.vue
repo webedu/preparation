@@ -1,19 +1,21 @@
 <template class="self">
   <span class="w4uVisibility"> 
-     <span v-html="w4uStyle"></span>
-     <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn"></w4u-io> 
-     <div class="w4uVisibility" ref="w4uVisibility"> 
-       <slot/>  
-     </div>
+    <link v-for="(href, key) in globalCss" rel="stylesheet"  v-bind:href="href" v-bind:key="key" type="text/css" /> 
+    <span v-html="w4uStyle"></span>
+    <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn"></w4u-io> 
+    <div class="w4uVisibility" ref="w4uVisibility"> 
+      <slot/>
+    </div>
   </span> 
 </template>
 
 <script>
+  import C4uCss from "c4u-css";
   import C4uGlue from "c4u-glue";
   import W4uIo from "w4u-io";
 
   export default {
-    mixins: [W4uIo, C4uGlue], 
+    mixins: [C4uCss, W4uIo, C4uGlue], 
     props: {
             name: {type: String, default: 'visibility0'},          //automatic numbering would need glue for unique id...
             mode: {type: String, default: 'display'},              //opacity, visible, display
