@@ -1,19 +1,22 @@
 <template> 
   <span>
-  <script class='c4uScript'><slot></slot></script>
-  <script v-html='c4uScript2'></script>
+    <script class="c4uScript">
+      <slot />
+    </script>
+    <!-- eslint-disable-next-line vue/no-v-html -->
+    <script v-html="c4uScript2" />
   </span> 
 </template> 
 
 <style scoped>
   .c4uScript {  }
 </style>
-
+ 
 <script>
   import axios from "axios";
 
   export default {
-    props: {url: String},
+    props: {url: {type: String, default: ''}},
     data: function() {
            return {
             c4uScript2: ""

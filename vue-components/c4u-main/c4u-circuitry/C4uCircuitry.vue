@@ -1,7 +1,13 @@
 <template class="self">
-  <span class='c4uCircuitry'>
-  <link v-for="(href, key) in globalCss" rel="stylesheet"  v-bind:href="href" v-bind:key="key" type="text/css" /> 
-  <slot/>
+  <span class="c4uCircuitry">
+    <link 
+      v-for="(href, key) in globalCss" 
+      v-bind:key="key" 
+      v-bind:href="href" 
+      rel="stylesheet"  
+      type="text/css"
+    > 
+    <slot /> 
   </span>
 </template>
 
@@ -13,12 +19,20 @@
   import C4uGlue from "c4u-glue";
  
   export default {
+    mixins: [C4uCss, C4uGlue],
     data: function() {
            return {
             // c4uParentTag: "c4u-also-to-be-defined",  // no parent tag
             }
         }, 
-    mixins: [C4uCss, C4uGlue],
+    computed: {
+       c4uAllConnections: function () {
+          return this.c4uChildren['c4u-connection'];
+       },
+       c4uAllPlugsIn: function () {
+          return this.c4uChildren['c4u-in'];
+       }
+    },
     methods: { 
       outValueChanged: function (name, value, source) {
          //console.log("out value changed in circuitry: #"+this.c4uUid); 
@@ -45,13 +59,6 @@
           }
       }
     },
-    computed: {
-       c4uAllConnections: function () {
-          return this.c4uChildren['c4u-connection'];
-       },
-       c4uAllPlugsIn: function () {
-          return this.c4uChildren['c4u-in'];
-       }
-    }
+
   }
 </script>

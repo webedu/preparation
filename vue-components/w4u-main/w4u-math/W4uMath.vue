@@ -1,8 +1,12 @@
 <template>  
-  <div class='w4uMath'>
-  <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut" > </w4u-io>
-  <slot></slot>
- </div> 
+  <div class="w4uMath">
+    <w4u-io 
+      v-bind:name="name" 
+      v-bind:inputs="w4uStringIn" 
+      v-bind:outputs="w4uStringOut" 
+    />
+    <slot />
+  </div> 
 </template>
   
 <style scoped>
@@ -16,6 +20,7 @@
   import C4uGlue from "c4u-glue";
 
   export default {
+    mixins: [C4uGlue, W4uIo],
     props: {
             name: {type: String, default: 'math0'},          //automatic numbering would need glue for unique id...
            },
@@ -28,8 +33,26 @@
                          }
             }
         },
-   mixins: [C4uGlue, W4uIo],
-    methods: {
+
+
+    computed: {
+      w4uAllEquations: function() {
+         return this.c4uChildren['w4u-equation'];
+      }
+    }, 
+    watch: {
+      w4uAllEquations: 
+        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+        function (newValue) {
+         this.revaluateEquations();
+      },
+      w4uStringIn: 
+        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+        function(newValue) {
+         this.recalculateEquations();
+      },
+    }, 
+     methods: {
         /*eslint no-unused-vars: ["error", { "args": "none" }]*/
         c4uChildDisconnected(child) { this.revaluateEquations(); },   
         /*eslint no-unused-vars: ["error", { "args": "none" }]*/
@@ -71,22 +94,5 @@
           }
         },
     },
-    watch: {
-      w4uAllEquations: 
-        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
-        function (newValue) {
-         this.revaluateEquations();
-      },
-      w4uStringIn: 
-        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
-        function(newValue) {
-         this.recalculateEquations();
-      },
-    }, 
-    computed: {
-      w4uAllEquations: function() {
-         return this.c4uChildren['w4u-equation'];
-      }
-    },  
   }
 </script>

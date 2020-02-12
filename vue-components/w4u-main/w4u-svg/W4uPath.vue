@@ -1,7 +1,11 @@
 <template>
   <span class="w4uPath">
-    <slot/>
-  <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut" > </w4u-io>
+    <slot />
+    <w4u-io
+      v-bind:name="name" 
+      v-bind:inputs="w4uStringIn" 
+      v-bind:outputs="w4uStringOut"
+    />
   </span>
 </template>
 
@@ -35,6 +39,9 @@
              }
          }
     },
+    computed: {  
+      length:  function() { return this.w4uInputs.length.value; },
+    },
     watch: {
        w4uStringIn: 
          /*eslint no-unused-vars: ["error", { "args": "none" }]*/
@@ -54,6 +61,9 @@
          },
 
        },
+    mounted() {
+       this.createElem();
+    },
     methods: { /*eslint no-unused-vars: ["error", { "args": "none" }]*/
         c4uParentDisconnected(parent) {
            this.deleteElem();
@@ -98,11 +108,7 @@
          }
 	},          
       },
-      computed: {  
-        length:  function() { return this.w4uInputs.length.value; },
-      },
-    mounted() {
-       this.createElem();
-    },
+
+
   }
 </script>

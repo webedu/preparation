@@ -1,6 +1,16 @@
 <template class="self">
-  <div class="c4uPage" v-bind:class="pageDirection" v-show="pageVisible">
-    <link v-for="(href, key) in globalCss" rel="stylesheet"  v-bind:href="href" v-bind:key="key" type="text/css" /> 
+  <div 
+    v-show="pageVisible"
+    class="c4uPage" 
+    v-bind:class="pageDirection" 
+  >
+    <link 
+      v-for="(href, key) in globalCss" 
+      v-bind:key="key"
+      rel="stylesheet"  
+      v-bind:href="href" 
+      type="text/css" 
+    > 
     <slot /> 
   </div> 
 </template>

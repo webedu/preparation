@@ -1,8 +1,11 @@
 <template class="self">
-  <div ref="c4uRow" class="c4uRow">
-  <div class="c4uRow2">
+  <div 
+    ref="c4uRow" 
+    class="c4uRow"
+  >
+    <div class="c4uRow2">
       <slot /> 
-  </div>
+    </div>
   </div> 
 </template>
 
@@ -53,12 +56,11 @@
   },
     methods: { 
        windowResize: function () {
-            /* eslint-disable no-console */
+           // eslint-disable-next-line no-console
            console.log('window resize happened in c4u-row');
-            /* eslint-enable no-console */
          },
        rowResize: function () {
-            // eslint-disable-next-line no-console
+           // eslint-disable-next-line no-console
            console.log('row resize happened in c4u-row');
          },
        },

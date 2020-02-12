@@ -1,5 +1,9 @@
 <template> 
-  <span class='c4uHtml3'><slot></slot><span v-html='c4uHtml2'></span></span>
+  <span class="c4uHtml3">
+    <slot />
+    <!-- eslint-disable-next-line vue/no-v-html -->
+    <span v-html="c4uHtml2" />
+  </span>
 </template>
 
 <style scoped>
@@ -12,7 +16,7 @@
   import axios from "axios";
 
   export default {
-    props: {url: String},
+    props: {url: {type: String, default: ''}},
     data: function() {
            return {
             c4uHtml2: "<p>Loading...</p>"

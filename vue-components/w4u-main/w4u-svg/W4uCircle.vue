@@ -1,7 +1,10 @@
 <template>
   <span class="w4uCircle">
-  <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn"></w4u-io>
-  <slot></slot>
+    <w4u-io 
+      v-bind:name="name" 
+      v-bind:inputs="w4uStringIn"
+    />
+    <slot />
   </span>
 </template>
 
@@ -17,6 +20,7 @@
   //import SnapSvg from "snapsvg-cjs"; only needed in parent
 
   export default {
+    mixins: [W4uIo, C4uGlue],
     props: {
             name: {type: String, default: 'circle0'},          //automatic numbering would need glue for unique id...
             cx:   {type: Number, default: 10},
@@ -34,12 +38,14 @@
              svgElem: null
             }
         },
-    mixins: [W4uIo, C4uGlue],
     watch: { 
        w4uStringIn: 
        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
        function (newValue) { this.modifyElem(); }
        },
+    mounted() {
+       this.createElem();
+    },
     methods: { /*eslint no-unused-vars: ["error", { "args": "none" }]*/
         c4uParentDisconnected(parent) {
            this.deleteElem();
@@ -72,9 +78,7 @@
          }
 	},          
       },
-    mounted() {
-       this.createElem();
-    },
+
 
   }
 </script>

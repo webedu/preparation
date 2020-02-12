@@ -1,7 +1,11 @@
 <template class="self">
-  <span class='w4uSignal'>
-     <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut"/>    
-     <slot/>  
+  <span class="w4uSignal">
+    <w4u-io 
+      v-bind:name="name" 
+      v-bind:inputs="w4uStringIn" 
+      v-bind:outputs="w4uStringOut"
+    />    
+    <slot />  
   </span>
 </template>
 

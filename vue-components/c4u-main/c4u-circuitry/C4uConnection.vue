@@ -1,5 +1,5 @@
 <template class="self">
-  <span class='c4uConnection'>
+  <span class="c4uConnection">
     <slot /> 
   </span> 
 </template>
@@ -12,12 +12,14 @@
   import C4uGlue from "c4u-glue";
  
   export default {
-    props: {source: String, target: String},
+    mixins: [C4uGlue], 
+    props: {source: {type: String, default: 'out'}, 
+            target: {type: String, default: 'in'}
+           },
     data: function() {
            return {
             c4uParentTag: "c4u-circuitry"
             }
         },
-    mixins: [C4uGlue] 
   }
 </script>

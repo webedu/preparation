@@ -1,6 +1,10 @@
 <template>  
-  <button v-bind:disabled="buttonDisabled" class='c4uPageBackward' v-on:click="c4uPageBackward">
-  <slot></slot>
+  <button 
+    v-bind:disabled="buttonDisabled" 
+    class="c4uPageBackward" 
+    @click="c4uPageBackward"
+  >
+    <slot />
   </button>
 </template>
 
@@ -13,13 +17,16 @@
   import C4uGlue from "c4u-glue";
  
   export default {
+    mixins: [C4uGlue], 
     data: function() {
            return {
             c4uParentTag: "c4u-pages",
             buttonDisabled: true,
             }
         },
-    mixins: [C4uGlue], 
+    updated() {
+         this.updateDisableStatus();
+    },
     methods: { 
        c4uPageBackward: 
         /*eslint no-unused-vars: ["error", { "args": "none" }]*/
@@ -37,9 +44,7 @@
          }
        } 
     },
-    updated() {
-         this.updateDisableStatus();
-    },
+
 
   }
 </script>

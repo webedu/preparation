@@ -1,8 +1,15 @@
 <template class="self">
   <span class="w4uSpriteFrame"> 
+    <!-- eslint-disable-next-line vue/no-v-html -->
     <span v-html="w4uStyle" />
-    <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" /> 
-    <div class="w4uSprite" ref="w4uSprite"> 
+    <w4u-io 
+      v-bind:name="name" 
+      v-bind:inputs="w4uStringIn"
+    /> 
+    <div
+      ref="w4uSprite"
+      class="w4uSprite"
+    > 
       <slot />  
     </div>
   </span> 

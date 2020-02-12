@@ -1,15 +1,22 @@
 <template class="self">
   <span class="w4uSlider">
-    <span v-html="w4uStyle"/>
-    <input type="range"
-           min="0" 
-           max="1000" 
-           v-bind:value="sliderString" 
-           v-bind:orient="orient" 
-           @input="slide($event)" 
-           @change="update($event)">
-    <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut" />    
-    <slot/>  
+    <!-- eslint-disable-next-line vue/no-v-html -->
+    <span v-html="w4uStyle" />
+    <input 
+      type="range"
+      min="0" 
+      max="1000" 
+      v-bind:value="sliderString" 
+      v-bind:orient="orient" 
+      @input="slide($event)" 
+      @change="update($event)"
+    >
+    <w4u-io 
+      v-bind:name="name" 
+      v-bind:inputs="w4uStringIn" 
+      v-bind:outputs="w4uStringOut"
+    />    
+    <slot />
   </span> 
 </template>
 
@@ -57,16 +64,6 @@
               + '</style>';
       }   
     },
-   methods: { 
-    slide(e) { 
-           if (this.continuous) {
-             this.sliderString = e.target.value; 
-           }
-	},
-    update(e) {
-          this.sliderString = e.target.value;
-	},
-    },
     watch: {
        sliderInput: function (newValue) {
            if(Math.abs(this.sliderOutput-newValue) > 0.001) {
@@ -78,8 +75,17 @@
            Vue.set(this.w4uOutputs, 'v', {'value': newValue, 'time': 0.1});
            //console.log("slider has new value: " + newValue);
        },
-    },   
-
+    },  
+   methods: { 
+    slide(e) { 
+           if (this.continuous) {
+             this.sliderString = e.target.value; 
+           }
+	},
+    update(e) {
+          this.sliderString = e.target.value;
+	},
+    },
   }
 </script>
 

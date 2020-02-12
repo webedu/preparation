@@ -1,7 +1,9 @@
 <template>  
-  <div id="mktodo" class="c4uPages">
-  <!--div style='position: relative;float:right;' -->
-    <!--slot></slot-->
+  <div 
+    id="mktodo" 
+    class="c4uPages"
+  >
+    <!--div style='position: relative;float:right;' -->
     <slot />
   <!-- /div --> 
   </div>
@@ -27,6 +29,11 @@
             c4uCurrentPage: null,
             }
         },
+    computed: {
+      c4uAllPages: function() {
+         return this.c4uChildren['c4u-page'];
+      }  
+    },
     mounted() {
          /*
          var swipeElement = document.getElementById('mktodo');
@@ -35,11 +42,6 @@
          });
          */ 
     }, 
-    computed: {
-      c4uAllPages: function() {
-         return this.c4uChildren['c4u-page'];
-      }  
-    },
     methods: { 
        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
        c4uChildDisconnected(child) { this.updateDisableStatus(); },  

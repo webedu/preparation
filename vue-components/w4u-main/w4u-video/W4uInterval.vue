@@ -1,9 +1,15 @@
 <template class="self">
-  <span class='w4uVideoInterval'> 
-     <w4u-io v-bind:name="name" v-bind:outputs="w4uStringOut"></w4u-io> 
-     <div class="w4uInterval" ref="w4uInterval"> 
-       <slot></slot>  
-     </div>
+  <span class="w4uVideoInterval"> 
+    <w4u-io 
+      v-bind:name="name" 
+      v-bind:outputs="w4uStringOut" 
+    /> 
+    <div
+      ref="w4uInterval"
+      class="w4uInterval"
+    > 
+      <slot />  
+    </div>
   </span> 
 </template>
 
@@ -13,6 +19,7 @@
   import Vue from "vue"; 
 
   export default {
+    mixins: [W4uIo, C4uGlue], 
     props: {
             name:  {type: String, default: 'interval0'}, //automatic numbering would need glue for unique id...
             begin: {type: String, default: '0.0'},       // float 0.0-1.0 or '00:00:00' as 'hh:mm:ss' or '2.56 s' or float>1.0
@@ -29,7 +36,12 @@
              }
             }
         },
-    mixins: [W4uIo, C4uGlue], 
+    computed: {
+    },
+    watch: {
+    },  
+    mounted() {
+    },  
     methods: {
       init(parent) {
         if(parent) {
@@ -60,12 +72,7 @@
         }
       }
     },
-    watch: {
-    },  
-    computed: {
-    },
-    mounted() {
-    }  
+
   }
 </script>
 

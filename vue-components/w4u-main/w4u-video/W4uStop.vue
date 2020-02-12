@@ -1,7 +1,10 @@
 <template class="self">
   <span class="w4uVideoStop"> 
-     <!--w4u-io v-bind:name="name"></w4u-io--> 
-    <div class="w4uStop" ref="w4uStop"> 
+    <!--w4u-io v-bind:name="name"></w4u-io--> 
+    <div  
+      ref="w4uStop" 
+      class="w4uStop"
+    > 
       <slot />  
     </div>
   </span> 

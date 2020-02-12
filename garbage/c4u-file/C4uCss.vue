@@ -1,6 +1,6 @@
 <template> 
   <span>
-   <style v-html='c4uCss'></script>
+    <style v-html="c4uCss" />
   </span> 
 </template> 
 
@@ -27,6 +27,8 @@
                  .then(response => { this.c4uCss = response.data; );});	
          }
     },
+
+
   }
 </script>
 

@@ -1,10 +1,23 @@
-<template class="self">
+<template class="self"> 
   <span class="w4uVisibility"> 
-    <link v-for="(href, key) in globalCss" rel="stylesheet"  v-bind:href="href" v-bind:key="key" type="text/css" /> 
-    <span v-html="w4uStyle"></span>
-    <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn"></w4u-io> 
-    <div class="w4uVisibility" ref="w4uVisibility"> 
-      <slot/>
+    <link
+      v-for="(href, key) in globalCss" 
+      v-bind:key="key"
+      v-bind:href="href" 
+      rel="stylesheet"  
+      type="text/css"
+    > 
+    <!-- eslint-disable-next-line vue/no-v-html -->
+    <span v-html="w4uStyle" />
+    <w4u-io 
+      v-bind:name="name" 
+      v-bind:inputs="w4uStringIn" 
+    /> 
+    <div
+      ref="w4uVisibility"
+      class="w4uVisibility"
+    > 
+      <slot />
     </div>
   </span> 
 </template>

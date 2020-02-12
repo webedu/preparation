@@ -1,7 +1,10 @@
 <template>
   <span class="w4uSegment">
-  <slot></slot>
-  <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn"> </w4u-io>
+    <slot />
+    <w4u-io 
+      v-bind:name="name" 
+      v-bind:inputs="w4uStringIn"
+    />
   </span>
 </template>
 
@@ -16,6 +19,7 @@
   //import SnapSvg from "snapsvg-cjs"; 
 
   export default {
+    mixins: [W4uIo, C4uGlue],
     props: {
             name: {type: String, default: 'segment0'},          
             type: {type: String, default: 'L'}, // M,L,Q,A,...
@@ -51,12 +55,15 @@
 
                  }
     },
-    mixins: [W4uIo, C4uGlue],
+
     watch: { 
        w4uStringIn: 
          /*eslint no-unused-vars: ["error", { "args": "none" }]*/
          function (newValue) { this.modifyElem(); },
        },
+    mounted() {
+       this.createElem();
+    },
     methods: {
         /*eslint no-unused-vars: ["error", { "args": "none" }]*/ 
         c4uParentDisconnected(parent) {
@@ -99,8 +106,6 @@
          this.createElem();
 	},          
       },
-    mounted() {
-       this.createElem();
-    },
+
   }
 </script>

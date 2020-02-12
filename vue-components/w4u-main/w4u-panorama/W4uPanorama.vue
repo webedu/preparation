@@ -1,10 +1,21 @@
 <template class="self">
-  <span class='w4uPanorama'>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css">
-     <div id="w4uPanorama" ref="w4uPanorama" 
-          v-bind:width="width" v-bind:height="height"></div> 
-     <slot/>        
-     <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut" > </w4u-io> 
+  <span class="w4uPanorama">
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css"
+    >
+    <div
+      id="w4uPanorama" 
+      ref="w4uPanorama" 
+      v-bind:width="width" 
+      v-bind:height="height"
+    /> 
+    <slot />        
+    <w4u-io 
+      v-bind:name="name" 
+      v-bind:inputs="w4uStringIn" 
+      v-bind:outputs="w4uStringOut"
+    /> 
   </span>  
 </template>
 
@@ -17,6 +28,7 @@
   import _debounce from 'lodash.debounce'
 
   export default {
+    mixins: [W4uIo], 
     props: {
             name: {type: String, default: 'panorama0'},          //automatic numbering would need glue for unique id...
             // controls: {type: Boolean, default: false},
@@ -29,7 +41,7 @@
     yaw: { type: Number, default: 0 },
 //    pitch: { type: Number, default: 0 },
            },
-    mixins: [W4uIo], 
+
     data: function() {
            return {
              w4uInputs:  {'play': {'value': 0.0, 'time':0.0 },
@@ -41,6 +53,10 @@
              rafId: null,
             }
         },
+      computed: {  
+        // play:     function() { return this.w4uInputs.play.value; },
+        // fraction: function() { return this.w4uInputs.fraction.value; }, 
+      },
       watch: {
        play: function (newValue) {
            //console.log("play has new value: " + newValue);
@@ -61,6 +77,45 @@
            }
        },
       },
+
+
+      mounted() {
+          var panoramaDiv = pannellum;
+            panoramaDiv = this.$refs.w4uPanorama; 
+          
+this.w4uPanoramaPlayer = window.pannellum.viewer(panoramaDiv, {  // panoramaDiv or 'w4uPanorama'
+    //"title": " ",
+    "type": "equirectangular",
+    "panorama": this.src,
+    "autoLoad": true,
+    "showControls": false,
+    "minPitch":-45, "maxPitch":45,
+    //"avoidShowingBackground": true,
+    // autoRotate: -2, 
+    "vaov": 90,
+    "hfov": 50,
+    //"draggable": true,
+    "showZoom": true,
+    "showFullscreen": true,
+});
+  
+
+      this.w4uPanoramaPlayer.on('load', () => {
+        this.$emit('load')
+      });
+      this.w4uPanoramaPlayer.on('error', (err) => {
+        this.$emit('error', err)
+      });
+      this.rafId = window.requestAnimationFrame(this.loop);
+
+//panoramaDiv.trigger('resize');
+
+
+      },  
+  beforeDestroy() {
+    this.w4uPanoramaPlayer.destroy()
+    //window.cancelAnimationFrame(this.rafId)
+  },
       methods: {
         timeUpdate() {
            var player = this.$refs.w4uVideo;
@@ -100,47 +155,8 @@
     }, 3000),
       
       }, 
-      computed: {  
-        // play:     function() { return this.w4uInputs.play.value; },
-        // fraction: function() { return this.w4uInputs.fraction.value; }, 
-      },
-  beforeDestroy() {
-    this.w4uPanoramaPlayer.destroy()
-    //window.cancelAnimationFrame(this.rafId)
-  },
-      mounted() {
-          var panoramaDiv = pannellum;
-            panoramaDiv = this.$refs.w4uPanorama; 
-          
-this.w4uPanoramaPlayer = window.pannellum.viewer(panoramaDiv, {  // panoramaDiv or 'w4uPanorama'
-    //"title": " ",
-    "type": "equirectangular",
-    "panorama": this.src,
-    "autoLoad": true,
-    "showControls": false,
-    "minPitch":-45, "maxPitch":45,
-    //"avoidShowingBackground": true,
-    // autoRotate: -2, 
-    "vaov": 90,
-    "hfov": 50,
-    //"draggable": true,
-    "showZoom": true,
-    "showFullscreen": true,
-});
-  
 
-      this.w4uPanoramaPlayer.on('load', () => {
-        this.$emit('load')
-      });
-      this.w4uPanoramaPlayer.on('error', (err) => {
-        this.$emit('error', err)
-      });
-      this.rafId = window.requestAnimationFrame(this.loop);
-
-//panoramaDiv.trigger('resize');
-
-
-      }   
+ 
   }
 </script>
 

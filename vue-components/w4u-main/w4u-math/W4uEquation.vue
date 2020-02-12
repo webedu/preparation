@@ -1,9 +1,11 @@
 <template>  
-  <div class='w4uEquation'>
-  <div id='w4uEquation' ref='w4uEquation'>
-  </div>
-  <slot></slot>
- </div> 
+  <div class="w4uEquation">
+    <div
+      id="w4uEquation"
+      ref="w4uEquation"
+    />
+    <slot />
+  </div> 
 </template>
   
 <style scoped>
@@ -21,6 +23,7 @@
   const math = create(all, config)
 
   export default {
+    mixins: [C4uGlue],
     props: {
             output:   {type: String, default: 'y0'},          
             inputs:   {type: String, default: 'x0,z0'},   
@@ -31,13 +34,6 @@
             c4uParentTag: "w4u-math", 
             }
         },
-   mixins: [C4uGlue],
-   methods: { 
-        calculate(parent) {
-           var resultValue = math.format(math.evaluate(this.formula, this.w4uAllInputs));
-           Vue.set(parent.w4uOutputs, this.output, { 'value': resultValue, 'time': 0.0 });
-        }, 
-    },
     computed: {
       w4uAllInputs: function() {
             var allEquationInputs = {};
@@ -51,6 +47,12 @@
             return allEquationInputs;
       }
     }, 
+   methods: { 
+        calculate(parent) {
+           var resultValue = math.format(math.evaluate(this.formula, this.w4uAllInputs));
+           Vue.set(parent.w4uOutputs, this.output, { 'value': resultValue, 'time': 0.0 });
+        }, 
+    },
 
   }
 </script>

@@ -1,12 +1,20 @@
 <template class="self">
   <span class="w4uVideo">
-     <video ref="w4uVideo" v-bind:controls="controls" v-bind:poster="poster"
-                           v-bind:width="width" v-bind:height="height"
-      >
-        Your browser does not support the video tag.
-        <slot/>         
-     </video> 
-     <w4u-io v-bind:name="name" v-bind:inputs="w4uStringIn" v-bind:outputs="w4uStringOut" > </w4u-io> 
+    <video 
+      ref="w4uVideo" 
+      v-bind:controls="controls" 
+      v-bind:poster="poster"
+      v-bind:width="width" 
+      v-bind:height="height"
+    >
+      Your browser does not support the video tag.
+      <slot />         
+    </video> 
+    <w4u-io 
+      v-bind:name="name" 
+      v-bind:inputs="w4uStringIn" 
+      v-bind:outputs="w4uStringOut" 
+    /> 
   </span>  
 </template>
 
@@ -66,6 +74,11 @@
            }
        },
       },
+      mounted() {
+          var player = this.$refs.w4uVideo;
+          player.ontimeupdate = this.timeUpdate; 
+          // init all stop-events
+      },  
       methods: {
         fractionToSeconds(fraction) {
            var player = this.$refs.w4uVideo;
@@ -127,12 +140,7 @@
           }
         },        
       }, 
-
-      mounted() {
-          var player = this.$refs.w4uVideo;
-          player.ontimeupdate = this.timeUpdate; 
-          // init all stop-events
-      }   
+ 
   }
 </script>
 

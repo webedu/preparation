@@ -1,6 +1,6 @@
 <template class="self">
-  <span class='c4uIn'>
-  <slot></slot> 
+  <span class="c4uIn">
+    <slot /> 
   </span>  
 </template>
 
@@ -12,14 +12,19 @@
   import C4uGlue from "c4u-glue";
   
   export default { 
-    props: {name: String, value: Number},
+    mixins: [C4uGlue], 
+    props: {name: {type: String, default: 'in'}, 
+            value: {type: Number, default: 0.0}
+           },
     data: function() {
            return {
             c4uParentTag: "c4u-circuitry",
             c4uOldValue: null
             }
         },
-    mixins: [C4uGlue], 
+    mounted() {
+         this.changeInValue(this.value); 
+    },
     methods: { 
        changeInValue: function(value) {
           // this.value = value;  // no direct change on own props recommended
@@ -32,8 +37,6 @@
          }
        }
     },
-    mounted() {
-         this.changeInValue(this.value); 
-    },
+
   }
 </script>

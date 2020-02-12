@@ -1,9 +1,16 @@
 <template class="self">
-  <span class='c4uBox'>
-    <link v-for="(href, key) in globalCss" rel="stylesheet"  v-bind:href="href" v-bind:key="key" type="text/css" /> 
-    <span v-html="c4uStyle"></span>
-    <span class='c4uBox2'>
-      <slot></slot> 
+  <span class="c4uBox">
+    <link 
+      v-for="(href, key) in globalCss" 
+      v-bind:key="key" 
+      v-bind:href="href" 
+      rel="stylesheet" 
+      type="text/css"
+    > 
+    <!-- eslint-disable-next-line vue/no-v-html -->
+    <span v-html="c4uStyle" />
+    <span class="c4uBox2">
+      <slot /> 
     </span> 
   </span> 
 </template>
@@ -31,7 +38,6 @@
             // c4uParentTag: "c4u-also-to-be-defined",  // no parent tag
             }
         },
-    //mixins: [C4uGlue], 
     computed: {
       c4uStyle: function() {
          var colStart = this.column;

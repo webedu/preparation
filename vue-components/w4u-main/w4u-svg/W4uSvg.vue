@@ -1,7 +1,9 @@
 <template>
   <div class="w4uSvg">
-    <svg id="w4uSvg" 
-        ref="w4uSvg"/>
+    <svg 
+      id="w4uSvg" 
+      ref="w4uSvg"
+    />
     <slot />
   </div>
 </template>

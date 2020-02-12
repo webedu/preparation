@@ -1,6 +1,6 @@
 <template class="self">
   <span class="c4uOut">
-    <slot/> 
+    <slot /> 
   </span>
 </template>
 
@@ -13,7 +13,9 @@
  
   export default {
     mixins: [C4uGlue], 
-    props: {name: String, value: Number},
+    props: {name: {type: String, default: 'out'},
+            value: {type: Number, default: 0.0}
+           },
     data: function() {
            return {
             c4uParentTag: "c4u-circuitry",
@@ -22,13 +24,13 @@
             c4uLastConnectionUpdate: 0.0
             }
         },
-    mounted() {
-         this.outValueChanged(this.value);
-    },
     watch: {
        value: function (newValue) {
            this.outValueChanged(parseFloat(newValue));
        }
+    },
+    mounted() {
+         this.outValueChanged(this.value);
     },
     methods: { 
         c4uSecondsSince1970() {

@@ -1,6 +1,6 @@
 <template class="self">
   <div class="c4uCol">
-      <slot /> 
+    <slot /> 
   </div>
 </template>
 

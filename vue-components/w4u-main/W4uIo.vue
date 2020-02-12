@@ -1,8 +1,18 @@
 <template class="self">
-  <span class='w4uIo'>
-     <c4u-in v-for="(inData, inName) in compIn" v-bind:name="name+'-'+inName" v-bind:value="inData.value" v-bind:key="inName"></c4u-in>
-     <c4u-out v-for="(outData, outName) in compOut" v-bind:name="name+'-'+outName" v-bind:value="outData.value" v-bind:key="outName"></c4u-out>
-     <slot></slot>  
+  <span class="w4uIo">
+    <c4u-in
+      v-for="(inData, inName) in compIn" 
+      v-bind:key="inName"
+      v-bind:name="name+'-'+inName" 
+      v-bind:value="inData.value" 
+    />
+    <c4u-out 
+      v-for="(outData, outName) in compOut" 
+      v-bind:key="outName"
+      v-bind:name="name+'-'+outName" 
+      v-bind:value="outData.value" 
+    />
+    <slot />  
   </span>  
 </template>
 

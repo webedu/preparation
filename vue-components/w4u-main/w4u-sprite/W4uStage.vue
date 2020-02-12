@@ -1,6 +1,9 @@
 <template class="self">
   <span class="w4uStageFrame">
-    <div ref="w4uStage" class="w4uStage"> 
+    <div
+      ref="w4uStage" 
+      class="w4uStage"
+    > 
       <slot />  
     </div>
   </span>  

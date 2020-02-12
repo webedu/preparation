@@ -1,9 +1,10 @@
 <template class="self">
-  <span class='c4uGrid2'>
-   <span v-html="c4uStyle"></span>
-  <span class='c4uGrid'>
-   <slot></slot> 
-  </span>
+  <span class="c4uGrid2">
+    <!-- eslint-disable-next-line vue/no-v-html -->
+    <span v-html="c4uStyle" />
+    <span class="c4uGrid">
+      <slot /> 
+    </span>
   </span>
 </template>
 
@@ -19,6 +20,7 @@
   //import C4uGlue from "c4u-glue";
  
   export default {
+    //mixins: [C4uGlue], 
     props: {
             name: {type: String, default: 'grid0'},          //automatic numbering would need glue for unique id...
             columns:  {type: Number, default: 12}, 
@@ -29,7 +31,7 @@
             // c4uParentTag: "c4u-also-to-be-defined",  // no parent tag
             }
         },
-    //mixins: [C4uGlue], 
+
     computed: {
       c4uStyle: function() {
          var colPerc = 10;
