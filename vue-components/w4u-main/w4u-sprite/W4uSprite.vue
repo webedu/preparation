@@ -34,7 +34,7 @@
                           'y': {'value': 0.5, 'time':0.0 },  //Y position vertical
                           'a': {'value': 0.0, 'time':0.0 },  //rotation Angle
                           'o': {'value': 1.0, 'time':0.0 },  //Opacity
-                          'z': {'value': 0.0, 'time':0.0 },  //Z-Index
+                          'z': {'value': 1.0, 'time':0.0 },  //Z-Index
              },
              //old 
             }
