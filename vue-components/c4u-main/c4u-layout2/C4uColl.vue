@@ -1,25 +1,23 @@
 <template class="self">
   <div class="c4uCol">
-    <link 
-      v-for="(href, key) in globalCss" 
-      v-bind:key="key"
-      rel="stylesheet"  
-      v-bind:href="href" 
-      type="text/css" 
-    > 
-    <div class="col-lg-3 col-md-4">
-      <slot /> 
-    </div> 
-  </div> 
+    <slot /> 
+  </div>
 </template>
 
 <style scoped>
+  .c4uCol {
+    flex: 0 0 41%;
+    max-width: 41%;
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
 </style>
 
 <script>
 //  import Vue from "vue";
   import C4uGlue from "c4u-glue";
-  import C4uCss from "c4u-css";
 //  import Bootstrap from "bootstrap";
 //  import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 //  Vue.use(BootstrapVue);
@@ -28,10 +26,11 @@
 //  import "bootstrap-vue/dist/bootstrap-vue.css";
 
   export default {
-    mixins: [C4uCss, C4uGlue],
-    mounted() {
-             // eslint-disable-next-line no-console
-             console.log("col");
-    },
+    mixins: [C4uGlue],
+    data: function() {
+           return {
+             c4uParentTag: "c4u-row",
+           }
+        },
   }
 </script>

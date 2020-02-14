@@ -1,5 +1,5 @@
 <template class="self">
-  <div class="c4uCol">
+  <div class="c4uThird">
     <link 
       v-for="(href, key) in globalCss" 
       v-bind:key="key"
@@ -7,9 +7,20 @@
       v-bind:href="href" 
       type="text/css" 
     > 
-    <div class="col-lg-3 col-md-4">
-      <slot /> 
+    <div class="container-fluid">
+     <div class="row justify-content-center">
+    <div class="col-lg-3 col-md-4 offset-lg-1">
+      <slot name="c1st">*A*</slot>
     </div> 
+    <div class="col-lg-3 col-md-4">
+      <slot name="c2nd">*B*</slot> 
+    </div> 
+    <div class="col-lg-3 col-md-4">
+      <slot name="c3rd">*C*</slot>
+    </div> 
+  </div> 
+  </div> 
+  <slot />
   </div> 
 </template>
 

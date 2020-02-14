@@ -1,0 +1,72 @@
+<meta charset="utf-8">
+<title>w4u-main demo</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/webedu/foundation@master/vendor/bootstrap/bootstrap.min.css" type="text/css" w4u-type="global"> 
+<script src="https://unpkg.com/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML.js"></script>
+<script src="../web-components/w4u-main/sync/w4u-main.js"></script>
+<script src="../web-components/c4u-main/sync/c4u-main.js"></script>
+
+
+
+<c4u-row>
+
+<c4u-col>1111</c4u-col>
+<c4u-col>2222</c4u-col>
+<c4u-col>3333</c4u-col>
+
+</c4u-row>
+
+
+<c4u-third>
+<template v-slot:c1st><p>aaaaa</p></template>
+<template v-slot:c2nd>bbbbb</template>
+<template v-slot:c3rd>ccccc</template>
+x
+</c4u-third>
+
+
+<h3>Classic Bootstrap</h2>
+
+<h4>Thirds</h4>
+<div class="container-fluid">
+ <div class="row justify-content-center">
+  <div class="col-lg-3 col-md-4 offset-lg-1">AAAA</div>
+  <div class="col-lg-3 col-md-4">BBBB</div>
+  <div class="col-lg-3 col-md-4">CCCC</div>
+ </div>
+</div>
+
+<h4>Halfs</h4>
+<div class="container-fluid">
+ <div class="row justify-content-center">
+  <div class="col-lg-5 col-md-6 offset-lg-1">AAAA</div>
+  <div class="col-lg-5 col-md-6">BBBB</div>
+ </div>
+</div>
+
+<h4>Left</h4>
+<div class="container-fluid">
+ <div class="row justify-content-center">
+  <div class="col-lg-7 col-md-8 offset-lg-1">AAAA</div>
+  <div class="col-lg-3 col-md-4">BBBB</div>
+
+ </div>
+</div>
+
+<h4>Right</h4>
+<div class="container-fluid">
+ <div class="row justify-content-center">
+  <div class="col-lg-3 col-md-4 offset-lg-1">AAAA</div>
+  <div class="col-lg-7 col-md-8">BBBB</div>
+ </div>
+</div>
+
+<h4>Center</h4>
+<div class="container-fluid">
+ <div class="row justify-content-center">
+  <div class="col-lg-3 col-md-3 offset-lg-1">AAAA</div>
+  <div class="col-lg-4 col-md-6">BBBB</div>
+  <div class="col-lg-3 col-md-3">CCCC</div>
+ </div>
+</div>

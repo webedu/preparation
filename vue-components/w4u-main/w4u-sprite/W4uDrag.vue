@@ -45,6 +45,10 @@
            this.deleteElem();
            this.w4uDragger = interact(this.c4uParent.$refs.w4uSprite);
            this.w4uDragger.draggable({
+         onend: {function(event) { 
+             // eslint-disable-next-line no-console            
+             console.log("ended");
+         }},
          listeners: {
            /*eslint no-unused-vars: ["error", { "args": "none" }]*/
            start(event) {
@@ -59,13 +63,21 @@
              var e = event;
              var vueSprite = vueDrag.c4uParent;
              if(vueSprite) {
+               // eslint-disable-next-line no-console        
+               console.log("parent");
                var stageBox = vueSprite.c4uParent.getStageBox();
 
                var time = event.dt/1000.0;
                var x = (event.x0 + event.dx - stageBox.left)/(stageBox.right-stageBox.left);
                Vue.set(vueDrag.w4uOutputs, 'x', {'value': x, 'time': time });   
              }         
-           },   
+           },  
+           /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+           end(event) {
+             // eslint-disable-next-line no-console
+             console.log("ended2");
+           },
+ 
           }
        });
             // eslint-disable-next-line no-console 
