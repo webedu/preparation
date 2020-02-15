@@ -1,0 +1,21 @@
+<meta charset="utf-8">
+<title>w4u-main demo</title>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
+<script src="../web-components/c4u-main/sync/c4u-main.js"></script>
+<script src="../web-components/w4u-main/sync/w4u-main.js"></script>
+
+
+<c4u-circuitry>
+yy
+<w4u-check name='check0'>Check me!</w4u-check>
+<w4u-visibility name="visi0" mode="opacity" default="hide">
+   Uncheck me!	  
+</w4u-visibility>
+ 
+
+<w4u-slider name="slider3" orient="horizontal" color="#0000FF"  continuous="true" min=0 max=1></w4u-slider>
+<c4u-connection source="check0-b" target="slider3-v"> </c4u-connection>
+<c4u-connection source="check0-b" target="visi0-show"> </c4u-connection>
+
+</c4u-circuitry>

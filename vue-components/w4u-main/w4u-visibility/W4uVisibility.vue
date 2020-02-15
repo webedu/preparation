@@ -32,11 +32,12 @@
     props: {
             name: {type: String, default: 'visibility0'},          //automatic numbering would need glue for unique id...
             mode: {type: String, default: 'display'},              //opacity, visible, display
+            default: {type: String, default: 'show'},              //show, hide
            },
     data: function() {
            return {
              //c4uParentTag: "w4u-stage",
-             w4uInputs:  {'show': {'value': 1.0, 'time':0.0 },  //0.0-1.0
+             w4uInputs:  {'show': {'value': ('show' == this.default ? 1.0 : 0.0), 'time':0.0 },  //0.0-1.0
              },
             }
         },

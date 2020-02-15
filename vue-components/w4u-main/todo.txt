@@ -40,5 +40,9 @@ Petroff, Matthew A. "Pannellum: a lightweight web-based panorama viewer." Journa
 show/hide?  -> sprite or seperate
 *display
 
+
+connection
+in value not default of out....
+
  
 
