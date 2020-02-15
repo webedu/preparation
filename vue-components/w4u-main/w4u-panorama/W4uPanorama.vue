@@ -4,6 +4,8 @@
       rel="stylesheet" 
       href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css"
     >
+    <!-- eslint-disable-next-line vue/no-v-html -->
+    <span v-html="w4uStyle" />
     <div
       id="w4uPanorama" 
       ref="w4uPanorama" 
@@ -53,33 +55,17 @@
              rafId: null,
             }
         },
-      computed: {  
-        // play:     function() { return this.w4uInputs.play.value; },
-        // fraction: function() { return this.w4uInputs.fraction.value; }, 
+    computed: {
+      w4uStyle: function() {
+         return '<style>' 
+              + '#w4uPanorama { height: '+this.height+'; } '
+              + '#w4uPanorama { width: '+this.width+'; } '
+              + '</style>';
+          }
       },
-      watch: {
-       play: function (newValue) {
-           //console.log("play has new value: " + newValue);
-           var player = this.$refs.w4uVideo;
-           if(newValue > 0.5) {
-              player.play();
-           } else {
-              player.pause();
-           }
-       },
-       fraction: function (newValue) {
-           //console.log("fraction has new value: " + newValue);
-           var player = this.$refs.w4uVideo;
-           var currentTime = player.currentTime;
-           var newTime = newValue * player.duration;
-           if(Math.abs(newTime - currentTime) > 0.05) {
-             player.currentTime = newTime;
-           }
-       },
+    watch: {
       },
-
-
-      mounted() {
+    mounted() {
           var panoramaDiv = pannellum;
             panoramaDiv = this.$refs.w4uPanorama; 
           
@@ -116,13 +102,7 @@ this.w4uPanoramaPlayer = window.pannellum.viewer(panoramaDiv, {  // panoramaDiv 
     this.w4uPanoramaPlayer.destroy()
     //window.cancelAnimationFrame(this.rafId)
   },
-      methods: {
-        timeUpdate() {
-           var player = this.$refs.w4uVideo;
-           var fractionTime = player.currentTime / player.duration;
-           Vue.set(this.w4uOutputs, 'fraction', {'value': fractionTime, 'time': 0.1});
-	},
-
+  methods: {
     loop () {
       this.rafId = window.requestAnimationFrame(this.loop)
       let hfov = this.w4uPanoramaPlayer.getHfov()
@@ -160,7 +140,7 @@ this.w4uPanoramaPlayer = window.pannellum.viewer(panoramaDiv, {  // panoramaDiv 
   }
 </script>
 
-<style>
+<style scoped>
 .pnlm-ui .pnlm-about-msg {
   display: none !important;
 }
@@ -168,10 +148,5 @@ this.w4uPanoramaPlayer = window.pannellum.viewer(panoramaDiv, {  // panoramaDiv 
   display: none !important;
 }
 </style>
-<style scoped>
-#w4uPanorama {
-   width: 420px;
-   height: 250px;    
- }
-</style>
+
 
