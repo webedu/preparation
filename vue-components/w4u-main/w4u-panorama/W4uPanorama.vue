@@ -9,8 +9,6 @@
     <div
       id="w4uPanorama" 
       ref="w4uPanorama" 
-      v-bind:width="width" 
-      v-bind:height="height"
     /> 
     <slot />        
     <w4u-io 
