@@ -64,7 +64,7 @@
              var vueSprite = vueDrag.c4uParent;
              if(vueSprite) {
                // eslint-disable-next-line no-console        
-               console.log("parent");
+               console.log("parent x0:"+event.x0.toString()+"dx:"+event.dx.toString());
                var stageBox = vueSprite.c4uParent.getStageBox();
 
                var time = event.dt/1000.0;
@@ -76,6 +76,18 @@
            end(event) {
              // eslint-disable-next-line no-console
              console.log("ended2");
+             // eslint-disable-next-line no-unused-vars
+             var e = event;
+             var vueSprite = vueDrag.c4uParent;
+             if(vueSprite) {
+               // eslint-disable-next-line no-console        
+               console.log("parent2 x0:"+event.x0.toString()+"dx:"+event.dx.toString());
+               var stageBox = vueSprite.c4uParent.getStageBox();
+
+               var time = event.dt/1000.0;
+               var x = (event.x0 + event.dx - stageBox.left)/(stageBox.right-stageBox.left);
+               Vue.set(vueDrag.w4uOutputs, 'x', {'value': x, 'time': time });   
+             } 
            },
  
           }
@@ -86,8 +98,8 @@
 	},
         deleteElem() {
          if(this.w4uDragger) {
-           //this.w4uDragger.remove();
-           this.w4uDragger.draggable({ });
+           //this.w4uDragger.unset();
+           //interact(this.c4uParent.$refs.w4uSprite).unset();
            this.w4uDragger = null;
          }
 	}, 
