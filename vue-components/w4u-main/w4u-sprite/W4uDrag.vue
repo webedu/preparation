@@ -78,6 +78,7 @@
              console.log("ended2");
              // eslint-disable-next-line no-unused-vars
              var e = event;
+/*
              var vueSprite = vueDrag.c4uParent;
              if(vueSprite) {
                // eslint-disable-next-line no-console        
@@ -88,6 +89,7 @@
                var x = (event.x0 + event.dx - stageBox.left)/(stageBox.right-stageBox.left);
                Vue.set(vueDrag.w4uOutputs, 'x', {'value': x, 'time': time });   
              } 
+*/
            },
  
           }
