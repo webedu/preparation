@@ -1,5 +1,12 @@
 <template> 
   <span class="c4uHtml3">
+    <link 
+      v-for="(href, key) in globalCss" 
+      v-bind:key="key"
+      rel="stylesheet"  
+      v-bind:href="href" 
+      type="text/css" 
+    > 
     <slot />
     <!-- eslint-disable-next-line vue/no-v-html -->
     <span v-html="c4uHtml2" />
@@ -13,9 +20,11 @@
 </style>
 
 <script>
+  import C4uCss from "c4u-css";
   import axios from "axios";
 
   export default {
+    mixins: [C4uCss], 
     props: {url: {type: String, default: ''}},
     data: function() {
            return {
