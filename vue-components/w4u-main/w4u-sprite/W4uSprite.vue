@@ -1,16 +1,24 @@
 <template class="self">
-  <span class="w4uSpriteFrame"> 
+  <span 
+    ref="w4uSpriteFrame" 
+    class="w4uSpriteFrame"> 
     <!-- eslint-disable-next-line vue/no-v-html -->
     <span v-html="w4uStyle" />
     <w4u-io 
       v-bind:name="name" 
       v-bind:inputs="w4uStringIn"
     /> 
+     <div
+       ref="w4uSprite"
+       class="w4uSprite"
+     > 
     <div
-      ref="w4uSprite"
-      class="w4uSprite"
+      ref="w4uSpriteDrag"
+      class="w4uSpriteDrag"
     > 
-      <slot />  
+
+       <slot />  
+     </div>
     </div>
   </span> 
 </template>
@@ -66,7 +74,15 @@
 </script>
 
 <style scoped>
+  .w4uSpriteDrag {
+    position: absolute;  
+    touch-action: none;
+    user-select: none;
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
   .w4uSprite {
     position: absolute;
   }
+
 </style>

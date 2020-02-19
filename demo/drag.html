@@ -13,7 +13,7 @@
 <w4u-stage>
  <w4u-sprite name="octopus" atyle="touch-action: none; user-select: none;" >
   
-  <img src="octopus.jpg" width="50px" height="50px">
+  <img src="octopus.jpg" width="150px" height="150px">
   <w4u-drag name="move" />
  </w4u-sprite>
 </w4u-stage> 
@@ -21,7 +21,7 @@
 <w4u-slider name="slider3" orient="horizontal" color="#0000FF"  continuous="true" min=-180 max=180></w4u-slider> 
 <c4u-connection source="move-x" target="octopus-x"> </c4u-connection>
 <c4u-connection source="move-x" target="slider3-v"> </c4u-connection>
-<!--c4u-connection source="move-y" target="octopus-y"> </c4u-connection-->
+<c4u-connection source="move-y" target="octopus-y"> </c4u-connection>
 
 
 
@@ -30,3 +30,87 @@
 </c4u-circuitry>
 
 
+
+<script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+
+
+
+<div id="st1" style="position: static; width: 510px; height: 260px;"> 
+ <div id="st2" style="position: relative; width: 500px; height: 250px; transform: translate(0px, 0px)" ;> 
+  <span id="sp1" style="transform-origin: 50% 50%; position: absolute; transform: translate(0px, 0px);">
+    <div id="sp2" style="transform-origin: 50% 50%; position: absolute;  transform: translate(0px, 0px);">
+       <img src="octopus.jpg" width="50px" height="50px">
+    </div>
+  </span>
+</div>
+</div>
+
+<script>
+
+function dragMoveListener (event) {
+  var target = event.target
+  // keep the dragged position in the data-x/data-y attributes
+  var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
+  var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+
+  // translate the element
+  target.style.webkitTransform =
+    target.style.transform =
+      'translate(' + x + 'px, ' + y + 'px)'
+
+  // update the posiion attributes
+  target.setAttribute('data-x', x)
+  target.setAttribute('data-y', y)
+}
+
+// this is used later in the resizing and gesture demos
+window.dragMoveListener = dragMoveListener
+
+/* The dragging code for '.draggable' from the demo above
+ * applies to this demo as well so it doesn't have to be repeated. */
+
+// enable draggables to be dropped into this
+// target elements with the "draggable" class
+interact('#sp1')
+  .draggable({
+    // enable inertial throwing
+    inertia: true,
+    // keep the element within the area of it's parent
+    modifiers: [
+      interact.modifiers.restrictRect({
+        restriction: 'parent',
+        endOnly: true
+      })
+    ],
+    // enable autoScroll
+    autoScroll: true,
+
+    // call this function on every dragmove event
+    onmove: dragMoveListener,
+    // call this function on every dragend event
+    onend: function (event) {
+      var textEl = event.target.querySelector('p')
+
+      textEl && (textEl.textContent =
+        'moved a distance of ' +
+        (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
+                   Math.pow(event.pageY - event.y0, 2) | 0))
+          .toFixed(2) + 'px')
+    },
+         listeners: {
+           /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+           start(event) {
+             // eslint-disable-next-line no-console
+             console.log("start it");
+           },
+           /*eslint no-unused-vars: ["error", { "args": "none" }]*/ 
+           move(event) {
+             // eslint-disable-next-line no-console            
+             console.log("move it");
+       
+           },  
+       },
+  })
+
+
+</script>

@@ -28,6 +28,12 @@
 </script>
 
 <style scoped>
+  .w4uStageFrame {
+    position: static;
+    width: 510px;
+    height: 510px;
+    border: solid 3px red;
+  }
   .w4uStage {
     position: relative;
     width: 500px;
@@ -36,10 +42,5 @@
     background-color: yellow;
     overflow: hidden;
   }
-  .w4uStageFrame {
-    position: static;
-    width: 510px;
-    height: 510px;
-    border: solid 3px red;
-  }
+
 </style>
