@@ -15,6 +15,7 @@
     <div
       ref="w4uSpriteDrag"
       class="w4uSpriteDrag"
+      draggable="true"
     > 
 
        <slot />  
@@ -83,6 +84,8 @@
   }
   .w4uSprite {
     position: absolute;
+    touch-action: none;
+    user-select: none;
   }
 
 </style>

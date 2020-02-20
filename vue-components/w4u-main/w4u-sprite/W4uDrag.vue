@@ -8,7 +8,7 @@
 </template>
 
 <script>
-//  import Vue from "vue";
+  import Vue from "vue";
   import C4uGlue from "c4u-glue";
   import W4uIo from "w4u-io";
   import interact from "interactjs";
@@ -55,7 +55,7 @@ console.log("event x0:"+event.x0.toString()+" dx:"+event.dx.toString());
   target.style.webkitTransform =
     target.style.transform =
       'translate(' + x + 'px, ' + y + 'px)'
-
+ 
   // update the posiion attributes
   target.setAttribute('data-x', x)
   target.setAttribute('data-y', y)
@@ -94,6 +94,13 @@ console.log("event x0:"+event.x0.toString()+" dx:"+event.dx.toString());
            start(event) {
              // eslint-disable-next-line no-console
              console.log("start it");
+/*
+  var emptyImage = document.createElement('img');
+  // Set the src to be a 0x0 gif
+  emptyImage.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+  event.dataTransfer.setDragImage(emptyImage, 0, 0);
+*/
+
            },
            /*eslint no-unused-vars: ["error", { "args": "none" }]*/ 
            move(event) {
@@ -105,19 +112,23 @@ console.log("event x0:"+event.x0.toString()+" dx:"+event.dx.toString());
              if(vueSprite) {
                // eslint-disable-next-line no-console        
                console.log("parent x0:"+event.x0.toString()+" dx:"+event.dx.toString());
-/*
+
                var stageBox = vueSprite.c4uParent.getStageBox();
 
                var time = event.dt/1000.0;
                var x = (event.x0 + event.dx - stageBox.left)/(stageBox.right-stageBox.left);
                Vue.set(vueDrag.w4uOutputs, 'x', {'value': x, 'time': time });   
                var y = (event.y0 + event.dy - stageBox.top)/(stageBox.bottom-stageBox.top);
-               Vue.set(vueDrag.w4uOutputs, 'y', {'value': y, 'time': time });  
-*/
+               Vue.set(vueDrag.w4uOutputs, 'y', {'value': y, 'time': time }); 
+ 
+  event.target.style.webkitTransform =
+    event.target.style.transform =
+      'translate(0px,0px)'
+
              }         
            },  
            /*eslint no-unused-vars: ["error", { "args": "none" }]*/
-           e2nd(event) {
+           end(event) {
              // eslint-disable-next-line no-console
              console.log("end it");
              // eslint-disable-next-line no-unused-vars
