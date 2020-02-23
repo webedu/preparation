@@ -8,6 +8,7 @@
       max="1000" 
       v-bind:value="sliderString" 
       v-bind:orient="orient" 
+      v-bind:list="name"
       @input="slide($event)" 
       @change="update($event)"
     >
@@ -127,6 +128,10 @@
   height: 25px;
   border-radius: 50%;
   cursor: pointer;
+}
+
+datalist {
+  display: inline-flex;
 }
 
 </style>

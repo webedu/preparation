@@ -8,15 +8,15 @@
       v-bind:name="name" 
       v-bind:inputs="w4uStringIn"
     /> 
-     <div
-       ref="w4uSprite"
-       class="w4uSprite"
-     > 
     <div
       ref="w4uSpriteDrag"
       class="w4uSpriteDrag"
       draggable="true"
     > 
+     <div
+       ref="w4uSprite"
+       class="w4uSprite"
+     > 
 
        <slot />  
      </div>

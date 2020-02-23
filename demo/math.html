@@ -20,11 +20,47 @@
 <c4u-connection source="slider1-v" target="math0-x1"> </c4u-connection>
 <c4u-connection source="slider2-v" target="math0-x2"> </c4u-connection>
 <c4u-connection source="math0-y1" target="slider3-v"> </c4u-connection>
+<c4u-connection source="math0-y1" target="label1-v"> </c4u-connection>
 
-<w4u-slider name="slider1" orient="horizontal" color="#FF0000"  continuous="true" min=0 max=2></w4u-slider>
+<w4u-slider name="slider1" orient="horizontal" color="#FF0000"  continuous="true" min=0 max=2>
+<datalist id="slider1">
+<option value="0" label="0%"></option>
+  <option value="10"></option>
+  <option value="20"></option>
+  <option value="30"></option>
+  <option value="40"></option>
+  <option value="50" label="50%"></option>
+  <option value="60"></option>
+  <option value="70"></option>
+  <option value="80"></option>
+  <option value="90"></option>
+  <option value="100" label="100%"></option>
+</datalist>
+</w4u-slider>
+
 <w4u-slider name="slider2" orient="horizontal" color="#00FF00"  continuous="true" min=0 max=2></w4u-slider>
 <w4u-slider name="slider3" orient="horizontal" color="#0000FF"  continuous="true" min=0 max=2></w4u-slider>
 
+<p>Result: <w4u-label name="label1">x</w4u-label></p>
+
 </c4u-circuitry>
+
+
+
+<input type="range" list="tickmarks">
+
+<datalist id="tickmarks" style="display:block">
+  <option value="0" label="0%"></option>
+  <option value="10"></option>
+  <option value="20"></option>
+  <option value="30"></option>
+  <option value="40"></option>
+  <option value="50" label="50%"></option>
+  <option value="60"></option>
+  <option value="70"></option>
+  <option value="80"></option>
+  <option value="90"></option>
+  <option value="100" label="100%"></option>
+</datalist>
 
 
