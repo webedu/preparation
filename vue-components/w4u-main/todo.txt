@@ -7,21 +7,23 @@ svg: drag&drop
 svg: text,   path  defs, ....
 
 
-video: transperancy mode
+video: transparancy mode
  * https://github.com/m90/seeThru
 https://wiki.selfhtml.org/wiki/HTML/Multimedia_und_Grafiken/video
 https://w3c.github.io/webvtt/
 audio: as video
 
-WC:function-generator
-WC:math, equations
+HT:function-generator
+HT:math, equations  https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Math
 wc:boolean button (press,toggle)
+
+Math: Differentiate(Delta), Integrate, exp-Topf, average&derivation
 
 questionaire
 
 sprite: drag&drop
 sprite: animation, delta-t:  https://www.w3schools.com/css/css3_animations.asp
-sprite, stage: width, height
+sprite, stage: width, height, (background, border)
 slider: width, style
 
 io: timing delta, anim,... (< 0.5 s)
