@@ -1,0 +1,54 @@
+<meta charset="utf-8">
+<title>w4u-main demo</title>
+<script src="https://unpkg.com/vue"></script>
+
+<script src="../web-components/w4u-main/sync/w4u-main.js"></script>
+<script src="../web-components/c4u-main/sync/c4u-main.js"></script>
+
+
+
+
+<c4u-circuitry>
+
+<w4u-math name="math0">
+  <w4u-equation output="y1" inputs="x1,x2" formula="1.0-sqrt((x1-0.5)*(x1-0.5)+(x2-0.5)*(x2-0.5))"></w4u-equation>
+  <w4u-equation output="y2" inputs="x1,x2" formula="0.5*atan2(x1-0.5,x2-0.5)/PI"></w4u-equation>
+</w4u-math>
+
+<w4u-stage>
+ <w4u-sprite name="octopus1">
+  <img src="octopus.jpg" width="100px" height="100px">
+  <w4u-label name="label1"></w4u-label>
+ </w4u-sprite>
+ <w4u-sprite name="octopus2">
+  <img src="octopus.jpg" width="100px" height="100px">
+ </w4u-sprite>
+
+</w4u-stage>
+
+ <w4u-signal name="signal1" frequency="0.25" interval="0.01" amplitude="0.35" offset="0.5"></w4u-signal>
+ <w4u-signal name="signal2" frequency="0.15" interval="0.01" amplitude="0.35" offset="0.5"></w4u-signal>
+
+
+<c4u-connection source="slider1-v" target="signal1-frequency"> </c4u-connection>
+<c4u-connection source="slider2-v" target="signal2-frequency"> </c4u-connection>
+<c4u-connection source="signal1-sin" target="octopus1-x"> </c4u-connection>
+<c4u-connection source="signal2-cos" target="octopus1-y"> </c4u-connection>
+<c4u-connection source="signal1-sin" target="math0-x1"> </c4u-connection>
+<c4u-connection source="signal2-cos" target="math0-x2"> </c4u-connection>
+<c4u-connection source="signal2-noise" target="octopus2-a"> </c4u-connection>
+<c4u-connection source="math0-y1" target="octopus1-s"> </c4u-connection>
+<c4u-connection source="math0-y2" target="octopus1-a"> </c4u-connection>
+<c4u-connection source="signal1-cos" target="octopus2-x"> </c4u-connection>
+<c4u-connection source="signal2-sin" target="octopus2-y"> </c4u-connection>
+<c4u-connection source="math0-y1" target="label1-v"> </c4u-connection>
+
+
+<w4u-slider name="slider1" orient="horizontal" color="#00FF00"  continuous="true" ></w4u-slider>
+<w4u-slider name="slider2" orient="horizontal" color="#0000FF"  continuous="true" ></w4u-slider>
+
+
+
+</c4u-circuitry>
+
+
