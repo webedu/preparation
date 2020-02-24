@@ -41,6 +41,7 @@
              c4uParentTag: "w4u-stage",
              w4uInputs:  {'x': {'value': 0.5, 'time':0.0 },  //X position horizontal
                           'y': {'value': 0.5, 'time':0.0 },  //Y position vertical
+                          's': {'value': 1.0, 'time':0.0 },  //scale xy
                           'a': {'value': 0.0, 'time':0.0 },  //rotation Angle
                           'o': {'value': 1.0, 'time':0.0 },  //Opacity
                           'z': {'value': 1.0, 'time':0.0 },  //Z-Index
@@ -52,6 +53,7 @@
       w4uStyle: function() {
          var x = 100.0*this.w4uInputs.x.value;
          var y = 100.0*this.w4uInputs.y.value;
+         var s = 1.0*this.w4uInputs.s.value;
          var a = 360.0*this.w4uInputs.a.value;
          var z = Math.round(100.0*this.w4uInputs.z.value);
          if(this.c4uParent && this.$refs.w4uSprite) {
@@ -66,6 +68,7 @@
               + '.w4uSprite { z-index: '+z.toString()+'; } '
               + '.w4uSprite { transform:  translateX(calc('+x.toString()+'px - 50%)) ' 
               + '             translateY(calc('+y.toString()+'px - 50%)) ' 
+              + '             scale('+s.toString()+') '
               + '             rotate('+a.toString()+'deg); } ' 
             //  + '.w4uSprite { transition: transform 0.01s linear; } ' 
               + '</style>';
