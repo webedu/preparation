@@ -13,9 +13,15 @@
 <w4u-math name="math0">
   <w4u-equation output="y1" inputs="x1,x2" formula="1.0-sqrt((x1-0.5)*(x1-0.5)+(x2-0.5)*(x2-0.5))"></w4u-equation>
   <w4u-equation output="y2" inputs="x1,x2" formula="0.5*atan2(x1-0.5,x2-0.5)/PI"></w4u-equation>
+  <w4u-equation output="y3" inputs="x3" formula="round(1000.0*(x3%1.0))/1000.0"></w4u-equation>
 </w4u-math>
 
 <w4u-stage>
+ <w4u-sprite name="octopus3">
+  <w4u-video name="video1" width="500px" height="400px">
+   <source src="octopus.mp4" type="video/mp4">
+  </w4u-video>
+ </w4u-sprite>
  <w4u-sprite name="octopus1">
   <img src="octopus.jpg" width="100px" height="100px">
   <w4u-label name="label1"></w4u-label>
@@ -28,6 +34,7 @@
 
  <w4u-signal name="signal1" frequency="0.25" interval="0.01" amplitude="0.35" offset="0.5"></w4u-signal>
  <w4u-signal name="signal2" frequency="0.15" interval="0.01" amplitude="0.35" offset="0.5"></w4u-signal>
+ <w4u-signal name="signal3" frequency="0.05" interval="0.05" ></w4u-signal>
 
 
 <c4u-connection source="slider1-v" target="signal1-frequency"> </c4u-connection>
@@ -42,12 +49,11 @@
 <c4u-connection source="signal1-cos" target="octopus2-x"> </c4u-connection>
 <c4u-connection source="signal2-sin" target="octopus2-y"> </c4u-connection>
 <c4u-connection source="math0-y1" target="label1-v"> </c4u-connection>
-
+<c4u-connection source="signal3-ramp" target="math0-x3"> </c4u-connection>
+<c4u-connection source="math0-y3" target="video1-fraction"> </c4u-connection>
 
 <w4u-slider name="slider1" orient="horizontal" color="#00FF00"  continuous="true" ></w4u-slider>
 <w4u-slider name="slider2" orient="horizontal" color="#0000FF"  continuous="true" ></w4u-slider>
-
-
 
 </c4u-circuitry>
 
