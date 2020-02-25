@@ -39,16 +39,19 @@
     data: function() {
            return {
              c4uParentTag: "w4u-stage",
-             w4uInputs:  {'x': {'value': 0.5, 'time':0.0 },  //X position horizontal
-                          'y': {'value': 0.5, 'time':0.0 },  //Y position vertical
-                          's': {'value': 1.0, 'time':0.0 },  //scale xy
-                          'a': {'value': 0.0, 'time':0.0 },  //rotation Angle
-                          'o': {'value': 1.0, 'time':0.0 },  //Opacity
-                          'z': {'value': 1.0, 'time':0.0 },  //Z-Index
+             w4uInputs:  {'x': {'value': 0.50, 'time':0.0 },  //X position horizontal
+                          'y': {'value': 0.50, 'time':0.0 },  //Y position vertical
+                          's': {'value': 0.99, 'time':0.0 },  //scale xy
+                          'a': {'value': 0.00, 'time':0.0 },  //rotation Angle
+                          'o': {'value': 1.00, 'time':0.0 },  //Opacity
+                          'z': {'value': 1.00, 'time':0.0 },  //Z-Index
              },
              //old 
             }
         },
+   mounted() {
+       this.w4uInputs.s.value = 1.0; // init once to force recalculation
+   },
     computed: {
       w4uStyle: function() {
          var x = 100.0*this.w4uInputs.x.value;
