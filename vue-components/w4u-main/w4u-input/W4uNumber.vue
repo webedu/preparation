@@ -2,6 +2,7 @@
   <span class="w4uNumber">
     <!-- eslint-disable-next-line vue/no-v-html -->
     <input 
+      ref="w4uInput" 
       type="number"
       v-bind:min="min" 
       v-bind:max="max" 
@@ -32,13 +33,16 @@
             label: {type: String, default: ''},
             min: {type: Number, default: 0.0},
             max: {type: Number, default: 1.0},
-            step: {type: Number, default: 0.0},  // 0.0 -> any
+            step: {type: Number, default: 0.0},                // 0.0 -> any
+            check: {type: Boolean, default: false}             // only valid numbers are reported
            },
     data: function() {
            return {
              numberValue: 0.5, 
              w4uInputs:  { 'v': {'value': 0.5, 'time':0.0 } },
-             w4uOutputs: { 'v': {'value': 0.5, 'time':0.0 } }
+             w4uOutputs: { 'v': {'value': 0.5, 'time':0.0 },
+                           'valid': {'value': 0.5, 'time':0.0 }
+                         }
             }
         },
    computed: {
@@ -60,13 +64,19 @@
            }
        },
        numberOutput: function (newValue) {
-           Vue.set(this.w4uOutputs, 'v', {'value': newValue, 'time': 0.1});
-           //console.log("slider has new value: " + newValue);
+          this.$refs.w4uInput._value = newValue;
+          this.$refs.w4uInput.value = newValue;
+          var valid = this.$refs.w4uInput.checkValidity();
+          var numberValid = valid ? 1.0 : 0.0;
+          Vue.set(this.w4uOutputs, 'valid', {'value': numberValid, 'time': 0.1});
+          if (valid || !this.check) {
+            Vue.set(this.w4uOutputs, 'v', {'value': newValue, 'time': 0.1});
+          }
        },
     },  
    methods: { 
     update(e) {
-          this.numberValue = e.target.value;
+            this.numberValue = e.target.value;
 	},
     },
   }

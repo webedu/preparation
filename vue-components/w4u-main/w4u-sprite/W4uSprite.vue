@@ -1,7 +1,8 @@
 <template class="self">
   <span 
     ref="w4uSpriteFrame" 
-    class="w4uSpriteFrame"> 
+    class="w4uSpriteFrame" 
+  > 
     <!-- eslint-disable-next-line vue/no-v-html -->
     <span v-html="w4uStyle" />
     <w4u-io 
@@ -13,13 +14,12 @@
       class="w4uSpriteDrag"
       draggable="true"
     > 
-     <div
-       ref="w4uSprite"
-       class="w4uSprite"
-     > 
-
-       <slot />  
-     </div>
+      <div
+        ref="w4uSprite"
+        class="w4uSprite"
+      > 
+        <slot />  
+      </div>
     </div>
   </span> 
 </template>
@@ -49,9 +49,6 @@
              //old 
             }
         },
-   mounted() {
-       this.w4uInputs.s.value = 1.0; // init once to force recalculation
-   },
     computed: {
       w4uStyle: function() {
          var x = 100.0*this.w4uInputs.x.value;
@@ -76,7 +73,11 @@
             //  + '.w4uSprite { transition: transform 0.01s linear; } ' 
               + '</style>';
       },
-    } 
+    },    
+   mounted() {
+       this.w4uInputs.s.value = 1.0; // init once to force recalculation
+   },
+
   }
 </script>
 

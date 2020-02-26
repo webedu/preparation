@@ -22,7 +22,7 @@
             frequency: {type: Number, default: 1.0}, 
             amplitude: {type: Number, default: 1.0},
             offset:    {type: Number, default: 0.0},
-            interval:  {type: Number, default: 0.1},  
+            interval:  {type: Number, default: 0.1},           //s
             play:      {type: Number, default: 1.0},
            },
     data: function() {
