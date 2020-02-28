@@ -1,0 +1,30 @@
+<meta charset="utf-8">
+<title>w4u-main demo</title>
+<script src="https://unpkg.com/vue"></script>
+<script src="../web-components/w4u-main/sync/w4u-main.js"></script>
+<script src="../web-components/c4u-main/sync/c4u-main.js"></script>
+
+<c4u-circuitry>
+
+
+
+
+<w4u-slider name="slider1" orient="horizontal" color="#FF0000"  continuous="true" min=0 max=2></w4u-slider>
+<w4u-store name="store1" key2="storeit1"></w4u-store><w4u-retrieve name="retrieve1"  key2="storeit1"></w4u-retrieve>
+<w4u-slider name="slider2" orient="horizontal" color="#00FF00"  continuous="true" min=0 max=2></w4u-slider>
+<w4u-store name="store2" key2="storeit2"></w4u-store><w4u-retrieve name="retrieve2"  key2="storeit2"></w4u-retrieve>
+<w4u-slider name="slider3" orient="horizontal" color="#0000FF"  continuous="true" min=0 max=2></w4u-slider>
+
+<c4u-connection source="slider1-v" target="store1-store"> </c4u-connection>
+<c4u-connection source="retrieve1-retrieve" target="slider1-v"> </c4u-connection>
+<c4u-connection source="slider2-v" target="store2-store"> </c4u-connection>
+<c4u-connection source="retrieve2-retrieve" target="slider2-v"> </c4u-connection>
+
+
+</c4u-circuitry>
+
+
+
+
+
+

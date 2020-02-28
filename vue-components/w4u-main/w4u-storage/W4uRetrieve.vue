@@ -2,7 +2,6 @@
   <span class="w4uRetreive"> 
     <w4u-io 
       v-bind:name="name" 
-      v-bind:inputs="w4uStringIn" 
       v-bind:outputs="w4uStringOut"
     /> 
   </span> 
@@ -18,11 +17,11 @@
     props: {
             name: {type: String, default: 'store0'},               //automatic numbering would need glue for unique id...
             mode: {type: String, default: 'permanent'},            //'permanent','session'
-            key:  {type: String, default: 'store0'},
+            key2:  {type: String, default: 'store0'},
            },
     data: function() {
            return {
-             //c4uParentTag: "w4u-stage",
+             c4uParentTag: "c4u-circuitry",
              w4uOutputs:  {'retrieve': {'value': 0.0, 'time':0.0 },  //0.0-1.0 
              },
             }
@@ -41,7 +40,7 @@
          console.log(JSON.parse(localStorage.getItem(this.key)));    
        }
 */
-       var retrieved = localStorage.getItem(this.key);
+       var retrieved = window.localStorage.getItem(this.key2);
        Vue.set(this.w4uOutputs, 'retrieve', {'value': parseFloat(retrieved), 'time': 0.1});
     }, 
     // localStorage.getItem("lastname");

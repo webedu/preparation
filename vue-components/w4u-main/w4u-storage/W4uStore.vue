@@ -1,5 +1,9 @@
 <template class="self"> 
   <span class="w4uStore"> 
+    <w4u-io 
+      v-bind:name="name" 
+      v-bind:inputs="w4uStringIn" 
+    /> 
   </span> 
 </template>
 
@@ -12,12 +16,12 @@
     props: {
             name: {type: String, default: 'store0'},               //automatic numbering would need glue for unique id...
             mode: {type: String, default: 'permanent'},            //'permanent','session'
-            key:  {type: String, default: 'store0'},
+            key2:  {type: String, default: 'store0'},
             default: {type: Number, default: 0.0},                
            },
     data: function() {
            return {
-             //c4uParentTag: "w4u-stage",
+             c4uParentTag: "c4u-circuitry",
              w4uValue: this.default,
              w4uInputs:  {'store': {'value': this.default, 'time': 0.0 },  //0.0-1.0
              },
@@ -32,14 +36,14 @@
        w4uStore: function (newValue) {
            if(Math.abs(newValue - this.w4uValue) > 1e-6) {
              this.w4uValue = newValue;
-             var storage = sessionStorage;
+             var storage = window.sessionStorage;
              if ('permanent' == this.mode) {
-                storage = localStorage;
+                storage = window.localStorage;
              } 
              if(Math.abs(newValue - this.default) < 1e-6) {
-                storage.removeItem("lastname");
+                storage.removeItem(this.key2);
              } else {
-                storage.setItem(this.key, newValue.toString());
+                storage.setItem(this.key2, newValue.toString());
              }
            }
        },
