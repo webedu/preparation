@@ -24,12 +24,17 @@
         },
     mounted() {
          this.changeInValue(this.value); 
+         //this.$nextTick( function () { 
+         //   this.changeInValue(this.value);
+         //});
     },
     methods: { 
        changeInValue: function(value) {
           // this.value = value;  // no direct change on own props recommended
           if(value != this.c4uOldValue) {
-             this.c4uOldValue = value;
+             if (this.c4uParent && this.c4uParent.c4uAllConnections) { 
+               this.c4uOldValue = value;
+             }
              // this.$emit('input', value); would only be needed for v-model bind ... 
              var details = {'name': this.name, 'value': value, 'time': 0.1}
              var event = new CustomEvent('c4uIn-changed-'+this.name, {"bubbles":true, "composed":true, "detail": details});

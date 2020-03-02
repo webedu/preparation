@@ -31,6 +31,9 @@
     },
     mounted() {
          this.outValueChanged(this.value);
+         //this.$nextTick( function () { 
+         //   this.outValueChanged(this.value);
+         //});
     },
     methods: { 
         c4uSecondsSince1970() {
@@ -48,7 +51,9 @@
         },
         outValueChanged: function (newValue) {
          if(newValue != this.c4uOldValue) {
-           this.c4uOldValue = newValue;
+           if (this.c4uParent && this.c4uParent.c4uAllConnections) { 
+             this.c4uOldValue = newValue;
+           }
            // this.value = newValue; // not needed
            // if connection list exists use direct connection....
            if(this.c4uAllConnectedIns && this.c4uAllConnectedIns.length>0 && this.c4uIsLastUpdateValid()) {
