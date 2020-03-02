@@ -47,6 +47,20 @@
     // sessionStorage
     // https://developer.mozilla.org/de/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
   }
+
+/*
+var watchLocalStorage = function(vue, w4uOutputs, key2) {
+  return new Promise(function(resolve, reject) {
+    // stuff using username, password
+    if ( 1==1 ) {  // everything turned out fine
+      resolve("Stuff worked!");
+    } else {
+      reject(Error("It broke"));
+    }
+  });
+}
+*/
+
 </script>
 
 <style scoped>
