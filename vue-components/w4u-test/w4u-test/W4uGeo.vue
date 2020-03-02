@@ -11,7 +11,7 @@
       <li>Longitude: {{ w4uOutputs.longitude.value }}</li>
     </ul>
     <slot />  
-  </span>
+  </span> 
 </template>
 
 <script>
@@ -35,9 +35,10 @@
              w4uLongitude: 0,
              w4uOutputs: { 'latitude':    {'value': 0.0, 'time':0.0 },
                            'longitude':   {'value': 0.0, 'time':0.0 },
-                           'cos':   {'value': 0.0, 'time':0.0 },
-                           'noise': {'value': 0.0, 'time':0.0 },
-
+                           'altitude ':   {'value': -1.0, 'time':0.0 },  // m
+                           'heading ':    {'value': -1.0, 'time':0.0 },  // 0..360
+                           'speed':       {'value': -1.0, 'time':0.0 },  // m/s
+                           'status':      {'value':  0.0, 'time':0.0 },  // 0:failure, 1:success
                          },
              w4uInputs:  { 'frequency': {'value': this.frequency, 'time':0.0 },   // interval * frequency < 1!!
                            'amplitude': {'value': this.amplitude, 'time':0.0 },
@@ -51,19 +52,62 @@
       //amplitude: function (newValue) { this.w4uInputs['amplitude']['value'] = newValue; },  
    }, 
    mounted() {
-       //this.createElem();
-       navigator.geolocation.getCurrentPosition(this.showPosition);
+     this.initPosition();
    },
    methods: { 
-        showPosition(position) {
+      initPosition() {
+       getPosition3(this, Vue)
+        .then((result) => {
+          result.vueGeo.updatePosition(result.position);
+     
+        })
+        .catch((result) => {
+          result.vueGeo.failPosition(result.error);
+        });
+      },
+      updatePosition(position) {
            this.w4uLatitude = position.coords.latitude;
            this.w4uLongitude = position.coords.longitude;
+           Vue.set(this.w4uOutputs, 'status', {'value': 1.0, 'time': 0.1});
            Vue.set(this.w4uOutputs, 'latitude', {'value': position.coords.latitude, 'time': 0.1});
            Vue.set(this.w4uOutputs, 'longitude', {'value': position.coords.longitude, 'time': 0.1});
-        },     
+           if(position.coords.altitude) {
+             Vue.set(this.w4uOutputs, 'altitude', {'value': position.coords.altitude, 'time': 0.1});
+           }
+           if(position.coords.heading) {
+             Vue.set(this.w4uOutputs, 'heading', {'value': position.coords.heading, 'time': 0.1});
+           }
+           if(position.coords.speed) {
+             Vue.set(this.w4uOutputs, 'speed', {'value': position.coords.speed, 'time': 0.1});
+           }
+
+      },
+      failPosition(error) {
+        // eslint-disable-next-line no-console
+        console.log(error.code+": "+error.message);
+        Vue.set(this.w4uOutputs, 'status', {'value': 0.0, 'time': 0.1});
+      }
+    
     },
 
   }
+
+var getPosition3 = function(vueGeo) {
+  return new Promise(
+    function(resolve, reject) {
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          // eslint-disable-next-line no-console
+          console.log("found it3");
+          resolve({'vueGeo': vueGeo, 'position': position});
+        },
+        function(error) {
+          reject({'vueGeo': vueGeo, 'error': error});
+        }
+     );
+  });
+}
+
 </script>
 
 <style scoped>
