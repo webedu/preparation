@@ -33,6 +33,7 @@
              c4uParentTag: "c4u-circuitry",   
              w4uLatitude: 0,
              w4uLongitude: 0,
+             w4uWatchId: null,
              w4uOutputs: { 'latitude':    {'value': 0.0, 'time':0.0 },
                            'longitude':   {'value': 0.0, 'time':0.0 },
                            'altitude ':   {'value': -1.0, 'time':0.0 },  // m
@@ -56,14 +57,22 @@
    },
    methods: { 
       initPosition() {
-       getPosition3(this, Vue)
+       inqPosition(this, Vue)
         .then((result) => {
           result.vueGeo.updatePosition(result.position);
-     
         })
         .catch((result) => {
           result.vueGeo.failPosition(result.error);
         });
+       if('watch'==this.mode) {
+         this.w4uWatchId = trackPosition(this, Vue)
+          .then((result) => {
+            result.vueGeo.updatePosition(result.position);
+          })
+          .catch((result) => {
+            result.vueGeo.failPosition(result.error);
+          });
+        }
       },
       updatePosition(position) {
            this.w4uLatitude = position.coords.latitude;
@@ -92,19 +101,32 @@
 
   }
 
-var getPosition3 = function(vueGeo) {
+var inqPosition = function(vueGeo) {
   return new Promise(
     function(resolve, reject) {
       navigator.geolocation.getCurrentPosition(
         function(position) {
-          // eslint-disable-next-line no-console
-          console.log("found it3");
           resolve({'vueGeo': vueGeo, 'position': position});
         },
         function(error) {
           reject({'vueGeo': vueGeo, 'error': error});
         }
      );
+  });
+}
+
+var trackPosition = function(vueGeo) {
+  return new Promise(
+    function(resolve, reject) {
+      var watchId = navigator.geolocation.watchPosition(
+        function(position) {
+          resolve({'vueGeo': vueGeo, 'position': position});
+        },
+        function(error) {
+          reject({'vueGeo': vueGeo, 'error': error});
+        }
+     );
+     return watchId;
   });
 }
 
