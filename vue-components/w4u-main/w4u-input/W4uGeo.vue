@@ -117,7 +117,7 @@ var inqPosition = function(vueGeo) {
         function(error) {
           reject({'vueGeo': vueGeo, 'error': error});
         },
-        {'timeout':5000, 'maximumAge':10000}
+        {'timeout':10000, 'maximumAge':60000}
      );
   });
 }
@@ -132,7 +132,7 @@ var trackPosition = function(vueGeo) {
         function(error) {
           reject({'vueGeo': vueGeo, 'error': error});
         },
-        {'timeout':5000, 'maximumAge':10000}  //5s,10s
+        {'timeout':10000, 'maximumAge':60000}  //10s,60s
      );
   });
 }
