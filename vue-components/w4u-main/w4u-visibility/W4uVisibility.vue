@@ -32,7 +32,7 @@
     props: {
             name: {type: String, default: 'visibility0'},          //automatic numbering would need glue for unique id...
             mode: {type: String, default: 'display'},              //opacity, visible, display
-            default: {type: String, default: 'show'},              //show, hide
+            default: {type: String, default: 'hide'},              //show, hide
            },
     data: function() {
            return {

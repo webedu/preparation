@@ -4,9 +4,21 @@
       rel="stylesheet" 
       href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css"
     >
+    <link 
+      rel="stylesheet" 
+      href="http://cdn.jsdelivr.net/npm/leaflet-extra-markers@1.1.0/dist/css/leaflet.extra-markers.min.css"
+    >
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    >
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0"
+    >
     <div 
-      ref="w4uMap" 
       id="w4uMap" 
+      ref="w4uMap" 
     />
     <w4u-io 
       v-bind:name="name" 

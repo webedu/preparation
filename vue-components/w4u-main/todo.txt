@@ -46,5 +46,17 @@ show/hide?  -> sprite or seperate
 connection
 in value not default of out....
 
+map
+https://github.com/Lapizistik/leaflet-easymap
+border-limits, zoom-limits
+[rel, abs], [norm, deg]
+size: width,height
+hover text = tooltip
+layergroups & groundmaps (https://lapizistik.github.io/leaflet-easymap/)  topo,osm,nasa,...
+json-src, json-conversion
+draggable, onhover
+
+
+
  
 
