@@ -50,11 +50,14 @@ map
 https://github.com/Lapizistik/leaflet-easymap
 border-limits, zoom-limits
 [rel, abs], [norm, deg]
-size: width,height
 hover text = tooltip
-layergroups & groundmaps (https://lapizistik.github.io/leaflet-easymap/)  topo,osm,nasa,...
+layergroups & groundmaps (https://lapizistik.github.io/leaflet-easymap/)  topo,osm,nasa,tambora,...
 json-src, json-conversion
 draggable, onhover
+marker-cluster-layer: clustering, last clicked/hovered/dragged markers coordinates
+numbers
+
+size: width,height - make common mixin?
 
 
 

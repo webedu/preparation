@@ -16,9 +16,12 @@
       rel="stylesheet" 
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0"
     >
+    <!-- eslint-disable-next-line vue/no-v-html -->
+    <span v-html="w4uSizeStyle" />
     <div 
       id="w4uMap" 
       ref="w4uMap" 
+      class="w4uSize"
     />
     <w4u-io 
       v-bind:name="name" 
@@ -40,18 +43,21 @@
   export default {
     mixins: [W4uIo, C4uGlue],
     props: {
-            name: {type: String, default: 'map0'},          //automatic numbering would need glue for unique id...
+            name: {type: String, default: 'map0'},        // automatic numbering would need glue for unique id...
             latitude:  {type: Number, default: 0.0}, 
             longitude: {type: Number, default: 0.0},
             zoom:      {type: Number, default: 0.5},
+            // common ??
+            width:     {type: String, default: "90%"},
+            height:    {type: String, default: "400px"},  // later switch to 40% (calculated by screen height)
            },
     data: function() {
            return {
              //c4uParentTag: "c4u-circuitry",   
              w4uMap:     null, 
              w4uOutputs: { 'latitude':  {'value': 0.0, 'time':0.0 },
-                           'longitude':   {'value': 0.0, 'time':0.0 },
-                           'zoom':   {'value': 0.5, 'time':0.0 },
+                           'longitude': {'value': 0.0, 'time':0.0 },
+                           'zoom':      {'value': 0.5, 'time':0.0 },
                          },
              w4uInputs:  { 'latitude':  {'value': this.latitude, 'time':0.0 },   // interval * frequency < 1!!
                            'longitude': {'value': this.longitude, 'time':0.0 },
@@ -66,6 +72,14 @@
    mounted() {
        this.createElem();
    },
+    computed: {
+      w4uSizeStyle: function() {
+         var w = this.width;
+         var h = this.height;
+         // %,px,ratio calculate
+         return '<style> .w4uSize { width: '+w+'; height: '+h+'; } </style>';
+      },
+    }, 
    methods: { /*eslint no-unused-vars: ["error", { "args": "none" }]*/
         c4uParentDisconnected(parent) {
            this.deleteElem();
@@ -120,6 +134,6 @@
 </script>
 
 <style scoped>
-  div#w4uMap { width: 100%; height: 600px; }
+  /* div#w4uMap { width: 100%; height: 600px; } */
   /* @import 'leaflet/dist/leaflet.css'; */
 </style>

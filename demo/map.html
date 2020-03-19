@@ -33,10 +33,13 @@
 <w4u-visibility name="vis4" mode="display">
  <p>Visible M4</p> 
 </w4u-visibility>
-<c4u-connection source="marker1-clicked" target="vis1-show"> </c4u-connection>
-<c4u-connection source="marker2-clicked" target="vis2-show"> </c4u-connection>
-<c4u-connection source="marker3-clicked" target="vis3-show"> </c4u-connection>
-<c4u-connection source="marker4-clicked" target="vis4-show"> </c4u-connection>
-<c4u-connection source="slider1-v" target="marker1-opacity"> </c4u-connection>
+
+
+
+<c4u-connection source="marker1-active" target="vis1-show"> </c4u-connection>
+<c4u-connection source="marker2-active" target="vis2-show"> </c4u-connection>
+<c4u-connection source="marker3-active" target="vis3-show"> </c4u-connection>
+<c4u-connection source="marker4-active" target="vis4-show"> </c4u-connection>
+<c4u-connection source="slider1-v" target="marker1-longitude"> </c4u-connection>
 
 </c4u-circuitry>
