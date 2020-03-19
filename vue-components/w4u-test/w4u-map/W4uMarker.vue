@@ -33,7 +33,8 @@
             name: {type: String, default: 'marker0'},          //automatic numbering would need glue for unique id...
             latitude:  {type: Number, default: 0.0}, 
             longitude: {type: Number, default: 0.0},
-          //  rotation:  {type: Number, default: 0.0}, 
+            zoom:      {type: Number, default: 0.5},          // zoom is used, when marker is activated 
+          //  rotation:  {type: Number, default: 0.0},        // rotation not working - for font-awesome?
             opacity:   {type: Number, default: 1.0},
             draggable: {type: Boolean, default: false},
             icon:  {type: String, default: 'fa-circle'},
@@ -49,20 +50,31 @@
              w4uMarker:     null, 
              w4uOutputs: { 'latitude':  {'value': this.latitude, 'time':0.0 },
                            'longitude': {'value': this.longitude, 'time':0.0 },
-                           'clicked':   {'value': 0.0, 'time':0.0 },
+                           'active':    {'value': 0.0, 'time':0.0 },
                          },
              w4uInputs:  { 'latitude':  {'value': this.latitude, 'time':0.0 },   
                            'longitude': {'value': this.longitude, 'time':0.0 },
+                           'zoom':      {'value': this.zoom, 'time':0.0 },
                           // 'rotation':  {'value': this.rotation, 'time':0.0 },
                            'opacity':   {'value': this.opacity, 'time':0.0 },
+                           'activate':  {'value': 0.0, 'time':0.0 },
                          }
             }
         },
+   computed: {  
+        iLatitude:  function() { return this.w4uInputs.latitude.value; },
+        iLongitude: function() { return this.w4uInputs.longitude.value; }, 
+        iOpacity:   function() { return this.w4uInputs.opacity.value; },
+        iActivate:  function() { return this.w4uInputs.activate.value; }, 
+      },
    watch: { /*eslint no-unused-vars: ["error", { "args": "none" }]*/
-      w4uStringIn: function (newValue) { this.modifyElem(); },
-      //amplitude: function (newValue) { this.w4uInputs['amplitude']['value'] = newValue; },  //drag
+      //w4uStringIn: function (newValue) { this.modifyElem(); },
+      iLatitude: function() { this.repositionMarker(); },
+      iLongitude: function() { this.repositionMarker(); },
+      iOpacity: function() { this.modifyElem(); },
+      iActivate: function() { this.activateMarker(); },
    }, 
-   mounted() {
+   mouned() {
       // this.createElem();
    },
    methods: { /*eslint no-unused-vars: ["error", { "args": "none" }]*/
@@ -110,6 +122,26 @@ if(this.$el && this.c4uParent && this.c4uParent.w4uCluster) {
            //this.deleteElem(); 
            this.createElem();
         },
+        repositionMarker() {
+          if(this.w4uMarker) {
+            this.w4uMarker.setLatLng([90.0*this.w4uInputs.latitude.value, 180.0*this.w4uInputs.longitude.value]);
+          }
+        },
+        // refactor: move inner parts up to cluster and map
+        activateMarker() {
+           if(this.w4uInputs.activate.value > 0.5) {
+             if(this.c4uParent && this.c4uParent.w4uCluster) {
+               if(this.c4uParent.c4uParent && this.c4uParent.c4uParent.w4uMap) {
+                  this.c4uParent.c4uParent.w4uMap.flyTo(
+                    [90.0*this.w4uInputs.latitude.value, 180.0*this.w4uInputs.longitude.value], 
+                     16.0*this.w4uInputs.zoom.value);
+               }
+             } 
+             this.w4uInputs.activate.value = 0.1; //done
+             // set clicked ?
+             //this.onClick(null);
+           }       
+        },
         onClick(ev) {
            //reset all (other)
            if(this.c4uParent && this.c4uParent.w4uCluster) {
@@ -121,8 +153,8 @@ if(this.$el && this.c4uParent && this.c4uParent.w4uCluster) {
            this.clicked(1.0);
         },
         clicked(value) {        
-           if(Math.abs(this.w4uOutputs.clicked.value - value) > 1E-6) {
-              Vue.set(this.w4uOutputs, 'clicked', {'value': value, 'time': 0.1});
+           if(Math.abs(this.w4uOutputs.active.value - value) > 1E-6) {
+              Vue.set(this.w4uOutputs, 'active', {'value': value, 'time': 0.1});
            }
         },
         update() {
