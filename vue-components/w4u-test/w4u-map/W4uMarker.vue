@@ -34,6 +34,7 @@
             latitude:  {type: Number, default: 0.0}, 
             longitude: {type: Number, default: 0.0},
             zoom:      {type: Number, default: 0.5},          // zoom is used, when marker is activated 
+            number:    {type: String, default: ''},           // 1,2,3 or A,B,C,.. icon ignored.
             tooltip:   {type: String, default: ''}, 
           //  rotation:  {type: Number, default: 0.0},        // rotation not working - for font-awesome?
             opacity:   {type: Number, default: 1.0},
@@ -88,28 +89,30 @@
         createElem() {
           this.deleteElem();
           // https://www.npmjs.com/package/leaflet-extra-markers
-if(this.$el && this.c4uParent && this.c4uParent.w4uCluster) {
-          var data = {icon: this.icon, iconColor: this.color, // iconRotation: 360.0*this.w4uInputs.rotation.value, 
-                      shape: this.shape, markerColor: this.background, 
-                      prefix: 'fa', svg: false};
-          var marker =  L.ExtraMarkers.icon(data);
-          this.w4uMarker = L.marker( [90.0*this.w4uInputs.latitude.value, 180.0*this.w4uInputs.longitude.value],
-                                     {icon: marker, title: this.tooltip, opacity: this.w4uInputs.opacity.value, 
-                                      draggable: false, autoPan: false} );  
-          // https://leafletjs.com/reference-1.6.0.html#marker
-          // this.w4uMarker = L.marker( [48, 8] );
+          if(this.$el && this.c4uParent && this.c4uParent.w4uCluster) {
+            var icon = this.icon;
+            if(this.number) { icon = 'fa-number';}
+            var data = {icon: icon, number: this.number, iconColor: this.color, // iconRotation: 360.0*this.w4uInputs.rotation.value, 
+                        shape: this.shape, markerColor: this.background, 
+                        prefix: 'fa', svg: false};
+            var marker =  L.ExtraMarkers.icon(data);
+            this.w4uMarker = L.marker( [90.0*this.w4uInputs.latitude.value, 180.0*this.w4uInputs.longitude.value],
+                                       {icon: marker, title: this.tooltip, opacity: this.w4uInputs.opacity.value, 
+                                        draggable: false, autoPan: false} );  
+            // https://leafletjs.com/reference-1.6.0.html#marker
+            // this.w4uMarker = L.marker( [48, 8] );
 
-          if(this.$el) {
+
             var popup = this.$el.getElementsByClassName("w4uPopup")[0].innerHTML;
             if(popup) {
               this.w4uMarker.bindPopup(popup);
             }
+
+            this.w4uMarker.on('click', this.onClick);
+            if(this.c4uParent && this.c4uParent.w4uCluster) {
+               this.c4uParent.w4uCluster.addLayer( this.w4uMarker );  
+            }
           }
-          this.w4uMarker.on('click', this.onClick);
-          if(this.c4uParent && this.c4uParent.w4uCluster) {
-             this.c4uParent.w4uCluster.addLayer( this.w4uMarker );  
-          }
-}
 	},
         deleteElem() {
          if(this.w4uMarker) {

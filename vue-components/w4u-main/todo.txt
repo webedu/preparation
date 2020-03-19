@@ -54,7 +54,8 @@ layergroups & groundmaps (https://lapizistik.github.io/leaflet-easymap/)  topo,o
 json-src, json-conversion
 draggable, onhover
 marker-cluster-layer: clustering, last clicked/hovered/dragged markers coordinates
-numbers
+
+
 
 size: width,height - make common mixin?
 
