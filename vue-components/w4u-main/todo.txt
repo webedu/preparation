@@ -34,7 +34,7 @@ use panellum css local
 size
 hotspots
 scenes
-subintervals (like video)
+subintervals for directions (like video)
 
 Petroff, Matthew A. "Pannellum: a lightweight web-based panorama viewer." Journal of Open Source Software 4, no. 40 (2019): 1628. doi:10.21105/joss.01628
  
@@ -50,7 +50,6 @@ map
 https://github.com/Lapizistik/leaflet-easymap
 border-limits, zoom-limits
 [rel, abs], [norm, deg]
-hover text = tooltip
 layergroups & groundmaps (https://lapizistik.github.io/leaflet-easymap/)  topo,osm,nasa,tambora,...
 json-src, json-conversion
 draggable, onhover
