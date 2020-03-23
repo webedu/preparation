@@ -37,8 +37,7 @@
   import C4uGlue from "c4u-glue";
   // import Vue from "vue";  
   import L from "leaflet";
-  import 'leaflet/dist/leaflet.css';
-  //require('leaflet/dist/leaflet.css')
+  //import 'leaflet/dist/leaflet.css';
 
   export default {
     mixins: [W4uIo, C4uGlue],

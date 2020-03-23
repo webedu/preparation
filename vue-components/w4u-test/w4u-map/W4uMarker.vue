@@ -1,13 +1,5 @@
 <template class="self">
   <span class="w4uMarker">  
-    <!--link 
-      rel="stylesheet" 
-      href="http://cdn.jsdelivr.net/npm/leaflet-extra-markers@1.1.0/dist/css/leaflet.extra-markers.min.css"
-    >
-    <link 
-      rel="stylesheet" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    -->
     <w4u-io 
       v-bind:name="name" 
       v-bind:inputs="w4uStringIn" 
