@@ -22,10 +22,10 @@
   export default {
     mixins: [W4uIo, C4uGlue],
     props: {
-            name: {type: String, default: 'marker0'},          //automatic numbering would need glue for unique id...
-            latitude:  {type: Number, default: 0.0}, 
-            longitude: {type: Number, default: 0.0},
-            zoom:      {type: Number, default: 0.5},          // zoom is used, when marker is activated 
+            name: {type: String, default: 'marker0'},         //automatic numbering would need glue for unique id...
+            latitude:  {type: Number, default: 0.0},          //   -90 ..  +90
+            longitude: {type: Number, default: 0.0},          //  -180 .. +180
+            zoom:      {type: Number, default: 0.5},          // 0 ... 16 : zoom is used, when marker is activated 
             number:    {type: String, default: ''},           // 1,2,3 or A,B,C,.. icon ignored.
             tooltip:   {type: String, default: ''}, 
           //  rotation:  {type: Number, default: 0.0},        // rotation not working - for font-awesome?
@@ -42,13 +42,13 @@
            return {
              c4uParentTag: "w4u-cluster",   
              w4uMarker:     null, 
-             w4uOutputs: { 'latitude':  {'value': this.latitude, 'time':0.0 },
-                           'longitude': {'value': this.longitude, 'time':0.0 },
+             w4uOutputs: { 'latitude':  {'value': this.latitude/90.0, 'time':0.0 },
+                           'longitude': {'value': this.longitude/180.0, 'time':0.0 },
                            'active':    {'value': 0.0, 'time':0.0 },
                          },
-             w4uInputs:  { 'latitude':  {'value': this.latitude, 'time':0.0 },   
-                           'longitude': {'value': this.longitude, 'time':0.0 },
-                           'zoom':      {'value': this.zoom, 'time':0.0 },
+             w4uInputs:  { 'latitude':  {'value': this.latitude/90.0, 'time':0.0 },   
+                           'longitude': {'value': this.longitude/180.0, 'time':0.0 },
+                           'zoom':      {'value': this.zoom/16.0, 'time':0.0 },
                           // 'rotation':  {'value': this.rotation, 'time':0.0 },
                            'opacity':   {'value': this.opacity, 'time':0.0 },
                            'activate':  {'value': 0.0, 'time':0.0 },

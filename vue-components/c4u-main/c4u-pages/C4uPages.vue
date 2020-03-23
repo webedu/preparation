@@ -92,11 +92,15 @@
           return true;  
        }, 
        updateDisableStatus: function () {
-         for(var f=0; f<(this.c4uChildren['c4u-page-forward'].length); f++) {
-           this.c4uChildren['c4u-page-forward'][f].updateDisableStatus();
+         if('c4u-page-forward' in this.c4uChildren) {
+           for(var f=0; f<(this.c4uChildren['c4u-page-forward'].length); f++) {
+             this.c4uChildren['c4u-page-forward'][f].updateDisableStatus();
+           }
          }
-         for(var b=0; b<(this.c4uChildren['c4u-page-backward'].length); b++) {
-           this.c4uChildren['c4u-page-backward'][b].updateDisableStatus();
+         if('c4u-page-backward' in this.c4uChildren) {
+           for(var b=0; b<(this.c4uChildren['c4u-page-backward'].length); b++) {
+             this.c4uChildren['c4u-page-backward'][b].updateDisableStatus();
+           }
          }
        },
        addOne: 

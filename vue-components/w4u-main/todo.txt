@@ -54,12 +54,14 @@ layergroups & groundmaps (https://lapizistik.github.io/leaflet-easymap/)  topo,o
 json-src, json-conversion
 draggable, onhover
 marker-cluster-layer: clustering, last clicked/hovered/dragged markers coordinates
-
+maybe use icon for number (when string.length =< 2)
 
 
 size: width,height - make common mixin?
 
 
+https://demo.ilias.de/ilias.php?ref_id=478&cmd=render&cmdClass=ilrepositorygui&cmdNode=8i&baseClass=ilRepositoryGUI#il_mhead_t_focus
+More ideas: see https://h5p.org/content-types-and-applications
 
  
 

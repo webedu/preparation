@@ -28,7 +28,7 @@
       v-bind:inputs="w4uStringIn" 
       v-bind:outputs="w4uStringOut"
     />    
-    <slot />  
+    <slot />
   </span>
 </template>
 
@@ -43,9 +43,9 @@
     mixins: [W4uIo, C4uGlue],
     props: {
             name: {type: String, default: 'map0'},        // automatic numbering would need glue for unique id...
-            latitude:  {type: Number, default: 0.0}, 
-            longitude: {type: Number, default: 0.0},
-            zoom:      {type: Number, default: 0.5},
+            latitude:  {type: Number, default: 0.0},      //  -90 ..  +90
+            longitude: {type: Number, default: 0.0},      // -180 .. +180
+            zoom:      {type: Number, default: 8},        //    0 .. 16
             // common ??
             width:     {type: String, default: "90%"},
             height:    {type: String, default: "400px"},  // later switch to 40% (calculated by screen height)
@@ -54,24 +54,29 @@
            return {
              //c4uParentTag: "c4u-circuitry",   
              w4uMap:     null, 
-             w4uOutputs: { 'latitude':  {'value': 0.0, 'time':0.0 },
-                           'longitude': {'value': 0.0, 'time':0.0 },
-                           'zoom':      {'value': 0.5, 'time':0.0 },
+             w4uOutputs: { 'latitude':  {'value': this.latitude/90.0,   'time':0.0 },  // -1.0 .. +1.0
+                           'longitude': {'value': this.longitude/180.0, 'time':0.0 },  // -1.0 .. +1.0
+                           'zoom':      {'value': this.zoom/16.0,       'time':0.0 },  //  0.0 ..  1.0
                          },
-             w4uInputs:  { 'latitude':  {'value': this.latitude, 'time':0.0 },   // interval * frequency < 1!!
-                           'longitude': {'value': this.longitude, 'time':0.0 },
-                           'zoom':      {'value': this.zoom, 'time':0.0 },
+             w4uInputs:  { 'latitude':  {'value': this.latitude/90.0,   'time':0.0 },   // -1.0 .. +1.0
+                           'longitude': {'value': this.longitude/180.0, 'time':0.0 },   // -1.0 .. +1.0
+                           'zoom':      {'value': this.zoom/16.0,       'time':0.0 },   //  0.0 ..  1.0
                          }
             }
         },
    watch: { /*eslint no-unused-vars: ["error", { "args": "none" }]*/
       w4uStringIn: function (newValue) { this.modifyElem(); },
-      //amplitude: function (newValue) { this.w4uInputs['amplitude']['value'] = newValue; },  
+      iLatitude:  function() { this.repositionMap(); },
+      iLongitude: function() { this.repositionMap(); },
+      iZoom:      function() { this.zoomMap(); }, 
    }, 
    mounted() {
        this.createElem();
    },
     computed: {
+      iLatitude:  function() { return this.w4uInputs.latitude.value; },
+      iLongitude: function() { return this.w4uInputs.longitude.value; }, 
+      iZoom:      function() { return this.w4uInputs.zoom.value; },
       w4uSizeStyle: function() {
          var w = this.width;
          var h = this.height;
@@ -89,7 +94,7 @@
         createElem() {
            var map = this.$refs.w4uMap;
            this.deleteElem();
-           this.w4uMap = L.map(map).setView(
+           this.w4uMap = L.map(map, { zoomSnap: 0.0 }).setView(
              [90.0*this.w4uInputs.latitude.value,
               180.0*this.w4uInputs.longitude.value], 
                16.0*this.w4uInputs.zoom.value);
@@ -121,7 +126,19 @@
            this.w4uMap = null;
          }
 	},
+        repositonMap() {
+          if(this.w4uMap) {
+            this.w4uMap.panTo(
+                    [90.0*this.w4uInputs.latitude.value, 180.0*this.w4uInputs.longitude.value]);
+          }
+        },
+        zoomMap() {
+          if(this.w4uMap) {
+            this.w4uMap.setZoom(16.0*this.w4uInputs.zoom.value);
+          }
+        },
         modifyElem() {
+
         },
         update() {
              // var step = 2.0*Math.PI*this.w4uInputs.interval.value*this.w4uInputs.frequency.value;
