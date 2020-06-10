@@ -64,16 +64,7 @@
                          }
             }
         },
-   watch: { /*eslint no-unused-vars: ["error", { "args": "none" }]*/
-      w4uStringIn: function (newValue) { this.modifyElem(); },
-      iLatitude:  function() { this.repositionMap(); },
-      iLongitude: function() { this.repositionMap(); },
-      iZoom:      function() { this.zoomMap(); }, 
-   }, 
-   mounted() {
-       this.createElem();
-   },
-    computed: {
+  computed: {
       iLatitude:  function() { return this.w4uInputs.latitude.value; },
       iLongitude: function() { return this.w4uInputs.longitude.value; }, 
       iZoom:      function() { return this.w4uInputs.zoom.value; },
@@ -84,6 +75,16 @@
          return '<style> .w4uSize { width: '+w+'; height: '+h+'; } </style>';
       },
     }, 
+   watch: { /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+      w4uStringIn: function (newValue) { this.modifyElem(); },
+      iLatitude:  function() { this.repositionMap(); },
+      iLongitude: function() { this.repositionMap(); },
+      iZoom:      function() { this.zoomMap(); }, 
+   }, 
+   mounted() {
+       this.createElem();
+   },
+
    methods: { /*eslint no-unused-vars: ["error", { "args": "none" }]*/
         c4uParentDisconnected(parent) {
            this.deleteElem();
@@ -94,7 +95,7 @@
         createElem() {
            var map = this.$refs.w4uMap;
            this.deleteElem();
-           this.w4uMap = L.map(map, { zoomSnap: 0.0 }).setView(
+           this.w4uMap = L.map(map, { zoomSnap: 0.01 }).setView(
              [90.0*this.w4uInputs.latitude.value,
               180.0*this.w4uInputs.longitude.value], 
                16.0*this.w4uInputs.zoom.value);

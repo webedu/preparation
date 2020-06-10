@@ -8,7 +8,7 @@
       v-bind:height="height"
     >
       Your browser does not support the video tag.
-      <slot />         
+      <slot />        
     </video> 
     <w4u-io 
       v-bind:name="name" 
@@ -36,8 +36,8 @@
             name: {type: String, default: 'video0'},          //automatic numbering would need glue for unique id...
             controls: {type: Boolean, default: false},
             poster: {type: String, default: ''},
-            width:  {type: String, default: '375px'}, 
-            height: {type: String, default: '375px'}
+            width:  {type: String, default: '90%'}, 
+            height: {type: String, default: ''}
            },
 
     data: function() {
@@ -78,8 +78,11 @@
           var player = this.$refs.w4uVideo;
           player.ontimeupdate = this.timeUpdate; 
           // init all stop-events
+          //this.handleIntervals(this.fraction);
       },  
       methods: {
+        /*eslint no-unused-vars: ["error", { "args": "none" }]*/
+        c4uChildReconnected(child) { this.handleIntervals(this.fraction); },  
         fractionToSeconds(fraction) {
            var player = this.$refs.w4uVideo;
            return fraction*player.duration;
@@ -94,6 +97,9 @@
                ts = "00:"+ts;
             }
             fraction = moment.duration(ts).asSeconds();
+            if(!fraction) {
+               fraction = -2.2;
+            }
             absolute = true;
          } else {                            // fraction 0.0-1.0  
             fraction = parseFloat(ts);

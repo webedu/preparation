@@ -37,8 +37,9 @@
     data: function() {
            return {
              //c4uParentTag: "w4u-stage",
-             w4uInputs:  {'show': {'value': ('show' == this.default ? 1.0 : 0.0), 'time':0.0 },  //0.0-1.0
+             w4uInputs:  {'show': {'value': ('show' == this.default ? 0.95 : 0.05), 'time':0.0 },  //0.0-1.0
              },
+             threshold: ('show' == this.default ? 0.49 : 0.51),
             }
         },
     computed: {
@@ -51,7 +52,7 @@
          if('opacity' == this.mode) {
            opacityStyle = '.w4uVisibility { opacity: '+show.toString()+'; } ';
          }
-         if(show<0.5) {
+         if(show<this.threshold) {
            if('visible' == this.mode) {
              visibilityStyle = '.w4uVisibility { visibility: hidden; } ';
            }

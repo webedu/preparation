@@ -20,11 +20,21 @@ wc:boolean button (press,toggle)
 Math: Differentiate(Delta), Integrate, exp-Topf, average&derivation
 
 questionaire
+ question
+  text
+  numbers
+  select-options
+  check/radio
+  tip/help
+ verify
+  
+
 
 sprite: drag&drop
 sprite: animation, delta-t:  https://www.w3schools.com/css/css3_animations.asp
 sprite, stage: width, height, (background, border)
 slider: width, style
+see: https://globalchallenge.org.au/ for animation css, js
 
 io: timing delta, anim,... (< 0.5 s)
 
@@ -35,6 +45,9 @@ size
 hotspots
 scenes
 subintervals for directions (like video)
+- block/hide/allow entry from scene to scene (i.e depending on challange)
+- block/hide/allow hotspot
+++ kind of inventar: collected items, solved quests, ...
 
 Petroff, Matthew A. "Pannellum: a lightweight web-based panorama viewer." Journal of Open Source Software 4, no. 40 (2019): 1628. doi:10.21105/joss.01628
  
@@ -44,7 +57,7 @@ show/hide?  -> sprite or seperate
 
 
 connection
-in value not default of out....
+ in value not default of out....
 
 map
 https://github.com/Lapizistik/leaflet-easymap
@@ -62,6 +75,12 @@ size: width,height - make common mixin?
 
 https://demo.ilias.de/ilias.php?ref_id=478&cmd=render&cmdClass=ilrepositorygui&cmdNode=8i&baseClass=ilRepositoryGUI#il_mhead_t_focus
 More ideas: see https://h5p.org/content-types-and-applications
+
+----- illias-Special
+Backward/Forward
+ * Select
+ * Stop Videos
+ * Store Page in JS-....
 
  
 
