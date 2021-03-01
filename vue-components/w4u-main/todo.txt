@@ -12,6 +12,9 @@ video: transparancy mode
 https://wiki.selfhtml.org/wiki/HTML/Multimedia_und_Grafiken/video
 https://w3c.github.io/webvtt/
 audio: as video
+youtube, etc, ... 
+* https://developers.google.com/youtube/player_parameters.html?playerVersion=HTML5\
+* https://developers.google.com/youtube/youtube_player_demo
 
 HT:function-generator
 HT:math, equations  https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Math
